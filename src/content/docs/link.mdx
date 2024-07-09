@@ -1,0 +1,93 @@
+---
+group: components
+text: Link
+title: Link
+meta:
+  description: Define different styles to integrate links into specific content.
+javascript: full
+---
+
+import Example from "examples/component.astro";
+
+# Link
+
+<p class="uk-text-lead uk-paragraph">{`Define different styles to integrate links into specific content.`}</p>
+
+## Usage
+
+To apply this component, add the `.uk-link` class to an `<a>` element.
+
+<Example component="link" index={0} />
+
+## Muted modifier
+
+If you want the link to apply a muted style instead, just add the `.uk-link-muted` class to the anchor element. You can also add the class to a parent element, and it will be applied to all `<a>` elements inside it.
+
+```html
+<a class="uk-link-muted" href="#"></a>
+```
+
+<Example component="link" index={1} />
+
+## Text modifier
+
+To make a link appear like body text and apply a hover effect, add the `.uk-link-text` class to the anchor element. You can also add the class to a parent element, and it will be applied to all `<a>` elements inside it. This is useful for link lists in the page footer.
+
+```html
+<a class="uk-link-text" href="#"></a>
+```
+
+<Example component="link" index={2} />
+
+## Reset modifier
+
+To reset a link's color, so that it inherits the color from its parent, add the `.uk-link-reset` class. There won't be any hover effect at all. This is useful for links inside heading elements. You can also add the class to a parent element, and it will be applied to all `<a>` elements inside it.
+
+<Example component="link" index={3} />
+
+## Toggle
+
+To use an anchor as a parent element and apply the link style on one of its child elements, just add the `.uk-link-toggle` class to the parent element and one of the `.uk-link-*` classes to the child element. For instance, you can link the whole card and still have the hover effect on the heading.
+
+```html
+<a class="uk-link-toggle" href="#">
+  <span class="uk-link-text"></span>
+</a>
+```
+
+<Example component="link" index={4} />
+
+## Theme development
+
+On your `tailwind.config.js` file, add the
+Link component within the `ui()` plugin.
+
+```javascript
+import ui from "franken-ui";
+
+ui({
+    components: {
+        link: {
+            hooks: {}
+        }
+    }
+}),
+```
+
+### Available hooks
+
+<span class="uk-label uk-label-primary">Note</span> If you are developing theme
+from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
+some hooks might not work as they were already in use or removed. Learn more
+about [using hooks](/docs/hooks).
+
+| Hook Name            | Affected Classes                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| `hook-muted`         | `a.uk-link-muted, .uk-link-muted a, .uk-link-toggle .uk-link-muted`                         |
+| `hook-muted-hover`   | `a.uk-link-muted:hover, .uk-link-muted a:hover, .uk-link-toggle:hover .uk-link-muted`       |
+| `hook-text`          | `a.uk-link-text, .uk-link-text a, .uk-link-toggle .uk-link-text`                            |
+| `hook-text-hover`    | `a.uk-link-text:hover, .uk-link-text a:hover, .uk-link-toggle:hover .uk-link-text`          |
+| `hook-heading`       | `a.uk-link-heading, .uk-link-heading a, .uk-link-toggle .uk-link-heading`                   |
+| `hook-heading-hover` | `a.uk-link-heading:hover, .uk-link-heading a:hover, .uk-link-toggle:hover .uk-link-heading` |
+| `hook-reset`         | `a.uk-link-reset, .uk-link-reset a`                                                         |
+| `hook-misc`          | `*`                                                                                         |

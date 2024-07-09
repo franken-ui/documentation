@@ -1,0 +1,126 @@
+---
+group: web-components
+text: Select
+title: Select
+meta:
+  description: "Displays a list of options for the user to pick from—triggered by a button."
+  robots: noindex
+badge: New
+---
+
+import Example from "examples/component.astro";
+
+# Select
+
+<p class="uk-text-lead uk-paragraph">{`Displays a list of options for the user to pick from—triggered by a button.`}</p>
+
+<div class="uk-alert uk-alert-danger mt-6">
+  <div class="uk-alert-title">Notice</div>
+  <div class="uk-alert-description">
+    This component is still in its early stages of development. As a result, you may encounter bugs or unexpected behavior. Please use with caution and report any issues you encounter.
+  </div>
+</div>
+
+## Usage
+
+The custom select component is a web component built from scratch to enhance the native `<select>` tag. To get started, simply use the `<uk-select>` markup in your HTML code.
+
+<Example component="select" index={0} />
+
+<span class="uk-label uk-label-primary">Note</span> Similar to the standard `<select>` tag, if you don't specify a `value` attribute for an `<option>` tag, it will default to using its text content as the value instead.
+
+## Adding header
+
+To add a header to your custom select component, you can utilize the built-in `<optgroup>` tag. Franken WC will automatically convert this into a dropdown header behind the scenes, providing a seamless developer experience.
+
+<Example component="select" index={1} />
+
+## Selecting multiple values
+
+To enable the selection of multiple values, simply add the `multiple` attribute to the `<uk-select>` element. This will allow users to choose multiple options from the dropdown list.
+
+<Example component="select" index={2} />
+
+<span class="uk-label uk-label-primary">Note</span> When utilizing the `multiple` attribute, note that it will automatically append `[]` to the name of your input. This is particularly useful when your server expects multiple values, even if the user selects only one option. This ensures that your server-side logic can properly handle the input, regardless of the number of values selected.
+
+## Pre-populating values
+
+Similar to the native `<select>` tag, you can pre-populate values in the custom select component by adding the `selected` attribute to one or more of your `<option>` tags. This allows you to set default values for the user.
+
+<Example component="select" index={3} />
+
+## Disabling options
+
+Similar to the native `<select>` tag, you can disable specific options in the custom select component by adding the `disabled` attribute to one or more of your `<option>` or `<optgroup>` tags. This allows you to prevent users from selecting certain options.
+
+<Example component="select" index={4} />
+
+## Combobox
+
+To transform the custom select component into a combobox, simply add the `searchable` attribute. This will add an input field within the dropdown menu, enabling users to search for specific options. This feature is particularly useful when dealing with extensive lists, such as selecting a country from a long list of options.
+
+<Example component="select" index={5} />
+
+## Error state
+
+The select component is designed to integrate seamlessly with Franken UI and UIkit. To indicate an error state in the form, simply add the `error` attribute. This will apply a "danger" state to the component, providing visual feedback to the user.
+
+<Example component="select" index={6} />
+
+## Preventing layout shift
+
+When loading Web Components, there may be a brief delay before the content is fully rendered. This can result in a flash of unstyled content or unprocessed templates. To mitigate this issue, add the `uk-cloak` attribute to hide the entire element until Franken WC has fully loaded on the page. For an even more polished experience, consider setting a predefined height on the parent element to prevent layout shift and ensure a smooth user experience.
+
+<Example component="select" index={7} />
+
+## Attributes
+
+The following attributes are available for the custom select component:
+
+| Name          | Type    | Default | Description                                                                                                                |
+| ------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `uk-cloak`    | Boolean | false   | Hides the element until Franken WC has fully loaded on the page, preventing layout shifts and flashes of unstyled content. |
+| `name`        | String  |         | Specifies the name of the input field.                                                                                     |
+| `multiple`    | Boolean | false   | Determines whether the component accepts multiple values or not.                                                           |
+| `disabled`    | Boolean | false   | Enables or disables the entire component.                                                                                  |
+| `placeholder` | String  |         | Sets the placeholder text for the component.                                                                               |
+| `searchable`  | Boolean | false   | Adds a search input field within the dropdown menu, allowing users to search for specific options.                         |
+| `error`       | Boolean | false   | Applies the `uk-form-error` class when set to `true`, indicating an error state in the form.                               |
+
+## Events
+
+The custom select component triggers the following events on elements with this component attached:
+
+| Name              | Description                                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------------------- |
+| `uk-select:input` | Fired after the value has changed, providing an opportunity to respond to user input.          |
+| `uk-select:open`  | Fired after the dropdown menu has been opened, allowing for custom handling of the open event. |
+| `uk-select:close` | Fired after the dropdown menu has been closed, enabling custom handling of the close event.    |
+
+## Theme development
+
+On your `tailwind.config.js` file, add the Combobox component within the `ui()` plugin. Please note that the `.uk-select` name was already occupied by the native `<select>` tag, so the `.uk-combobox` name was chosen instead to avoid conflicts.
+
+```javascript
+import ui from "franken-ui";
+
+ui({
+    components: {
+        combobox: {
+            hooks: {}
+        }
+    }
+}),
+```
+
+### Available hooks
+
+<span class="uk-label uk-label-primary">Note</span> If you are developing theme
+from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
+some hooks might not work as they were already in use or removed. Learn more
+about [using hooks](/docs/hooks).
+
+| Hook Name       | Affected Classes |
+| --------------- | ---------------- |
+| `hook-combobox` | `.uk-combobox`   |
+| `hook-misc`     | `*`              |

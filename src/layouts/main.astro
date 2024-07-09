@@ -1,0 +1,48 @@
+---
+import Master from "./master.astro";
+import Navbar from "./partials/navbar.astro";
+import Nav from "./partials/nav.astro";
+
+const { doc } = Astro.props;
+const { pathname } = Astro.url;
+---
+
+<Master doc={doc}>
+  <div class="flex min-h-screen flex-col">
+    <div class="flex-1">
+      <Navbar pathname={pathname}>
+        <Fragment slot="offcanvas">
+          <Nav pathname={pathname} />
+        </Fragment>
+      </Navbar>
+
+      <div class="uk-container uk-container-xlarge">
+        <slot />
+      </div>
+    </div>
+
+    <div class="flex-none">
+      <footer class="uk-container uk-container-xlarge py-6">
+        <div class="flex flex-col items-center">
+          <p
+            class="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left"
+          >
+            Ported by <a
+              class="uk-link"
+              href="https://x.com/sveltecult"
+              target="_blank">sveltecult</a
+            >, designed by <a
+              class="uk-link"
+              href="https://twitter.com/shadcn"
+              target="_blank">shadcn</a
+            >. The source code is available on <a
+              class="uk-link"
+              href="https://github.com/franken-ui/ui"
+              target="_blank">Github</a
+            >.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</Master>

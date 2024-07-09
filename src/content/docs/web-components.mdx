@@ -1,0 +1,156 @@
+---
+group: getting-started
+order: 3
+text: Web Components
+title: Web Components
+meta:
+  description: Learn how to install and integrate Franken WC in your projects.
+  robots: noindex
+badge: New
+---
+
+# Web Components
+
+UIkit is a completely independent project from Franken UI. It's a great open-source library. However, it lacks some essential components that we need. To address this, Franken WC was created. Just like our JavaScript, we have two methods of installation available.
+
+## Installation Via CDN
+
+Just like any other regular JavaScript, you can include the Franken WC files on your page by adding them to the `<head>` section. You can also choose to use the defer attribute to delay script execution.
+
+```html
+<script type="module" src="https://unpkg.com/franken-wc@0.0.2/dist/js/wc.iife.js"></script>
+```
+
+## Installation Via NPM
+
+Alternatively, you can choose to install Franken WC via NPM and update your `app.js` file accordingly.
+
+```sh
+npm install franken-wc
+```
+
+```diff
+  import { UIkit, Icons } from "franken-ui/uikit/js/dist";
++ import 'franken-wc';
+
+  UIkit.use(Icons);
+
+  window.UIkit = UIkit;
+```
+
+## Reactive frameworks
+
+Since we're leveraging the power of Web Components, Franken WC can be used within popular frameworks like React, Vue, or Svelte. Just ensure you're importing it in the browser, not on the server. For guidance on how to do this, refer to your framework's documentation. To illustrate, here's an example of how we implement it in SvelteKit.
+
+```svelte
+<script>
+	import { browser } from '$app/environment';
+
+	if (browser) {
+		import('franken-wc');
+	}
+</script>
+```
+
+I've designed Franken UI with backend developers in mind. While it is technically possible to use Franken WC within a reactive framework, you may encounter issues related to re-rendering or Hot Module Replacement (HMR) during development. Please note that my top priority is to ensure an HTML-first approach, which may affect the integration with certain reactive frameworks.
+
+And that's it! You've successfully set up Franken UI. You can now unlock its full potential and start building your amazing app!
+
+## Frequently asked questions
+
+<ul class="uk-accordion uk-margin" uk-accordion>
+  {[
+    {
+      q: "Why isn't Franken WC bundled inside Franken UI?",
+      a: (
+        <Fragment>
+          <p>
+            Franken WC is an optional component, and it's also a relatively new
+            project that's still undergoing frequent updates. Bundling it with
+            Franken UI would require Franken UI to be updated just as
+            frequently, which isn't ideal. Keeping them separate is a more
+            practical approach.
+          </p>
+        </Fragment>
+      ),
+    },
+    {
+      q: "Franken UI works perfectly with Alpine.js, so why not use it instead?",
+      a: (
+        <Fragment>
+          <p>
+            I've found that Alpine.js has some limitations when it comes to
+            distribution. Additionally, I've made a conscious effort to avoid
+            cluttering our HTML tags with JSON, CSS classes, and other
+            unnecessary elements. This approach helps keep our code clean,
+            maintainable, and easy to work with.
+          </p>
+        </Fragment>
+      ),
+    },
+    {
+      q: "Why Lit?",
+      a: (
+        <Fragment>
+          <p>
+            Building a custom select component from scratch was a challenge.
+            Making it reusable, distributable, and designing the markup was even
+            harder. I needed a reactive framework to help me achieve this. After
+            considering various options, I found that Alpine.js was a good fit,
+            but it had some drawbacks, such as cluttering HTML tags and
+            distribution issues.
+          </p>
+          <p class="uk-margin-small-top">
+            I wanted a solution that would work seamlessly with HTML, without
+            requiring a specific framework like React, Vue, or Svelte. My
+            requirements were clear: lightweight, reactive, easily
+            distributable, and framework-agnostic. After exploring various
+            alternatives, I discovered Lit, which checks all my boxes.
+          </p>
+          <p class="uk-margin-small-top">
+            While I could have used Svelte, Preact, or Solid and compiled them
+            using web components, I couldn't find sufficient online resources to
+            make them distributable. Additionally, web components didn't seem to
+            be their primary focus. Therefore, I decided to go with Lit, which
+            met my needs and provided the necessary support for my project.
+          </p>
+        </Fragment>
+      ),
+    },
+    {
+      q: "Does Franken WC use Light DOM or Shadow DOM?",
+      a: (
+        <Fragment>
+          <p>
+            Franken WC utilizes Light DOM to closely mimic native HTML tags,
+            ensuring a more straightforward and intuitive development
+            experience. This approach also allows developers to easily customize
+            the design of components via CSS, while avoiding the added
+            complexity associated with Shadow DOM.
+          </p>
+        </Fragment>
+      ),
+    },
+    {
+      q: "Is this production ready?",
+      a: (
+        <Fragment>
+          <p>
+            While I always strive to finalize the API before releasing, changes and bugs may still occur as this is a relatively new project. Please test it, provide feedback, and decide for yourself if it's ready for production.
+          </p>
+        </Fragment>
+      ),
+    },
+  ].map((a) => (
+    <li>
+      <a class="uk-accordion-title" href="#">
+        <Fragment
+          set:html={`${a.q} <span class="uk-accordion-icon" uk-icon="icon: chevron-down; ratio: 0.8"></span>`}
+        />
+      </a>
+      <div class="uk-accordion-content">
+        <Fragment set:html={a.a} />
+      </div>
+    </li>
+  ))}
+</ul>

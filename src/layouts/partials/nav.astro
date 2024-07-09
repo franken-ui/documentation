@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import NavItem from "./nav-item.astro";
+
+const docs = await getCollection("docs");
+
+const { pathname } = Astro.props;
+---
+
+<ul class="uk-nav uk-nav-default lg:hidden">
+  <li class={pathname === "/" ? "uk-active" : ""}>
+    <a href="/">Home</a>
+  </li>
+  <li class={pathname === "/changelog" ? "uk-active" : ""}>
+    <a href="/changelog">Changelog</a>
+  </li>
+  <li class={pathname === "/about" ? "uk-active" : ""}>
+    <a href="/about">About</a>
+  </li>
+</ul>
+
+<ul class="uk-nav uk-nav-default pt-4 lg:pt-0">
+  <li class="uk-nav-header">Getting Started</li>
+  {
+    docs
+      .filter((a) => a.data.group === "getting-started")
+      .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
+      .map((collection) => (
+        <NavItem collection={collection} pathname={pathname} />
+      ))
+  }
+</ul>
+
+<ul class="uk-nav uk-nav-default pt-4">
+  <li class="uk-nav-header">UIkit Components</li>
+  {
+    docs
+      .filter((a) => a.data.group === "components")
+      .map((collection) => (
+        <NavItem collection={collection} pathname={pathname} />
+      ))
+  }
+</ul>
+
+<ul class="uk-nav uk-nav-default pt-4">
+  <li class="uk-nav-header">Web Components</li>
+  {
+    docs
+      .filter((a) => a.data.group === "web-components")
+      .map((collection) => (
+        <NavItem collection={collection} pathname={pathname} />
+      ))
+  }
+</ul>

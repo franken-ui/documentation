@@ -1,0 +1,166 @@
+---
+group: components
+text: Search
+title: Search
+meta:
+  description: Easily create a nice looking search.
+javascript: none
+---
+
+import Example from "examples/component.astro";
+
+# Search
+
+<p class="uk-text-lead">Easily create a nice looking search.</p>
+
+## Usage
+
+The Search component consists of a search form and the search input itself.
+
+| Class/Attribute    | Description                                                           |
+| ------------------ | --------------------------------------------------------------------- |
+| `.uk-search`       | Add this class to a container element to define the Search component. |
+| `.uk-search-input` | Add this class to an `<input>` element to create the search field.    |
+
+```html
+<form class="uk-search" aria-label="Search">
+  <input class="uk-search-input" type="search" placeholder="" aria-label="" />
+</form>
+```
+
+By default, the search has no additional styling. In this example we are using the `.uk-search-default` modifier.
+
+<Example component="search" index={0} />
+
+## Search icon
+
+To create a search icon, add the `uk-search-icon` attribute to a `<span>` element. To change the alignment, add the `.uk-search-icon-flip` class.
+
+```html
+<form class="uk-search uk-search-default">
+  <span uk-search-icon></span>
+  <input class="uk-search-input" type="search" placeholder="" aria-label="" />
+</form>
+
+<form class="uk-search uk-search-default">
+  <input class="uk-search-input" type="search" placeholder="" aria-label="" />
+  <span class="uk-search-icon-flip" uk-search-icon></span>
+</form>
+```
+
+<Example component="search" index={1} />
+
+### Clickable
+
+To enable an action, use an `<a>` or `<button>` element to create the icon.
+
+```html
+<form class="uk-search uk-search-default">
+  <button uk-search-icon></button>
+  <input class="uk-search-input" type="search" placeholder="" aria-label="" />
+</form>
+
+<form class="uk-search uk-search-default">
+  <input class="uk-search-input" type="search" placeholder="" aria-label="" />
+  <button class="uk-search-icon-flip" uk-search-icon></button>
+</form>
+```
+
+<Example component="search" index={2} />
+
+## Default modifier
+
+To apply the default search styling, add the `.uk-search-default` class.
+
+```html
+<form class="uk-search uk-search-default">…</form>
+```
+
+<Example component="search" index={3} />
+
+## Navbar modifier
+
+To apply a dedicated search style when used in a navbar from the [Navbar component](/docs/navbar), add the `.uk-search-navbar` class.
+
+```html
+<form class="uk-search uk-search-navbar">…</form>
+```
+
+<Example component="search" index={4} />
+
+{/* ## Medium modifier
+
+To increase the size of the search, for example when using the search in a dropdown, add the `.uk-search-medium` class.
+
+```html
+<form class="uk-search-medium uk-search">…</form>
+```
+
+<Example component="search" index={5} /> */}
+
+## Large modifier
+
+To increase the size of the search, for example when using the search in a fullscreen modal, add the `.uk-search-large` class.
+
+```html
+<form class="uk-search uk-search-large">…</form>
+```
+
+<Example component="search" index={6} />
+
+## Toggle
+
+To apply a hover state to the search icon when using an `<a>` or `<button>` element, add the `.uk-search-toggle` class. To create the search icon itself, add the `uk-search-icon` attribute.
+
+```html
+<a class="uk-search-toggle" href="" uk-search-icon></a>
+```
+
+<Example component="search" index={7} />
+
+## Search in navbar
+
+The search icon can be used as a toggle to open the search inside a navbar – as an overlay, drop or dropdown – or outside in a modal. Just add the `.uk-navbar-toggle` class to the icon.
+
+```html
+<div class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <a class="uk-navbar-toggle" uk-search-icon uk-toggle href=""></a>
+  </div>
+</div>
+```
+
+### Overlay
+
+<Example component="search" index={8} />
+
+### Drop
+
+<Example component="search" index={9} />
+
+### Dropdown
+
+<Example component="search" index={10} />
+
+### Modal
+
+<Example component="search" index={11} />
+
+## Accessibility
+
+Set the appropriate WAI-ARIA roles, states and properties to the Search component.
+
+- If no `<label>` element is associated with the search control, set the `aria-label` property to the search `<input>` element to describe its meaning.
+
+```html
+<input class="uk-search-input" type="search" aria-label="…" />
+```
+
+### Internationalization
+
+The Search component uses the following translation strings. Learn more about [translating components](accessibility.md#internationalization).
+
+| Key      | Default         | Description                               |
+| -------- | --------------- | ----------------------------------------- |
+| `toggle` | `Open Search`   | `aria-label` attribute for toggle button. |
+| `submit` | `Submit Search` | `aria-label` attribute for submit button. |

@@ -1,0 +1,66 @@
+---
+import { Code } from "astro:components";
+import { resolve } from "node:path";
+import { readFileSync } from "node:fs";
+// @ts-ignore
+import blackout from "public/shiki/themes/blackout.json";
+
+const { component, index } = Astro.props;
+const code = readFileSync(
+  resolve("src", "examples", `${component}.html`),
+  "utf-8",
+)
+  .split("<!-- split -->")
+  [index].trim()
+  .replace(
+    /{%isodate%}/g,
+    new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .replace(/\.\d+Z/, "+00:00"),
+  );
+---
+
+<div class="uk-margin-medium relative">
+  <ul class="uk-tab" uk-tab="swiping: false">
+    <li class="uk-active">
+      <a class="!px-4 !pb-3 !pt-2" href="#">Preview</a>
+    </li>
+    <li>
+      <a class="!px-4 !pb-3 !pt-2" href="#">Markup</a>
+    </li>
+  </ul>
+
+  <a class="c" role="button">
+    <span class="sr-only">Copy to clipboard</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-clipboard-list"
+    >
+      <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+      <path
+        d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+      ></path>
+      <path d="M12 11h4"></path>
+      <path d="M12 16h4"></path>
+      <path d="M8 11h.01"></path>
+      <path d="M8 16h.01"></path>
+    </svg>
+  </a>
+
+  <ul class="uk-margin uk-switcher">
+    <li class="uk-active rounded-md border border-border p-4 md:p-6 lg:p-10">
+      <Fragment set:html={code} />
+    </li>
+    <li class="uk-overflow-hidden">
+      <Code code={code} lang="html" theme={blackout as any} />
+    </li>
+  </ul>
+</div>

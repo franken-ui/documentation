@@ -1,0 +1,20 @@
+---
+const { collection, pathname } = Astro.props;
+---
+
+<li
+  class={`flex items-center justify-between ${pathname === collection.slug ? "uk-active" : ""}`}
+>
+  <a class="flex-1" href={`/docs/${collection.slug}`}>
+    {collection.data.text}
+  </a>
+  {
+    collection.data.badge ? (
+      <span class="uk-label uk-label-primary flex-none">
+        {collection.data.badge}
+      </span>
+    ) : (
+      ""
+    )
+  }
+</li>

@@ -1,0 +1,281 @@
+---
+group: getting-started
+order: 5
+text: Hooks
+title: Franken UI Hooks
+meta:
+  description: "Allows easy customization by hooking into predefined selectors, reducing selector repetition and enabling effortless global changes."
+javascript: none
+---
+
+# Hooks
+
+<p class="uk-text-lead uk-paragraph">{`Allows easy customization by hooking into predefined selectors, reducing selector repetition and enabling effortless global changes.`}</p>
+
+To prevent overhead selectors, we have "hooks", which hook into predefined selectors from the source and replace or inject additional properties. Selectors don't have to be repeated throughout all documents and global changes can be made much more easily.
+
+## Using hooks
+
+Each component in Franken UI comes with hooks for easy customization, allowing you to tweak the appearance and behavior to suit your needs. These hooks are defined using a simple object structure, where you can specify custom CSS styles:
+
+```javascript
+{
+    'hook-alert': {
+        fontSize: '14px'
+    },
+    // truncated
+}
+```
+
+For your convenience, Franken UI provides pre-configured hooks based on the shadcn/ui (New York) design specifications. You can simply use these hooks to achieve a consistent design. However, if you need to add your own customizations, you can do so by passing them to either `hooks` or `preset-quick`:
+
+## Using hooks with `preset-quick`
+
+If you followed the installation guide, by default, you are importing from `preset-quick`. You can then pass your customizations to the `overrides` property.
+
+```javascript
+import franken from "franken-ui/shadcn-ui/preset-quick";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [
+    franken({
+      overrides: {
+        accordion: {
+          "hook-accordion": {},
+          "hook-item": {
+            background: "purple",
+          },
+          "hook-title": {
+            "@apply text-lime-400": {},
+          },
+          "hook-title-hover": {
+            color: "orange",
+          },
+          // truncated
+        },
+      },
+    }),
+  ],
+};
+```
+
+In this example, we're targeting the Accordion component. We set the background to purple, apply the `text-lime-400` color using the `@apply` directive, and change the color to orange on hover.
+
+<span class="uk-label uk-label-primary">Note</span> You can use either a simple object structure or, use the `@apply` directive when you want to call Tailwind CSS utilities. Additionally, note that the simple object structure will take precedence, and `@apply` will always be compiled last.
+
+## Using hooks with the fine-grained configuration
+
+Behind the scenes, this is the configuration that the `preset-quick` does. We refer to this as "fine-grained configuration" because you just technically write your own `tailwind.config.js` from scratch.
+
+To apply your own customizations, pass them inside the `hooks` function.
+
+```javascript
+import preset from "franken-ui/shadcn-ui/preset";
+import variables from "franken-ui/shadcn-ui/variables";
+import ui from "franken-ui";
+import hooks from "franken-ui/shadcn-ui/hooks";
+
+const shadcn = hooks({
+  overrides: {
+    accordion: {
+      "hook-title": {
+        background: "pink",
+        fontSize: "33px",
+      },
+    },
+  },
+});
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [preset],
+  plugins: [
+    variables(),
+    ui({
+      components: {
+        accordion: {
+          hooks: shadcn.accordion,
+        },
+      },
+    }),
+  ],
+};
+```
+
+First, we import the function from `franken-ui/shadcn-ui/hooks`. Then, we call it and pass our own customizations inside the `overrides` property, saving the result to a variable called `shadcn`. Behind the scenes, it will merge your customizations with the predefined hooks from `franken-ui/shadcn-ui/hooks`.
+
+## Creating your own theme
+
+You can create your own completely different theme and opt out of shadcn/ui by simply importing `ui` from `franken-ui` package and pass your customizations directly from there.
+
+```javascript
+import ui from "franken-ui";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  plugins: [
+    ui({
+      components: {
+        accordion: {
+          hooks: {
+            "hook-accordion": {},
+            "hook-item": {
+              background: "purple",
+            },
+            "hook-title": {
+              color: "lime",
+            },
+            "hook-title-hover": {
+              color: "orange",
+            },
+            // truncated
+          },
+        },
+        alert: {
+          hooks: {
+            "hook-alert": {
+              background: "red",
+              color: "cyan",
+              fontSize: "33px",
+            },
+            // truncated
+          },
+        },
+      },
+    }),
+  ],
+};
+```
+
+## Miscellaneous hooks
+
+Should there be no hooks available, you can also create your own selector. To do so, use the `hook-misc` and write a selector inside. This will sort your new selector to the right place in the compiled CSS file.
+
+```javascript
+import ui from "franken-ui";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  plugins: [
+    ui({
+      components: {
+        alert: {
+          hooks: {
+            "hook-misc": {
+              ".uk-alert-red": {
+                backgroundColor: "red",
+              },
+            },
+          },
+        },
+      },
+    }),
+  ],
+};
+```
+
+<span class="uk-label uk-label-primary">Note</span> You can also use the `hook-misc` to override other selectors.
+
+## Disabling or changing selector or property
+
+If you wish to override or disable pre-configured styling, you can set a property or delete the entire selector by setting it to `null` by using simple object structure. Or, use the `@apply` directive to call Tailwind CSS utitlies.
+
+```javascript
+import preset from "franken-ui/shadcn-ui/preset";
+import variables from "franken-ui/shadcn-ui/variables";
+import ui from "franken-ui";
+import hooks from "franken-ui/shadcn-ui/hooks";
+
+const shadcn = hooks({
+  overrides: {
+    card: {
+      "hook-card": {
+        borderWidth: null,
+        "@apply border-none shadow-none": {},
+      },
+    },
+  },
+});
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [preset],
+  plugins: [
+    variables(),
+    ui({
+      components: {
+        card: {
+          hooks: shadcn.card,
+        },
+      },
+    }),
+  ],
+};
+```
+
+In the example above, we want to target the Card component. We attempt to remove the `border-width` property by setting it to null. If that doesn't work, we override it using the `@apply` directive and call `border-none`. This is because, inside the `hooks()` function, there's a high likelihood that the `@apply` directive was used instead of a simple object structure. And, as we know, simple object structures take precedence over the @apply directive. So, even if we set it to null, but the predefined hooks used the `@apply` directive, it won't work because `@apply` will always be compiled last. To fix this, we also use `@apply` to override what's inside the predefined hooks.
+
+## Frequently asked questions
+
+<ul class="uk-accordion uk-margin" uk-accordion>
+  {[
+    {
+      q: "Why not just use Tailwind CSS utility classes?",
+      a: (
+        <Fragment>
+          <p>
+            You always can. But, using hooks helps prevent your HTML from
+            becoming cluttered with utility classes. They also contribute to
+            making your components more consistent and reduce overhead.
+          </p>
+        </Fragment>
+      ),
+    },
+    {
+      q: "Where can I find available hooks?",
+      a: (
+        <Fragment>
+          <p>
+            You can find the available hooks and their corresponding affected
+            classes in each component's documentation page under "Theme development".
+          </p>
+        </Fragment>
+      ),
+    },
+    {
+      q: "Will this create overhead?",
+      a: (
+        <Fragment>
+          <p>
+            No, all objects will be merged together, combining all duplicate
+            rules.
+          </p>
+        </Fragment>
+      ),
+    },
+    {
+      q: "I added some hooks but I don't see any changes",
+      a: (
+        <Fragment>
+          <p>Please restart your development server.</p>
+        </Fragment>
+      ),
+    },
+  ].map((a) => (
+    <li>
+      <a class="uk-accordion-title" href="#">
+        <Fragment
+          set:html={`${a.q} <span class="uk-accordion-icon" uk-icon="icon: chevron-down; ratio: 0.8"></span>`}
+        />
+      </a>
+      <div class="uk-accordion-content">
+        <Fragment set:html={a.a} />
+      </div>
+    </li>
+  ))}
+</ul>
+
+## Conclusion
+
+In conclusion, hooks provide a convenient way of overriding styles with less overhead. This approach makes your component more consistent, reduces build size, and helps prevent HTML clutter.

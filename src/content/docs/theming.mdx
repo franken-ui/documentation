@@ -1,0 +1,382 @@
+---
+group: getting-started
+order: 5
+text: Theming
+title: Theming
+meta:
+  description: Using CSS Variables or Tailwind CSS for theming.
+---
+
+# Theming
+
+Franken UI, just like shadcn/ui use a simple `background` and `foreground` convention for colors. The `background` variable is used for the background color of the component and the `foreground` variable is used for the text color.
+
+The `background` suffix is omitted when the variable is used for the background color of the component.
+
+Given the following CSS variables:
+
+```css
+--primary: 222.2 47.4% 11.2%;
+--primary-foreground: 210 40% 98%;
+```
+
+The `background` color of the following component will be `hsl(var(--primary))` and the `foreground` color will be `hsl(var(--primary-foreground))`.
+
+```html
+<div class="bg-primary text-primary-foreground">Hello</div>
+```
+
+**CSS variables must be defined without color space function**. See the [Tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors#using-css-variables) for more information.
+
+## List of variables
+
+Here's the list of variables available for customization:
+
+**1\.** For default backgrounds
+
+```css
+--background: 0 0% 100%;
+--foreground: 222.2 47.4% 11.2%;
+```
+
+**2\.** For muted backgrounds
+
+```css
+--muted: 210 40% 96.1%;
+--muted-foreground: 215.4 16.3% 46.9%;
+```
+
+**3\.** Background color for cards
+
+```css
+--card: 0 0% 100%;
+--card-foreground: 222.2 47.4% 11.2%;
+```
+
+**4\.** Background color for popovers
+
+```css
+--popover: 0 0% 100%;
+--popover-foreground: 222.2 47.4% 11.2%;
+```
+
+**5\.** For border color
+
+```css
+--border: 214.3 31.8% 91.4%;
+```
+
+**6\.** Border color for inputs
+
+```css
+--input: 214.3 31.8% 91.4%;
+```
+
+**7\.** For primary colors
+
+```css
+--primary: 222.2 47.4% 11.2%;
+--primary-foreground: 210 40% 98%;
+```
+
+**8\.** For secondary colors
+
+```css
+--secondary: 210 40% 96.1%;
+--secondary-foreground: 222.2 47.4% 11.2%;
+```
+
+**9\.** For accents such as hover effects
+
+```css
+--accent: 210 40% 96.1%;
+--accent-foreground: 222.2 47.4% 11.2%;
+```
+
+**10\.** For destructive actions
+
+```css
+--destructive: 0 100% 50%;
+--destructive-foreground: 210 40% 98%;
+```
+
+**11\.** For focus ring
+
+```css
+--ring: 215 20.2% 65.1%;
+```
+
+## Adding new colors
+
+To add new colors, you need to add them to your CSS file and to your `tailwind.config.js` file.
+
+```css
+:root {
+  --warning: 38 92% 50%;
+  --warning-foreground: 48 96% 89%;
+}
+
+.dark {
+  --warning: 48 96% 89%;
+  --warning-foreground: 38 92% 50%;
+}
+```
+
+Then, on your `tailwind.config.js` file:
+
+```js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        warning: "hsl(var(--warning))",
+        "warning-foreground": "hsl(var(--warning-foreground))",
+      },
+    },
+  },
+};
+```
+
+You can now use the `warning` utility class in your components.
+
+```html
+<div class="bg-warning text-warning-foreground" />
+```
+
+## Using theme generators
+
+Franken UI supports theme generators. You can even create your own theme from scratch. To generate your
+own theme, follow these steps:
+
+**1\.** Go to [ZippyStarter](https://zippystarter.com/tools/shadcn-ui-theme-generator), [Oxidus](https://oxidus.vercel.app/) or [https://ui.jln.dev/](https://ui.jln.dev/) and generate your desired theme. Copy the generated theme. Note that you can omit the `--radius` variable as it is not needed.
+
+**2\.** Convert the CSS to an object [using this tool](https://transform.tools/css-to-js). It's important to follow the correct format. Here's an example of the CSS:
+
+```css
+:root {
+  --background: 351 100% 95%;
+  --foreground: 351 5% 0%;
+  --card: 351 50% 90%;
+  --card-foreground: 351 5% 10%;
+  --popover: 351 100% 95%;
+  --popover-foreground: 351 100% 0%;
+  --primary: 351 60.5% 46.7%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 351 30% 70%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 313 30% 85%;
+  --muted-foreground: 351 5% 35%;
+  --accent: 313 30% 80%;
+  --accent-foreground: 351 5% 10%;
+  --destructive: 0 100% 30%;
+  --destructive-foreground: 351 5% 90%;
+  --border: 351 30% 50%;
+  --input: 351 30% 18%;
+  --ring: 351 60.5% 46.7%;
+}
+.dark {
+  --background: 351 50% 5%;
+  --foreground: 351 5% 90%;
+  --card: 351 50% 0%;
+  --card-foreground: 351 5% 90%;
+  --popover: 351 50% 5%;
+  --popover-foreground: 351 5% 90%;
+  --primary: 351 60.5% 46.7%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 351 30% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 313 30% 15%;
+  --muted-foreground: 351 5% 60%;
+  --accent: 313 30% 15%;
+  --accent-foreground: 351 5% 90%;
+  --destructive: 0 100% 30%;
+  --destructive-foreground: 351 5% 90%;
+  --border: 351 30% 18%;
+  --input: 351 30% 18%;
+  --ring: 351 60.5% 46.7%;
+}
+```
+
+Once you have transformed that to an object, you should have something like this:
+
+```javascript
+{
+  ":root": {
+    "--background": "351 100% 95%",
+    "--foreground": "351 5% 0%",
+    "--card": "351 50% 90%",
+    "--card-foreground": "351 5% 10%",
+    "--popover": "351 100% 95%",
+    "--popover-foreground": "351 100% 0%",
+    "--primary": "351 60.5% 46.7%",
+    "--primary-foreground": "0 0% 100%",
+    "--secondary": "351 30% 70%",
+    "--secondary-foreground": "0 0% 0%",
+    "--muted": "313 30% 85%",
+    "--muted-foreground": "351 5% 35%",
+    "--accent": "313 30% 80%",
+    "--accent-foreground": "351 5% 10%",
+    "--destructive": "0 100% 30%",
+    "--destructive-foreground": "351 5% 90%",
+    "--border": "351 30% 50%",
+    "--input": "351 30% 18%",
+    "--ring": "351 60.5% 46.7%"
+  },
+  ".dark": {
+    "--background": "351 50% 5%",
+    "--foreground": "351 5% 90%",
+    "--card": "351 50% 0%",
+    "--card-foreground": "351 5% 90%",
+    "--popover": "351 50% 5%",
+    "--popover-foreground": "351 5% 90%",
+    "--primary": "351 60.5% 46.7%",
+    "--primary-foreground": "0 0% 100%",
+    "--secondary": "351 30% 10%",
+    "--secondary-foreground": "0 0% 100%",
+    "--muted": "313 30% 15%",
+    "--muted-foreground": "351 5% 60%",
+    "--accent": "313 30% 15%",
+    "--accent-foreground": "351 5% 90%",
+    "--destructive": "0 100% 30%",
+    "--destructive-foreground": "351 5% 90%",
+    "--border": "351 30% 18%",
+    "--input": "351 30% 18%",
+    "--ring": "351 60.5% 46.7%"
+  }
+}
+```
+
+**3\.** Finally, configure your `tailwind.config.css` to use your custom colors. You will do this inside the `palette` option.
+
+```javascript
+import franken from "franken-ui/shadcn-ui/preset-quick";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [
+    franken({
+      palette: {
+        ":root": {
+          "--background": "351 100% 95%",
+          "--foreground": "351 5% 0%",
+          "--card": "351 50% 90%",
+          "--card-foreground": "351 5% 10%",
+          "--popover": "351 100% 95%",
+          "--popover-foreground": "351 100% 0%",
+          "--primary": "351 60.5% 46.7%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "351 30% 70%",
+          "--secondary-foreground": "0 0% 0%",
+          "--muted": "313 30% 85%",
+          "--muted-foreground": "351 5% 35%",
+          "--accent": "313 30% 80%",
+          "--accent-foreground": "351 5% 10%",
+          "--destructive": "0 100% 30%",
+          "--destructive-foreground": "351 5% 90%",
+          "--border": "351 30% 50%",
+          "--input": "351 30% 18%",
+          "--ring": "351 60.5% 46.7%",
+        },
+        ".dark": {
+          "--background": "351 50% 5%",
+          "--foreground": "351 5% 90%",
+          "--card": "351 50% 0%",
+          "--card-foreground": "351 5% 90%",
+          "--popover": "351 50% 5%",
+          "--popover-foreground": "351 5% 90%",
+          "--primary": "351 60.5% 46.7%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "351 30% 10%",
+          "--secondary-foreground": "0 0% 100%",
+          "--muted": "313 30% 15%",
+          "--muted-foreground": "351 5% 60%",
+          "--accent": "313 30% 15%",
+          "--accent-foreground": "351 5% 90%",
+          "--destructive": "0 100% 30%",
+          "--destructive-foreground": "351 5% 90%",
+          "--border": "351 30% 18%",
+          "--input": "351 30% 18%",
+          "--ring": "351 60.5% 46.7%",
+        },
+      },
+    }),
+  ],
+};
+```
+
+Or, if you are using the fine-grained configuration, you can save the palette to its own variable and apply it inside `hooks()` and `variables()` functions:
+
+```javascript
+import preset from "franken-ui/shadcn-ui/preset";
+import variables from "franken-ui/shadcn-ui/variables";
+import ui from "franken-ui";
+import hooks from "franken-ui/shadcn-ui/hooks";
+
+const palette = {
+  ":root": {
+    "--background": "351 100% 95%",
+    "--foreground": "351 5% 0%",
+    "--card": "351 50% 90%",
+    "--card-foreground": "351 5% 10%",
+    "--popover": "351 100% 95%",
+    "--popover-foreground": "351 100% 0%",
+    "--primary": "351 60.5% 46.7%",
+    "--primary-foreground": "0 0% 100%",
+    "--secondary": "351 30% 70%",
+    "--secondary-foreground": "0 0% 0%",
+    "--muted": "313 30% 85%",
+    "--muted-foreground": "351 5% 35%",
+    "--accent": "313 30% 80%",
+    "--accent-foreground": "351 5% 10%",
+    "--destructive": "0 100% 30%",
+    "--destructive-foreground": "351 5% 90%",
+    "--border": "351 30% 50%",
+    "--input": "351 30% 18%",
+    "--ring": "351 60.5% 46.7%",
+  },
+  ".dark": {
+    "--background": "351 50% 5%",
+    "--foreground": "351 5% 90%",
+    "--card": "351 50% 0%",
+    "--card-foreground": "351 5% 90%",
+    "--popover": "351 50% 5%",
+    "--popover-foreground": "351 5% 90%",
+    "--primary": "351 60.5% 46.7%",
+    "--primary-foreground": "0 0% 100%",
+    "--secondary": "351 30% 10%",
+    "--secondary-foreground": "0 0% 100%",
+    "--muted": "313 30% 15%",
+    "--muted-foreground": "351 5% 60%",
+    "--accent": "313 30% 15%",
+    "--accent-foreground": "351 5% 90%",
+    "--destructive": "0 100% 30%",
+    "--destructive-foreground": "351 5% 90%",
+    "--border": "351 30% 18%",
+    "--input": "351 30% 18%",
+    "--ring": "351 60.5% 46.7%",
+  },
+};
+
+const shadcn = hooks({
+  palette: palette,
+});
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [preset],
+  plugins: [
+    variables({
+      palette: palette,
+    }),
+    ui({
+      components: {},
+    }),
+  ],
+};
+```
+
+And that's it. You can now customize colors and are not limited to the 12 predefined colors.
+
+You might ask why you can't just paste it into your CSS file. Well, technically, you can. However, elements such as dividers, checkboxes, radios, etc., use SVG as their background, and it's important to keep their colors in sync. Unfortunately, setting HSL inside inline SVG is not possible because they are not yet in the DOM. To fix this, HSL needs to be converted to HEX and injected into the SVG.
+
+If you are confused, you can watch this short video on [Mastodon](https://mas.to/@sveltecult/112556172122401221) on how to configure your own palette.

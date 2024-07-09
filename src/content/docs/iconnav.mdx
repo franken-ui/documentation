@@ -1,0 +1,102 @@
+---
+group: components
+text: Iconnav
+title: Iconnav
+meta:
+  description: Create a navigation consisting of icons.
+badge: Updated
+---
+
+import Example from "examples/component.astro";
+
+# Iconnav
+
+<p class="uk-text-lead uk-paragraph">{`Create a navigation consisting of icons.`}</p>
+
+## Usage
+
+To apply this component, add the `.uk-iconnav` class to a `<ul>` element. Use `<a>` elements as menu items within the list and add icons from the [Icon component](/docs/icon). To apply an active state to a menu item, just add the `.uk-active` class.
+
+```html
+<ul class="uk-iconnav">
+  <li><a href="" uk-icon="icon: check"></a></li>
+</ul>
+```
+
+<Example component="iconnav" index={0} />
+
+## Vertical alignment
+
+By default, the items of an iconnav are aligned horizontally. To apply a vertical alignment, add the `.uk-iconnav-vertical` class.
+
+```html
+<ul class="uk-iconnav uk-iconnav-vertical">
+  ...
+</ul>
+```
+
+<Example component="iconnav" index={1} />
+
+## Outline modifier
+
+To apply an outline, just add the `.uk-iconnav-outline` class.
+
+```html
+<ul class="uk-iconnav uk-iconnav-outline">
+  ...
+</ul>
+```
+
+<Example component="iconnav" index={2} />
+
+## Small modifier
+
+<Example component="iconnav" index={3} />
+
+## Extra small modifier
+
+<Example component="iconnav" index={4} />
+
+## Accessibility
+
+Set the appropriate WAI-ARIA roles, states and properties to the Iconnav component.
+
+- Set the `aria-label` property to the `<a>` elements to describe their meaning.
+
+```html
+<ul class="uk-iconnav">
+  <li><a href="" uk-icon="icon: check" aria-label="..."></a></li>
+</ul>
+```
+
+## Theme development
+
+On your `tailwind.config.js` file, add the
+Iconnav component within the `ui()` plugin.
+
+```javascript
+import ui from "franken-ui";
+
+ui({
+    components: {
+        iconnav: {
+            hooks: {}
+        }
+    }
+}),
+```
+
+### Available hooks
+
+<span class="uk-label uk-label-primary">Note</span> If you are developing theme
+from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
+some hooks might not work as they were already in use or removed. Learn more
+about [using hooks](/docs/hooks).
+
+| Hook Name          | Affected Classes               |
+| ------------------ | ------------------------------ |
+| `hook-iconnav`     | `.uk-iconnav`                  |
+| `hook-item`        | `.uk-iconnav > * > a`          |
+| `hook-item-hover`  | `.uk-iconnav > * > a:hover`    |
+| `hook-item-active` | `.uk-iconnav > .uk-active > a` |
+| `hook-misc`        | `*`                            |

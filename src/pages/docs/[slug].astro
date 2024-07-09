@@ -1,0 +1,122 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Master from "layouts/master.astro";
+import Nav from "layouts/partials/nav.astro";
+import Navbar from "layouts/partials/navbar.astro";
+
+export const getStaticPaths = (async () => {
+  const docs = await getCollection("docs");
+
+  return docs.map((a) => {
+    return {
+      params: {
+        slug: a.slug,
+      },
+      props: a,
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const entry = Astro.props;
+
+const { Content, headings, remarkPluginFrontmatter } = await entry.render();
+const { pathname } = Astro.url;
+---
+
+<Master
+  doc={{
+    title: remarkPluginFrontmatter.title,
+    meta: remarkPluginFrontmatter.meta,
+  }}
+>
+  <Navbar pathname={pathname}>
+    <Fragment slot="offcanvas">
+      <Nav pathname={entry.slug} />
+    </Fragment>
+  </Navbar>
+
+  <div class="uk-container uk-container-xlarge">
+    <aside class="aside-l">
+      <Nav pathname={entry.slug} />
+    </aside>
+
+    <div
+      class="uk-container uk-container-xsmall uk-margin-medium-top uk-margin-medium-bottom"
+    >
+      <div class="uk-position-relative" id="docs">
+        <Content />
+
+        <aside class="aside-r">
+          <ul
+            class="uk-nav uk-nav-default"
+            uk-scrollspy-nav="closest: li; scroll: true; offset: 40"
+            uk-sticky="offset: 96"
+          >
+            <li class="uk-nav-header">On This Page</li>
+            {
+              headings
+                .filter((a) => a.depth === 2)
+                .map((a) => (
+                  <li>
+                    <a href={`#${a.slug}`}>{a.text}</a>
+                  </li>
+                ))
+            }
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    var container = document.getElementById("docs");
+
+    if (container) {
+      container.addEventListener("click", function (event) {
+        if (event.target.classList.contains("c")) {
+          let target = event.target.closest("div");
+
+          if (target) {
+            const code = target.querySelector("code");
+
+            if (code) {
+              navigator.clipboard
+                .writeText(code.textContent)
+                .then(() => {
+                  UIkit.notification({
+                    message: "Copied to clipboard",
+                    pos: "bottom-right",
+                  });
+                })
+                .catch(() => {});
+            }
+          }
+        }
+      });
+    }
+
+    const asideL = document.querySelector(".aside-l");
+
+    if (asideL) {
+      const focused = asideL.querySelector(".uk-active");
+
+      if (focused) {
+        const rects = {
+          asideL: asideL.getBoundingClientRect(),
+          focused: focused.getBoundingClientRect(),
+        };
+        const scrollTop =
+          focused.offsetTop -
+          asideL.offsetTop -
+          rects.asideL.height / 2 +
+          rects.focused.height / 2;
+
+        asideL.scrollTo({
+          top: scrollTop,
+          behavior: "smooth",
+        });
+      }
+    }
+  </script>
+</Master>

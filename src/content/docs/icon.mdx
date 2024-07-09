@@ -1,0 +1,166 @@
+---
+group: components
+text: Icon
+title: Icon
+meta:
+  description: Place scalable vector icons anywhere in your content.
+badge: Updated
+---
+
+import Example from "examples/component.astro";
+
+# Icon
+
+<p class="uk-text-lead uk-paragraph">{`Place scalable vector icons anywhere in your content.`}</p>
+
+UIkit comes with its own SVG icon system and a comprehensive library, which comprises a growing number of elegant outline icons. This component injects SVGs into the site, so that they adopt color and can be styled with CSS.
+
+## Usage
+
+Make sure to include the icon library script, for more details see the [installation instructions](/docs/javascript).
+
+To apply this component, add the `uk-icon` attribute to a `<span>` or `<a>` element. To display the actual icon, you need to append the `icon: NAME` parameter to the attribute. Et voilà, you have a vector icon that inherits color just like your text does.
+
+```html
+<span uk-icon="icon: check"></span>
+
+<a href="" uk-icon="icon: heart"></a>
+```
+
+If `icon` is the only option in the attribute value, you can also use `uk-icon="NAME"`
+
+```html
+<span uk-icon="heart"></span>
+```
+
+<Example component="icon" index={0} />
+
+## Library
+
+To view the list of all currently available icons. Please go to this <a class="uk-link" href="https://getuikit.com/docs/icon#library" target="_blank">documentation</a>.
+
+## Ratio
+
+Add the `ratio: 2` parameter to the `uk-icon` attribute to double its size – or any other number, depending on how big you want your icon to be.
+
+```html
+<span uk-icon="icon: check; ratio: 2"></span>
+```
+
+<Example component="icon" index={1} />
+
+## Link modifier
+
+To reset the default link styling to a more muted color when using an icon inside an anchor, add the `.uk-icon-link` class.
+
+```html
+<a href="" class="uk-icon-link" uk-icon="heart"></a>
+```
+
+<Example component="icon" index={2} />
+
+## Button modifier
+
+Use the modifier `.uk-icon-button` class on an `<a>` element to create an icon button, which can be used for social icons.
+
+```html
+<a href="" class="uk-icon-button" uk-icon="instagram"></a>
+```
+
+<Example component="icon" index={3} />
+
+## Image modifier
+
+You can also make any background image scale to the size of an icon. Just add the `.uk-icon-image` class and a background image path.
+
+<Example component="icon" index={4} />
+
+## Small modifier
+
+<Example component="icon" index={5} />
+
+## Extra small modifier
+
+<Example component="icon" index={6} />
+
+## Component options
+
+Any of these options can be applied to the component attribute. Separate multiple options with a semicolon. [Learn more](/docs/javascript#component-configuration)
+
+| Option  | Value  | Default | Description          |
+| ------- | ------ | ------- | -------------------- |
+| `icon`  | String |         | The icon to display. |
+| `ratio` | Number | `1`     | The icon size ratio. |
+
+`icon` is the _Primary_ option and its key may be omitted, if it's the only option in the attribute value.
+
+```html
+<span uk-icon="heart"></span>
+```
+
+## JavaScript
+
+Learn more about [JavaScript components](/docs/javascript#programmatic-use).
+
+### Initialization
+
+```js
+UIkit.icon(element, options);
+```
+
+### Properties
+
+#### svg
+
+A JavaScript Promise that will resolve with the added SVG Node.
+
+```js
+UIkit.icon(element).svg.then(function (svg) {
+  svg.querySelector("path").style.stroke = "red";
+});
+```
+
+## Accessibility
+
+Set the appropriate WAI-ARIA roles, states and properties to the Icon component.
+
+- If an `<a>` element is used, set the `aria-label` property to the `<a>` element to describe its meaning.
+
+```html
+<a href="" uk-icon="icon: heart" aria-label="…"></a>
+```
+
+## Theme development
+
+On your `tailwind.config.js` file, add the
+Icon component within the `ui()` plugin.
+
+```javascript
+import ui from "franken-ui";
+
+ui({
+    components: {
+        icon: {
+            hooks: {}
+        }
+    }
+}),
+```
+
+### Available hooks
+
+<span class="uk-label uk-label-primary">Note</span> If you are developing theme
+from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
+some hooks might not work as they were already in use or removed. Learn more
+about [using hooks](/docs/hooks).
+
+| Hook Name            | Affected Classes                                       |
+| -------------------- | ------------------------------------------------------ |
+| `hook-icon`          | `.uk-icon`                                             |
+| `hook-link`          | `.uk-icon-link`                                        |
+| `hook-link-hover`    | `.uk-icon-link:hover`                                  |
+| `hook-link-active`   | `.uk-icon-link:active, .uk-active > .uk-icon-link`     |
+| `hook-button`        | `.uk-icon-button`                                      |
+| `hook-button-hover`  | `.uk-icon-button:hover`                                |
+| `hook-button-active` | `.uk-icon-button:active, .uk-active > .uk-icon-button` |
+| `hook-misc`          | `*`                                                    |

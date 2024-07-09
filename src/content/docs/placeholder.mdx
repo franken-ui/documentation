@@ -1,0 +1,53 @@
+---
+group: components
+text: Placeholder
+title: Placeholder
+meta:
+  description: Create a placeholder space that can be used for uploading files via drag and drop.
+javascript: none
+---
+
+import Example from "examples/component.astro";
+
+# Placeholder
+
+<p class="uk-text-lead uk-paragraph">{`Create a placeholder space that can be used for uploading files via drag and drop.`}</p>
+
+## Usage
+
+This component applies a specially styled area to create a placeholder space, which can be useful, for example in combination with the [Upload component](https://getuikit.com/docs/upload). Just add the `.uk-placeholder` class to a `<div>` element.
+
+```html
+<div class="uk-placeholder"></div>
+```
+
+<Example component="placeholder" index={0} />
+
+## Theme development
+
+On your `tailwind.config.js` file, add the
+Placeholder component within the `ui()` plugin.
+
+```javascript
+import ui from "franken-ui";
+
+ui({
+    components: {
+        placeholder: {
+            hooks: {}
+        }
+    }
+}),
+```
+
+### Available hooks
+
+<span class="uk-label uk-label-primary">Note</span> If you are developing theme
+from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
+some hooks might not work as they were already in use or removed. Learn more
+about [using hooks](/docs/hooks).
+
+| Hook Name          | Affected Classes  |
+| ------------------ | ----------------- |
+| `hook-placeholder` | `.uk-placeholder` |
+| `hook-misc`        | `*`               |

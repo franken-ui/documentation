@@ -1,0 +1,69 @@
+---
+group: components
+text: Spinner
+title: Spinner
+meta:
+  description: Create an animated loading spinner.
+javascript: full
+---
+
+import Example from "examples/component.astro";
+
+# Spinner
+
+<p class="uk-text-lead uk-paragraph">{`Create an animated loading spinner.`}</p>
+
+## Usage
+
+To create a spinner, add the `uk-spinner` attribute to a block element.
+
+```html
+<div uk-spinner></div>
+```
+
+<Example component="spinner" index={0} />
+
+## Ratio
+
+Add the `ratio: 3` parameter to the `uk-spinner` attribute to triple its size – or any other number, depending on how big you want the spinner to be.
+
+```html
+<div uk-spinner="ratio: 3"></div>
+```
+
+<Example component="spinner" index={1} />
+
+## Accessibility
+
+The Spinner component automatically sets the appropriate WAI-ARIA roles, states and properties.
+
+- The _spinner_ has the `status` role.
+
+## Theme development
+
+On your `tailwind.config.js` file, add the
+Spinner component within the `ui()` plugin.
+
+```javascript
+import ui from "franken-ui";
+
+ui({
+    components: {
+        spinner: {
+            hooks: {}
+        }
+    }
+}),
+```
+
+### Available hooks
+
+<span class="uk-label uk-label-primary">Note</span> If you are developing theme
+from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
+some hooks might not work as they were already in use or removed. Learn more
+about [using hooks](/docs/hooks).
+
+| Hook Name      | Affected Classes |
+| -------------- | ---------------- |
+| `hook-spinner` | `.uk-spinner`    |
+| `hook-misc`    | `*`              |

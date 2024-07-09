@@ -1,0 +1,21 @@
+---
+import Master from "layouts/master.astro";
+import Navbar from "layouts/partials/navbar.astro";
+import Nav from "layouts/partials/nav.astro";
+
+const { doc, pathname } = Astro.props;
+---
+
+<Master doc={doc}>
+  <Navbar pathname={pathname}>
+    <Fragment slot="offcanvas">
+      <Nav pathname={pathname} />
+    </Fragment>
+  </Navbar>
+
+  <div
+    class="uk-container uk-container-xsmall uk-margin-medium-top uk-margin-medium-bottom"
+  >
+    <slot />
+  </div>
+</Master>
