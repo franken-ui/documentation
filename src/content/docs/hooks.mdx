@@ -8,9 +8,13 @@ meta:
 javascript: none
 ---
 
+import DisplayAd from 'layouts/ads/display-ad.astro';
+
 # Hooks
 
 <p class="uk-text-lead uk-paragraph">{`Allows easy customization by hooking into predefined selectors, reducing selector repetition and enabling effortless global changes.`}</p>
+
+<DisplayAd />
 
 To prevent overhead selectors, we have "hooks", which hook into predefined selectors from the source and replace or inject additional properties. Selectors don't have to be repeated throughout all documents and global changes can be made much more easily.
 

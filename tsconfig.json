@@ -7,5 +7,6 @@
       "css/*": ["src/css/*"],
       "layouts/*": ["src/layouts/*"]
     }
-  }
+  },
+  "exclude": ["dist", "public"]
 }

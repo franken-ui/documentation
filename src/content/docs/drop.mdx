@@ -7,11 +7,14 @@ meta:
 javascript: full
 ---
 
+import DisplayAd from 'layouts/ads/display-ad.astro';
 import Example from "examples/component.astro";
 
 # Drop
 
 <p class="uk-text-lead uk-paragraph">{`Position any element in relation to another element.`}</p>
+
+<DisplayAd />
 
 The Drop component is aim-aware. This means the drop stays open as long as the mouse pointer moves towards the drop. An additional delay ensures that the drop stays open even if the mouse pointer shortly moves in another direction. A drop closes immediately if another menu item is hovered.
 
