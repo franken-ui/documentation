@@ -4,11 +4,10 @@ text: Select
 title: Select
 meta:
   description: "Displays a list of options for the user to pick from—triggered by a button."
-  robots: noindex
-badge: New
+badge: Updated
 ---
 
-import DisplayAd from 'layouts/ads/display-ad.astro';
+import DisplayAd from "layouts/ads/display-ad.astro";
 import Example from "examples/component.astro";
 
 # Select
@@ -16,13 +15,6 @@ import Example from "examples/component.astro";
 <p class="uk-text-lead uk-paragraph">{`Displays a list of options for the user to pick from—triggered by a button.`}</p>
 
 <DisplayAd />
-
-<div class="uk-alert uk-alert-danger mt-6">
-  <div class="uk-alert-title">Notice</div>
-  <div class="uk-alert-description">
-    This component is still in its early stages of development. As a result, you may encounter bugs or unexpected behavior. Please use with caution and report any issues you encounter.
-  </div>
-</div>
 
 ## Usage
 
@@ -44,7 +36,12 @@ To enable the selection of multiple values, simply add the `multiple` attribute 
 
 <Example component="select" index={2} />
 
-<span class="uk-label uk-label-primary">Note</span> When utilizing the `multiple` attribute, note that it will automatically append `[]` to the name of your input. This is particularly useful when your server expects multiple values, even if the user selects only one option. This ensures that your server-side logic can properly handle the input, regardless of the number of values selected.
+<span class="uk-label uk-label-primary">Note</span> When utilizing the
+`multiple` attribute, note that it will automatically append `[]` to the name of
+your input. This is particularly useful when your server expects multiple
+values, even if the user selects only one option. This ensures that your
+server-side logic can properly handle the input, regardless of the number of
+values selected.
 
 ## Pre-populating values
 
@@ -76,9 +73,19 @@ When loading Web Components, there may be a brief delay before the content is fu
 
 <Example component="select" index={7} />
 
+## Internationalization
+
+<Example component="select" index={8} />
+
+## Available options
+
+| Name                     | Description                                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `selection-count-text`   | Displays a customizable message, e.g. ":n: つのオプションが選択されました", where :n: is the number of selected options.      |
+
 ## Attributes
 
-The following attributes are available for the custom select component:
+The following attributes are available for this component:
 
 | Name          | Type    | Default | Description                                                                                                                |
 | ------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -89,6 +96,7 @@ The following attributes are available for the custom select component:
 | `placeholder` | String  |         | Sets the placeholder text for the component.                                                                               |
 | `searchable`  | Boolean | false   | Adds a search input field within the dropdown menu, allowing users to search for specific options.                         |
 | `error`       | Boolean | false   | Applies the `uk-form-error` class when set to `true`, indicating an error state in the form.                               |
+| `i18n`        | String  |         | Enables internationalization. Please see [Internationalization](#internationalization) for available options.              |
 
 ## Events
 

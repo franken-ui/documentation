@@ -4,6 +4,7 @@ text: Comment
 title: Comment
 meta:
   description: Includes styles for comments, for example for a blog section on your site.
+badge: Updated
 ---
 
 import DisplayAd from 'layouts/ads/display-ad.astro';
@@ -25,14 +26,16 @@ The Comment component consists of the comment itself, a comment header, includin
 | `.uk-comment-body`   | Add this class to create a comment body.                                              |
 | `.uk-comment-header` | Add this class to create a comment header.                                            |
 | `.uk-comment-title`  | Add this class to a heading to create a comment title.                                |
-| `.uk-comment-meta`   | Add this class to create meta text about your comment, e.g. a [subnav](/docs/subnav). |
+| `.uk-comment-meta`   | Add this class to create meta text about your comment.                                |
 | `.uk-comment-avatar` | Add this class to an `<img>` element to create an avatar for the comment author.      |
 
 ```html
 <article class="uk-comment">
   <header class="uk-comment-header">
-    <img class="uk-comment-avatar" src="" width="" height="" alt="" />
-    <h4 class="uk-comment-title"></h4>
+    <div class="uk-comment-avatar">
+      <img src="" alt="" />
+    </div>
+    <div class="uk-comment-title"></div>
     <ul class="uk-comment-meta uk-subnav"></ul>
   </header>
   <div class="uk-comment-body"></div>

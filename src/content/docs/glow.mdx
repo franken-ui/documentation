@@ -1,0 +1,53 @@
+---
+group: web-components
+text: Glow
+title: Glow
+meta:
+  description: "Add a cool glowing border effect on your page to make it stand out."
+badge: New
+---
+
+import DisplayAd from "layouts/ads/display-ad.astro";
+import Example from "examples/component.astro";
+
+# Glow
+
+<p class="uk-text-lead uk-paragraph">{`Add a cool glowing border effect on your page to make it stand out.`}</p>
+
+<DisplayAd />
+
+## Usage
+
+The glow component is a web component that helps part of your webpage stand out. This is particularly useful for drawing attention to important elements such as call to actions, promotions, alerts, or highlighted features. To get started, simply use the `<uk-glow>` markup in your HTML code.
+
+<span class="uk-label uk-label-primary">Note</span> This component utilizes Shadow DOM, which allows you to leverage slot and ensures that CSS stylings are isolated from your application's styles, preventing any potential conflicts or unintended overrides.
+
+<Example component="glow" index={0} />
+
+## Inline element
+
+When you don't specify a height and width, they default to `auto`. This means you can take advantage of the `inline-block` display property on the parent element, allowing the element to adapt to its content's width. This is particularly useful when you want to create elements that don't occupy the full width of the page, such as buttons, navigation menus, or other inline components. By doing so, you can create more flexible and responsive layouts that adjust to the content's natural size.
+
+<Example component="glow" index={1} />
+
+## Preventing layout shift
+
+When loading Web Components, there may be a brief delay before the content is fully rendered. This can result in a flash of unstyled content or unprocessed templates. To mitigate this issue, add the `uk-cloak` attribute to hide the entire element until Franken WC has fully loaded on the page. For an even more polished experience, consider setting a predefined height on the parent element to prevent layout shift and ensure a smooth user experience.
+
+## Attributes
+
+The following attributes are available for this component:
+
+| Name               | Type   | Default  | Description                                                                                                                                                                                                                                                           |     |
+| ------------------ | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| `border-radius`    | String | 0.6rem   | Automatically computes border radius for parent and children elements based on the provided value. Ensure you pass a valid CSS measurement (e.g., `px`, `rem`, etc.).                                                                                                 |     |
+| `border-width`     | String | 0px      | Sets the border width of your component.                                                                                                                                                                                                                              |     |
+| `border-style`     | String | solid    | Customizes the border style for your component.                                                                                                                                                                                                                       |     |
+| `border-color`     | String | #1e293b  | Sets the border color. You can pass a valid hex code, a JSON object with dark and light properties, or a string in the format `light: #000; dark: #fff;`. Make sure to provide valid hex codes or the component will not render.                                      |     |
+| `width`            | String | auto     | Sets the width of your component. For a perfect glow effect, ensure both width and height are set to relative values.                                                                                                                                                 |     |
+| `height`           | String | auto     | Sets the height of your component. For a perfect glow effect, ensure both width and height are set to relative values.                                                                                                                                                |     |
+| `background-color` | String | #09090b  | Customizes the background color of your component. You can pass a valid hex code, a JSON object with dark and light properties, or a string in the format `light: #000; dark: #fff;`. Make sure to provide valid hex codes or the component will not render.          |     |
+| `glow-color`       | String | #06b6d4  | Sets the glow color. You can pass a valid hex code, a JSON object with dark and light properties, or a string in the format `light: #000; dark: #fff;`. Make sure to provide valid hex codes or the component will not render.                                        |     |
+| `glow-width`       | String | 0.125rem | Customizes the glow width. Accepts valid CSS measurements (e.g., `px`, `rem`, etc.).                                                                                                                                                                                  |     |
+| `glow-speed`       | String | 10s      | Sets the duration of the glow's full rotation. Accepts valid CSS duration values (e.g., `ms` and `s`).                                                                                                                                                                |     |
+| `color`            | String | #fafafa  | Customizes the text color of elements within the component. You can pass a valid hex code, a JSON object with dark and light properties, or a string in the format `light: #000; dark: #fff;`. Make sure to provide valid hex codes or the component will not render. |     |

@@ -5,8 +5,6 @@ text: Web Components
 title: Web Components
 meta:
   description: Learn how to install and integrate Franken WC in your projects.
-  robots: noindex
-badge: New
 ---
 
 import DisplayAd from 'layouts/ads/display-ad.astro';
@@ -22,7 +20,7 @@ UIkit is a completely independent project from Franken UI. It's a great open-sou
 Just like any other regular JavaScript, you can include the Franken WC files on your page by adding them to the `<head>` section. You can also choose to use the defer attribute to delay script execution.
 
 ```html
-<script type="module" src="https://unpkg.com/franken-wc@0.0.2/dist/js/wc.iife.js"></script>
+<script type="module" src="https://unpkg.com/franken-wc@0.0.4/dist/js/wc.iife.js"></script>
 ```
 
 ## Installation Via NPM
@@ -117,20 +115,6 @@ And that's it! You've successfully set up Franken UI. You can now unlock its ful
             make them distributable. Additionally, web components didn't seem to
             be their primary focus. Therefore, I decided to go with Lit, which
             met my needs and provided the necessary support for my project.
-          </p>
-        </Fragment>
-      ),
-    },
-    {
-      q: "Does Franken WC use Light DOM or Shadow DOM?",
-      a: (
-        <Fragment>
-          <p>
-            Franken WC utilizes Light DOM to closely mimic native HTML tags,
-            ensuring a more straightforward and intuitive development
-            experience. This approach also allows developers to easily customize
-            the design of components via CSS, while avoiding the added
-            complexity associated with Shadow DOM.
           </p>
         </Fragment>
       ),
