@@ -1,0 +1,10 @@
+---
+import Mini from "layouts/mini.astro";
+
+const { doc } = Astro.props;
+const { pathname } = Astro.url;
+---
+
+<Mini doc={doc} pathname={pathname}>
+  <slot />
+</Mini>
