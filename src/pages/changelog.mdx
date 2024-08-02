@@ -9,6 +9,48 @@ import Mini from "layouts/mini.astro";
 
 <DisplayAd />
 
+## v0.1.2 (August 2, 2024)
+
+A lesson learned for all of us using [Hooks](/docs/hooks).
+
+As you probably know, our current "skin" (shadcn/ui) is essentially just a bunch of pre-configured hooks. If you're not familiar with Hooks, it's a way of saying, "Hey, override these rules."
+
+### Who's affected
+
+People who are using `v0.1.1` for the plugin and `v0.0.4` for CDN.
+
+### Why the code was bad
+
+![Bad Hook](/images/screenshots/Screenshot%202024-08-02%20141432.png)
+
+So the code above, essentially means, Find me the key of `@media (min-width: 768px)` and replace it with:
+
+```javascript
+.uk-comment-list .uk-comment ~ ul: {
+    paddingLeft: null
+}
+```
+
+What it means is, I want to remove the `paddingLeft` created by UIkit. Although I'm forgetting one thing: media queries won't nest the rules.
+
+So, what happened was it replaced all rules under `@media (min-width: 768px)` with nothing. Because when you put `null` as value, we're essentially deleting that rule.
+
+### The proper way
+
+The proper way of removing the `paddingLeft` was just to target the rule, and call Tailwind CSS utility from there. So, in our case, there is a hook available called `hook-list-sub` and it will target `.uk-comment-list .uk-comment ~ ul`. So, it should have been: 
+
+```javascript
+'hook-list-sub': {
+    '@apply ml-6 mt-6 border-l border-border md:pl-0': {}
+}
+```
+
+Where we simply need to put `md:pl-0`.
+
+### Lesson learned
+
+Do not mess with media queries. Instead, call responsive utilities, such as `sm:*`, `md:*`, `lg:*`, etc and let the Tailwind CSS or PostCSS do the rest.
+
 ## v0.1.1 (July 26, 2024)
 
 A couple of minor additions and fixes for this month.
