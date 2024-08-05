@@ -186,6 +186,14 @@ Use a button, text or a link as a select form. Just add the `target: SELECTOR` o
 
 <Example component="form" index={10} />
 
+## Component option
+
+You can add this option to the `uk-form-custom` attribute. [Learn more](/docs/javascript#component-configuration)
+
+| Option   | Value                 | Default | Description           |
+| -------- | --------------------- | ------- | --------------------- |
+| `target` | CSS selector, Boolean | `false` | Value display target. |
+
 ## Help block
 
 Form text can be created using `.uk-form-help` and should be explicitly associated with the form control it relates to using the `aria-describedby` attribute. This will ensure that assistive technologies—such as screen readers—will announce this form text when the user focuses or enters the control.
@@ -208,44 +216,6 @@ There are several style modifiers available. Just add one of the following class
 | `.uk-toggle-switch-danger`  | Adds a destructive style. |
 
 <Example component="form" index={13} />
-
-## Tag input
-
-Tag inputs render tags inside an input, followed by an actual text input. Please note that you have to implement
-your own JavaScript for removing or adding new tags.
-
-| Class           | Description                                            |
-| --------------- | ------------------------------------------------------ |
-| `.uk-tag-input` | Add this class to hold tags and the actual text input. |
-| `.uk-tag`       | Add this class to a `span` to display the tag.         |
-
-<Example component="form" index={14} />
-
-## Pin input
-
-Allows users to input a sequence of one-character alphanumeric inputs. Please note that you have to implement your
-own JavaScript to activate the next or previous input when the user types or removes
-characters.
-
-| Class               | Description                                |
-| ------------------- | ------------------------------------------ |
-| `.uk-pin-input`     | Add this class to hold all the inputs.     |
-| `.uk-pin-separated` | Add this modifier separate all the inputs. |
-| `.uk-disabled`      | Add this class to disable all the inputs.  |
-
-<Example component="form" index={15} />
-
-### Separated
-
-<Example component="form" index={16} />
-
-## Component option
-
-You can add this option to the `uk-form-custom` attribute. [Learn more](/docs/javascript#component-configuration)
-
-| Option   | Value                 | Default | Description           |
-| -------- | --------------------- | ------- | --------------------- |
-| `target` | CSS selector, Boolean | `false` | Value display target. |
 
 ## JavaScript
 

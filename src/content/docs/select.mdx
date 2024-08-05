@@ -4,7 +4,6 @@ text: Select
 title: Select
 meta:
   description: "Displays a list of options for the user to pick from—triggered by a button."
-badge: Updated
 ---
 
 import DisplayAd from "layouts/ads/display-ad.astro";
@@ -71,7 +70,11 @@ The select component is designed to integrate seamlessly with Franken UI and UIk
 
 When loading Web Components, there may be a brief delay before the content is fully rendered. This can result in a flash of unstyled content or unprocessed templates. To mitigate this issue, add the `uk-cloak` attribute to hide the entire element until Franken WC has fully loaded on the page. For an even more polished experience, consider setting a predefined height on the parent element to prevent layout shift and ensure a smooth user experience.
 
-<Example component="select" index={7} />
+```html
+<div class="h-9">
+  <uk-select uk-cloak>...</uk-select>
+</div>
+```
 
 ## Internationalization
 

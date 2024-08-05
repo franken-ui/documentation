@@ -1,4 +1,4 @@
-import DisplayAd from 'layouts/ads/display-ad.astro';
+import DisplayAd from "layouts/ads/display-ad.astro";
 import Mini from "layouts/mini.astro";
 
 <Mini doc={{ title: "Changelog", meta: { robots: "noindex" } }} pathname="/changelog">
@@ -8,6 +8,23 @@ import Mini from "layouts/mini.astro";
 <p class="uk-text-lead uk-paragraph">Latest updates and announcements.</p>
 
 <DisplayAd />
+
+## v0.1.3 (August 5, 2024)
+
+The [Tag](/docs/input-tag) and [PIN](/docs/input-pin) inputs have been around since `v0.0.9`, but they never really had JavaScript behavior. Now that we have custom components, why not make them first-party components so you don't have to resort to external libraries? And, if you did, just note that their class names have changed for consistency. So, if you're using the following classes, here are the changes:
+
+| **Original**        | **New**                   |
+| ------------------- | ------------------------- |
+| `.uk-tag-input`     | `uk-input-tag`            |
+| `.uk-pin-input`     | `.uk-input-pin`           |
+| `.uk-pin-separated` | `.uk-input-pin-separated` |
+
+Also, the class `.uk-tag` has had its background default background remove in favor of modifiers `.uk-tag-primary`, `.uk-tag-secondary` and `.uk-tag-danger`.
+
+### Other changes
+
+- Better event dispatching on the [Select](/docs/select) component.
+- Revival of [Templates](/docs/introduction#installation). Right now, we only have [Laravel](https://github.com/franken-ui/template-laravel), [Astro](https://github.com/franken-ui/template-astro) and [HTML](https://github.com/franken-ui/template-html). These are very useful, so we can all start coding right away. If you maintain templates for your language and want to share them with the community, please feel free to share them (you can open an issue on Github or start a discussion or whatever) and I'd be happy to link them here in the docs.
 
 ## v0.1.2 (August 2, 2024)
 
@@ -37,7 +54,7 @@ So, what happened was it replaced all rules under `@media (min-width: 768px)` wi
 
 ### The proper way
 
-The proper way of removing the `paddingLeft` was just to target the rule, and call Tailwind CSS utility from there. So, in our case, there is a hook available called `hook-list-sub` and it will target `.uk-comment-list .uk-comment ~ ul`. So, it should have been: 
+The proper way of removing the `paddingLeft` was just to target the rule, and call Tailwind CSS utility from there. So, in our case, there is a hook available called `hook-list-sub` and it will target `.uk-comment-list .uk-comment ~ ul`. So, it should have been:
 
 ```javascript
 'hook-list-sub': {
