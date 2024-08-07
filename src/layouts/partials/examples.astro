@@ -1,7 +1,10 @@
 ---
 import { Image } from "astro:assets";
+import data from "layouts/partials/examples";
 
 const { active } = Astro.props;
+
+const example = data.find((a) => a.slug === active);
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/images/*.{jpeg,jpg,png,gif}",
@@ -14,19 +17,10 @@ const image = (await images[`/src/images/${active}-light.png`]()).default;
     class="uk-subnav uk-subnav-secondary -mb-10 flex-nowrap overflow-auto pb-10"
   >
     {
-      [
-        { slug: "mail", text: "Mail" },
-        { slug: "dashboard", text: "Dashboard" },
-        { slug: "cards", text: "Cards" },
-        { slug: "task", text: "Task" },
-        { slug: "playground", text: "Playground" },
-        { slug: "forms", text: "Forms" },
-        { slug: "music", text: "Music" },
-        { slug: "authentication", text: "Authentication" },
-      ].map((a) => (
+      data.map((a) => (
         <li class={active === a.slug ? "uk-active" : ""}>
           <a class="h-7" href={`/examples/${a.slug}`}>
-            {a.text}
+            {a.title}
           </a>
         </li>
       ))
@@ -34,7 +28,12 @@ const image = (await images[`/src/images/${active}-light.png`]()).default;
   </ul>
 
   <div class="mt-4 overflow-hidden rounded-lg border border-border shadow-lg">
-    <slot />
+    <iframe
+      class="hidden xl:block"
+      name={active}
+      src={`https://examples.franken-ui.dev/${active}`}
+      height={`${example?.height}`}
+      width="100%"></iframe>
 
     <div class="xl:hidden">
       <div class="dark:hidden" uk-lightbox>
@@ -57,10 +56,7 @@ const image = (await images[`/src/images/${active}-light.png`]()).default;
     </div>
   </div>
 
-  <div
-    role="alert"
-    class="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-foreground dark:border-amber-950 dark:bg-amber-950/50 xl:hidden"
-  >
+  <div role="alert" class="uk-alert-warning uk-alert mt-4 xl:hidden">
     <div class="text-sm [&_p]:leading-relaxed">
       <p class="leading-7 [&:not(:first-child)]:mt-6">
         <strong>Note:</strong> You are viewing a static image preview. Please switch

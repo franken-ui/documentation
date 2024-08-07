@@ -117,3 +117,7 @@ pre button.copy.copied .ready {
     transform: rotate(-360deg) scale(10);
   }
 }
+
+.uk-alert-warning {
+  @apply border-amber-200 bg-amber-50 dark:border-amber-950 dark:bg-amber-950/50;
+}
