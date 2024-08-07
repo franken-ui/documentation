@@ -104,20 +104,8 @@ pre button.copy.copied .ready {
   border-radius: 0.375rem;
 }
 
-.g-ob::before {
-  background-image: conic-gradient(#3b82f6 20deg, transparent 120deg);
-}
-
 .g-kf::before {
-  background-image: conic-gradient(#ec4899 20deg, transparent 120deg);
-}
-
-.ob {
-  @apply bg-zinc-950 p-4 dark:bg-zinc-900;
-}
-
-.ob code {
-  @apply font-geist-mono text-sm;
+  background-image: conic-gradient(#3b82f6 20deg, transparent 120deg);
 }
 
 @keyframes g {

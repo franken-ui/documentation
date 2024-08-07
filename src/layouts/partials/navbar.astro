@@ -35,14 +35,8 @@ const { pathname } = Astro.props;
 
         <div class="uk-navbar-right md:flex-none">
           <div class="uk-navbar-item">
-            <div
-              class={`${pathname !== "/" ? "g g-kf" : "overflow-hidden rounded-md"}`}
-            >
-              <a
-                class={`${pathname !== "/" ? "gc" : ""}`}
-                href="https://ko-fi.com/sveltecult"
-                target="_blank"
-              >
+            <div class="g g-kf overflow-hidden rounded-md">
+              <a class="gc" href="https://ko-fi.com/sveltecult" target="_blank">
                 <img
                   class="hidden h-9 dark:block"
                   src="/images/ko-fi-white.png"
