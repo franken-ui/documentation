@@ -27,6 +27,9 @@ const { pathname } = Astro.props;
             <li class={pathname === "/about" ? "uk-active" : ""}>
               <a href="/about">About</a>
             </li>
+            <li class={pathname.startsWith("/examples") ? "uk-active" : ""}>
+              <a href="/examples/mail">Examples</a>
+            </li>
             <li class={pathname.startsWith("/blogs") ? "uk-active" : ""}>
               <a href="/blogs">Blogs</a>
             </li>
