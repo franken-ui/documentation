@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 import Blog from "layouts/blog.astro";
 import BlogItem from "layouts/partials/blog-item.astro";
 
-const blogs = (await getCollection("blogs")).splice(0, 9);
+const blogs = (await getCollection("blogs"))
+  .sort((a, b) => b.data["createdAt"].getTime() - a.data["createdAt"].getTime())
+  .splice(0, 9);
 ---
 
 <Blog doc={{ title: "Blogs" }}>
