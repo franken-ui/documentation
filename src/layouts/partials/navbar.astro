@@ -1,5 +1,515 @@
 ---
 const { pathname } = Astro.props;
+
+const components = [
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/accordion",
+    text: "Accordion",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/alert",
+    text: "Alert",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/align",
+    text: "Align",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/animation",
+    text: "Animation",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/article",
+    text: "Article",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/background",
+    text: "Background",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/badge",
+    text: "Badge",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/breadcrumb",
+    text: "Breadcrumb",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/button",
+    text: "Button",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/card",
+    text: "Card",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/close",
+    text: "Close",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/column",
+    text: "Column",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/comment",
+    text: "Comment",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/container",
+    text: "Container",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/countdown",
+    text: "Countdown",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/cover",
+    text: "Cover",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/description-list",
+    text: "Description List",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/divider",
+    text: "Divider",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/dotnav",
+    text: "Dotnav",
+  },
+  {
+    group: "Components",
+    keywords: ["popover", "hover card"],
+    href: "/docs/drop",
+    text: "Drop",
+  },
+  {
+    group: "Components",
+    keywords: ["popover"],
+    href: "/docs/dropbar",
+    text: "Dropbar",
+  },
+  {
+    group: "Components",
+    keywords: ["popover", "hover card"],
+    href: "/docs/dropdown",
+    text: "Dropdown",
+  },
+  {
+    group: "Components",
+    keywords: ["popover"],
+    href: "/docs/dropnav",
+    text: "Dropnav",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/filter",
+    text: "Filter",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/flex",
+    text: "Flex",
+  },
+  {
+    group: "Components",
+    keywords: [
+      "input",
+      "select",
+      "textarea",
+      "radio",
+      "checkbox",
+      "range",
+      "toggle switch",
+      "range",
+    ],
+    href: "/docs/form",
+    text: "Form",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/grid",
+    text: "Grid",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/glow",
+    text: "Glow",
+  },
+  {
+    group: "Components",
+    keywords: ["text", "typography"],
+    href: "/docs/heading",
+    text: "Heading",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/height",
+    text: "Height",
+  },
+  {
+    group: "Components",
+    keywords: ["toggle"],
+    href: "/docs/icon",
+    text: "Icon",
+  },
+  {
+    group: "Components",
+    keywords: ["toggle group"],
+    href: "/docs/iconnav",
+    text: "Iconnav",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/image",
+    text: "Image",
+  },
+  {
+    group: "Components",
+    keywords: ["form"],
+    href: "/docs/input-pin",
+    text: "Input PIN",
+  },
+  {
+    group: "Components",
+    keywords: ["form"],
+    href: "/docs/input-tag",
+    text: "Input Tag",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/label",
+    text: "Label",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/leader",
+    text: "Leader",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/lightbox",
+    text: "Lightbox",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/link",
+    text: "Link",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/list",
+    text: "List",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/margin",
+    text: "Margin",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/marker",
+    text: "Marker",
+  },
+  {
+    group: "Components",
+    keywords: ["dialog"],
+    href: "/docs/modal",
+    text: "Modal",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/nav",
+    text: "Nav",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/navbar",
+    text: "Navbar",
+  },
+  {
+    group: "Components",
+    keywords: ["toast", "sonner"],
+    href: "/docs/notification",
+    text: "Notification",
+  },
+  {
+    group: "Components",
+    keywords: ["sheet", "drawer"],
+    href: "/docs/offcanvas",
+    text: "Offcanvas",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/overlay",
+    text: "Overlay",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/padding",
+    text: "Padding",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/pagination",
+    text: "Pagination",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/parallax",
+    text: "Parallax",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/placeholder",
+    text: "Placeholder",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/position",
+    text: "Position",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/progress",
+    text: "Progress",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/scroll",
+    text: "Scroll",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/scrollspy",
+    text: "Scrollspy",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/search",
+    text: "Search",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/section",
+    text: "Section",
+  },
+  {
+    group: "Components",
+    keywords: ["form", "combobox"],
+    href: "/docs/select",
+    text: "Select",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/slidenav",
+    text: "Slidenav",
+  },
+  {
+    group: "Components",
+    keywords: ["carousel"],
+    href: "/docs/slider",
+    text: "Slider",
+  },
+  {
+    group: "Components",
+    keywords: ["carousel"],
+    href: "/docs/slideshow",
+    text: "Slideshow",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/sortable",
+    text: "Sortable",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/spinner",
+    text: "Spinner",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/stepper",
+    text: "Stepper",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/sticky",
+    text: "Sticky",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/subnav",
+    text: "Subnav",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/svg",
+    text: "Svg",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/switcher",
+    text: "Switcher",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/tab",
+    text: "Tab",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/table",
+    text: "Table",
+  },
+  {
+    group: "Components",
+    keywords: ["typography"],
+    href: "/docs/text",
+    text: "Text",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/thumbnav",
+    text: "Thumbnav",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/tile",
+    text: "Tile",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/toggle",
+    text: "Toggle",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/tooltip",
+    text: "Tooltip",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/totop",
+    text: "Totop",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/transition",
+    text: "Transition",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/upload",
+    text: "Upload",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/utility",
+    text: "Utility",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/video",
+    text: "Video",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/visibility",
+    text: "Visibility",
+  },
+  {
+    group: "Components",
+    keywords: [],
+    href: "/docs/width",
+    text: "Width",
+  },
+];
 ---
 
 <header
@@ -56,10 +566,37 @@ const { pathname } = Astro.props;
           <div class="uk-navbar-item flex">
             <ul class="uk-iconnav flex-none">
               <li>
-                <a href="https://github.com/franken-ui" target="_blank">
-                  <span class="sr-only">Github</span>
-                  <span uk-icon="icon: github; ratio: 0.8"></span>
+                <a href="#search" uk-toggle>
+                  <span class="sr-only">Search</span>
+                  <span uk-icon="icon: search; ratio: 0.8"></span>
                 </a>
+                <uk-command key="/" toggle="search" uk-cloak>
+                  {
+                    components.map((a) => (
+                      <a
+                        data-group={a.group}
+                        data-keywords={a.keywords.join(",")}
+                        href={a.href}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="mr-2 h-3 w-3"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                        </svg>
+                        <span>{a.text}</span>
+                      </a>
+                    ))
+                  }
+                </uk-command>
               </li>
               <li>
                 <a class="cursor-pointer" id="theme-toggle">
