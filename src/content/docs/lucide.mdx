@@ -1,0 +1,94 @@
+---
+group: web-components
+text: Lucide
+title: Lucide Web Components
+meta:
+  description: ""
+badge: New
+keywords: "icon"
+---
+
+import DisplayAd from "layouts/ads/display-ad.astro";
+import Example from "examples/component.astro";
+
+# Lucide Web Components
+
+Lucide is a collection of open-source icons known for their beautiful and consistent design. The Franken WC package offers a streamlined way to integrate and display a variety of Lucide icons. With built-in options for size, stroke width, and other attributes, this component simplifies the process of incorporating iconography into your web applications.
+
+<div class="uk-alert-warning uk-alert uk-margin">
+  This component is **374.25 kB** (gzip: **80.51 kB**) as it imports all icons,
+  which is why it's a separate package that can be used in or outside of Franken
+  UI. If you only need a few icons, consider copying them manually. However, if
+  your application heavily relies on Lucide icons, this package may be useful.
+</div>
+
+<DisplayAd />
+
+## Installation via CDN
+
+Just like any other regular JavaScript, you can include the Lucide Web Components on your page by adding them to the `<head>` section. You can also choose to use the defer attribute to delay script execution.
+
+```html
+<script
+  type="module"
+  src="https://unpkg.com/franken-wc@0.1.0/dist/js/lucide.iife.js"
+></script>
+```
+
+## Installation via NPM
+
+Alternatively, you can choose to install via NPM and update your `app.js` file accordingly.
+
+```sh
+npm install franken-wc
+```
+
+```javascript
+import "franken-wc/dist/js/lucide.iife.js";
+```
+
+## Reactive frameworks
+
+Since we're leveraging the power of Web Components, this can also be used within popular frameworks like React, Vue, or Svelte. Just ensure you're importing it in the browser, not on the server. For guidance on how to do this, refer to your framework's documentation. To illustrate, here's an example of how we implement it in SvelteKit.
+
+```html
+<script>
+  import { browser } from "$app/environment";
+
+  if (browser) {
+    import("franken-wc/dist/js/lucide.iife.js");
+  }
+</script>
+```
+
+And that's it! You can now start using Lucide using `<uk-lucide icon=""></uk-lucide>` markup in your code.
+
+<Example component="lucide" index={0} />
+
+## Preventing layout shift
+
+When loading Web Components, there may be a brief delay before the content is fully rendered. This can result in a flash of unstyled content or unprocessed templates. To mitigate this issue, add the `uk-cloak` attribute to hide the entire element until the JS has fully loaded on the page. For an even more polished experience, consider setting a predefined height on the parent element to prevent layout shift and ensure a smooth user experience.
+
+```html
+<div class="size-4">
+  <uk-lucide icon="smile" uk-cloak></uk-lucide>
+</div>
+```
+
+<span class="uk-label uk-label-primary">Note</span> If you're using this package outside of Franken UI, you might need to implement your own `uk-cloak`. This is very easy with CSS.
+
+```css
+[uk-cloak] {
+  display: none !important;
+}
+```
+
+## Attributes
+
+| Name           | Type   | Default | Description                                                                                                                 |
+| -------------- | ------ | ------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `custom-class` | String |         | Allows you to add custom CSS classes, which will be attached to the `<svg>` tag.                                            |
+| `icon`         | String |         | Specifies the icon you want to display. Please see the [Lucide](https://lucide.dev) website for the complete list of icons. |
+| `stroke-width` | String | 2       | Customizes the stroke width of the icon.                                                                                    |
+| `height`       | String | 16      | Customizes the height of the icon.                                                                                          |
+| `width`        | String | 16      | Customizes the width of the icon.                                                                                           |

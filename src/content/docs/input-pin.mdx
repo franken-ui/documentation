@@ -4,7 +4,7 @@ text: Input PIN
 title: Input PIN
 meta:
   description: "Allows users to input a sequence of one-character alphanumeric inputs."
-badge: New
+keywords: "form"
 ---
 
 import DisplayAd from "layouts/ads/display-ad.astro";
@@ -66,14 +66,14 @@ When loading Web Components, there may be a brief delay before the content is fu
 
 The following attributes are available for this component:
 
-| Name        | Type    | Default | Description                                                                                  |
-| ----------- | ------- | ------- | -------------------------------------------------------------------------------------------- |
-| `autofocus` | Boolean | false   | Automatically focuses on the first input field when the component is rendered.               |
-| `disabled`  | Boolean | false   | Disables all input fields, making the entire component read-only.                            |
-| `error`     | Boolean | false   | Applies the `uk-form-error` class when set to `true`, indicating an error state in the form. |
-| `length`    | String  | 6       | Specifies the number of input fields, determining the length of the PIN sequence.            |
-| `name`      | String  |         | Defines the name of the PIN input, allowing you to capture its value on your server.         |
-| `separated` | Boolean | false   | Enables the separated input style, adding gaps between each input field.                     |
+| Name        | Type    | Default | Description                                                                                   |
+| ----------- | ------- | ------- | --------------------------------------------------------------------------------------------- |
+| `autofocus` | Boolean | false   | Automatically focuses on the first input field when the component is rendered.                |
+| `disabled`  | Boolean | false   | Disables all input fields, making the entire component read-only.                             |
+| `error`     | Boolean | false   | Applies the `uk-form-danger` class when set to `true`, indicating an error state in the form. |
+| `length`    | String  | 6       | Specifies the number of input fields, determining the length of the PIN sequence.             |
+| `name`      | String  |         | Defines the name of the PIN input, allowing you to capture its value on your server.          |
+| `separated` | Boolean | false   | Enables the separated input style, adding gaps between each input field.                      |
 
 ## Events
 

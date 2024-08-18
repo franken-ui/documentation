@@ -77,6 +77,12 @@ const components = [
   {
     group: "Components",
     keywords: [],
+    href: "/docs/command",
+    text: "Command",
+  },
+  {
+    group: "Components",
+    keywords: [],
     href: "/docs/comment",
     text: "Comment",
   },
@@ -217,7 +223,7 @@ const components = [
   },
   {
     group: "Components",
-    keywords: ["form"],
+    keywords: ["form", "emblor"],
     href: "/docs/input-tag",
     text: "Input Tag",
   },
@@ -250,6 +256,12 @@ const components = [
     keywords: [],
     href: "/docs/list",
     text: "List",
+  },
+  {
+    group: "Components",
+    keywords: ["icon"],
+    href: "/docs/lucide",
+    text: "Lucide",
   },
   {
     group: "Components",
@@ -568,7 +580,9 @@ const components = [
               <li>
                 <a href="#search" uk-toggle>
                   <span class="sr-only">Search</span>
-                  <span uk-icon="icon: search; ratio: 0.8"></span>
+                  <span class="size-4">
+                    <uk-lucide icon="search"></uk-lucide>
+                  </span>
                 </a>
                 <uk-command key="/" toggle="search" uk-cloak>
                   {
@@ -578,20 +592,9 @@ const components = [
                         data-keywords={a.keywords.join(",")}
                         href={a.href}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="mr-2 h-3 w-3"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                        </svg>
+                        <span class="mr-2 size-3">
+                          <uk-lucide height="12" width="12" icon="circle" />
+                        </span>
                         <span>{a.text}</span>
                       </a>
                     ))
@@ -644,7 +647,9 @@ const components = [
               <li class="uk-hidden@xl">
                 <a href="#menu" uk-toggle>
                   <span class="sr-only">Toggle menu</span>
-                  <span uk-icon="icon: menu; ratio: 0.8"></span>
+                  <span class="size-4">
+                    <uk-lucide icon="menu"></uk-lucide>
+                  </span>
                 </a>
               </li>
             </ul>

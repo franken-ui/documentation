@@ -4,7 +4,8 @@ text: Input Tag
 title: Input Tag
 meta:
   description: "Tag inputs render tags inside an input, followed by an actual text input."
-badge: New
+badge: Updated
+keywords: "form"
 ---
 
 import DisplayAd from "layouts/ads/display-ad.astro";
@@ -93,12 +94,27 @@ The following options are available for customizing the slugify behavior:
 
 For more information about the [slugify](https://github.com/simov/slugify) package and its options, please refer to the [official documentation](https://github.com/simov/slugify).
 
+## Disable input
+
+<span class="uk-badge uk-badge-danger">v0.1.0</span> To prevent user input, add the `disabled` attribute to the `<uk-input-tag>` element. This will disable input field, prevent tags editing and removal. Making it impossible for users to enter or modify tags.
+
+<Example component="input-tag" index="4" />
+
+## Error state
+
+<span class="uk-badge uk-badge-danger">v0.1.0</span> The Input Tag component is
+designed to integrate seamlessly with Franken UI. To indicate an error state in
+the form, simply add the `error` attribute. This will apply a "danger" state to
+the component, providing visual feedback to the user.
+
+<Example component="input-tag" index="5" />
+
 ## Preventing layout shift
 
 When loading Web Components, there may be a brief delay before the content is fully rendered. This can result in a flash of unstyled content or unprocessed templates. To mitigate this issue, add the `uk-cloak` attribute to hide the entire element until Franken WC has fully loaded on the page. For an even more polished experience, consider setting a predefined height on the parent element to prevent layout shift and ensure a smooth user experience.
 
 ```html
-<div class="min-h-9">
+<div class="min-h-11">
   <uk-input-tag uk-cloak>...</uk-input-tag>
 </div>
 ```
@@ -109,6 +125,8 @@ Please note that we used `min-h-*` because component might grow in height depend
 
 | Name              | Type    | Default     | Description                                                                                                                                         |
 | ----------------- | ------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `disabled`        | Boolean | false       | Disables input field, making the entire component read-only.                                                                                        |
+| `error`           | Boolean | false       | Applies the `uk-form-danger` class when set to `true`, indicating an error state in the form.                                                       |
 | `maxlength`       | String  | 20          | The maximum length of each tag before it can be added.                                                                                              |
 | `minlength`       | String  | 1           | The minimum length of each tag before it can be added.                                                                                              |
 | `name`            | String  |             | The name of the input field, which allows you to capture the tags on your server. Note that the component will automatically append [] to the name. |

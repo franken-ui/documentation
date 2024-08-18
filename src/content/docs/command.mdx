@@ -1,0 +1,139 @@
+---
+group: web-components
+text: Command
+title: Command
+meta:
+  description: "Attach modals to keyboard shortcuts, allowing for easy toggling and improved user interaction."
+badge: New
+---
+
+import DisplayAd from "layouts/ads/display-ad.astro";
+import Example from "examples/component.astro";
+
+# Command
+
+<p class="uk-text-lead uk-paragraph">{`Attach modals to keyboard shortcuts, allowing for easy toggling and improved user interaction.`}</p>
+
+<DisplayAd />
+
+## Usage
+
+The Command component is a web component built from scratch to allow developers to bind a keyboard shortcut and toggle a modal.
+
+To get started, simply use the `<uk-command>` markup in your HTML code.
+
+## Adding command items
+
+You can add items by simply adding a plain old `<a>` tag. Franken WC will parse items behind the scenes.
+
+```html
+<uk-command uk-cloak>
+  <!-- ... -->
+  <a href="#" data-group="Suggestions">
+    <uk-lucide custom-class="mr-2" icon="calendar"></uk-lucide>
+    <span>Calendar</span>
+  </a>
+  <a href="#" data-group="Suggestions">
+    <uk-lucide custom-class="mr-2" icon="smile"></uk-lucide>
+    <span>Search Emoji</span>
+  </a>
+  <a data-group="Suggestions">
+    <uk-lucide custom-class="mr-2" icon="calculator"></uk-lucide>
+    <span>Calculator</span>
+  </a>
+  <!-- ... -->
+</uk-command>
+```
+
+## Binding a keyboard shortcut
+
+By default, no keyboard shortcuts are bound. To enable a keyboard shortcut, simply add the `key` attribute to your Command component.
+
+<Example component="command" index={0} />
+
+## Using a toggle
+
+Since we are using the UIkit modal behind the scenes, we can use any element to toggle a Command component. To start, simply add the toggle attribute to the `<uk-command>` element. Then, you can use an `<a>` element linked to the toggle ID like this: `<a href="#TOGGLE" uk-toggle>`. If you are using another element, such as a button, just add the `uk-toggle="target: #TOGGLE"` attribute to toggle the Command component.
+
+<Example component="command" index={1} />
+
+## Customizing searchable keywords
+
+Sometimes, there are elements that have related keywords that may be slightly off or awkward when included as anchor tags. For these use cases, we can leverage the `data-keywords` attribute.
+
+For example, if we have a "Form" link but also want it to appear when users search for terms like "checkbox," "input," "toggle switch," etc., we can simply add a comma-separated list of terms like this: `data-keywords="checkbox,input,radio"`
+
+```html
+<uk-command uk-cloak>
+  <a
+    data-keywords="input,select,textarea,radio,checkbox,range,toggle switch,range"
+    href="#"
+  >
+    Form
+  </a>
+  <a data-keywords="text,typography" href="#"> Heading </a>
+  <a data-keywords="dialog" href="#"> Modal </a>
+</uk-command>
+```
+
+## Grouping related items
+
+To group related elements, simply use the `data-group` attribute, and Franken WC will automatically sort the items and add headers.
+
+```html
+<uk-command uk-cloak>
+  <a href="#" data-group="Suggestions">
+    <uk-lucide custom-class="mr-2" icon="calendar"></uk-lucide>
+    <span>Calendar</span>
+  </a>
+  <a href="#" data-group="Suggestions">
+    <uk-lucide custom-class="mr-2" icon="smile"></uk-lucide>
+    <span>Search Emoji</span>
+  </a>
+  <a data-group="Suggestions">
+    <uk-lucide custom-class="mr-2" icon="calculator"></uk-lucide>
+    <span>Calculator</span>
+  </a>
+  <a href="#" data-group="Settings">
+    <uk-lucide custom-class="mr-2" icon="user"></uk-lucide>
+    <span>Profile</span>
+  </a>
+  <a href="#" data-group="Settings">
+    <uk-lucide custom-class="mr-2" icon="credit-card"></uk-lucide>
+    <span>Billing</span>
+  </a>
+  <a href="#" data-group="Settings">
+    <uk-lucide custom-class="mr-2" icon="settings"></uk-lucide>
+    <span>Settings</span>
+  </a>
+</uk-command>
+```
+
+## Disabling an item
+
+Sometimes, we may want to disable items. To do this, simply omit the `href` attribute, and the item will be automatically disabled.
+
+```html
+<uk-command uk-cloak>
+  <!-- ... -->
+  <a data-group="Suggestions">
+    <uk-lucide custom-class="mr-2" icon="calculator"></uk-lucide>
+    <span>Calculator</span>
+  </a>
+  <!-- ... -->
+</uk-command>
+```
+
+## HTMX compatibility
+
+Note that when you hit the Enter key, Franken WC will trigger `.click()` on the active item. This allows you to use `hx-*` attributes and leverage HTMX.
+
+## Attributes
+
+The following attributes are available for this component:
+
+| Name          | Type   | Default | Description                                                                                                                                               |
+| ------------- | ------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`         | Sring  |         | Assign a keyboard shortcut.                                                                                                                               |
+| `placeholder` | String | Search  | The placeholder for the input.                                                                                                                            |
+| `toggle`      | String |         | Behind the scenes, this will be used as the ID of the modal. It is useful for manually toggling the Command component using an `<a>` or a `<button>` tag. |

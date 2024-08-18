@@ -9,6 +9,7 @@ const docs = defineCollection({
     title: z.string(),
     meta: z.optional(z.record(z.string())),
     badge: z.optional(z.string()),
+    keywords: z.optional(z.string()),
   }),
 });
 

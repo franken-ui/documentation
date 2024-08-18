@@ -9,13 +9,64 @@ import Mini from "layouts/mini.astro";
 
 <DisplayAd />
 
+## v0.2.0 (August 19, 2024)
+
+This release might be a breaking change to some. If you're using components as written on the docs, as it is, and did not make any customization, you should be fine and can skip this part.
+
+### Possible breaking change
+
+**1\.** Renamed `.uk-combobox` to `.uk-custom-select`.
+
+The component previously named `.uk-combobox` has been renamed to `.uk-custom-select` for clarity. Additionally, `combobox` has been removed and all custom components are relocated to the new `extensions` component. So, if you're developing your own theme, customizing `<uk-select>`, using the fine-grained config, please remove `combobox` and transfer your customizations to the `extensions` component.
+
+This change was made to simplify the process of adding new components (on my end), which currently requires editing 7 or 8 TypeScript files—an inefficient approach. Moving forward, all new components will be placed here, as they are not part of the UIkit components.
+
+```js
+components: {
+    extensions: {
+        hooks: {
+          'hook-misc': {}
+        }
+    }
+}
+```
+
+### What's new
+
+We now have search, finally! You can also trigger it by pressing <kbd class="uk-kbd">⌘ /</kbd> (`CTRL + /`).
+
+- Added the [Command](/docs/command) component.
+- Introducing [Lucide](/docs/lucide) component. Note this is optional and can be used in or outside of Franken UI. It has a separate installation because of its size.
+- The [Input Tag](/docs/input-tag) now receives focus when you're typing tags. Error and disabled states are also added.
+- Fixed [case sensitivity](https://github.com/franken-ui/ui/issues/18) issue when searching in [Select](/docs/select).
+
+And, that's it! You can now go back working on your amazing project. But, you can also keep reading if you want.
+
+### Project and personal updates, transparency, etc
+
+I want to share a little milestone: Franken UI is now over 4 months old, and I never expected it to gain this much traction. In this time, I've made significant changes and bug fixes, and it will keep getting better!
+
+A big thank you to everyone who has shared the project, starred the repo, tweeted, donated, or filed issues. Your support means a lot to me.
+
+For transparency, I signed up for AdSense about three weeks ago and was surprised to get approved within a day. I've placed banner ads below the documentation titles to help cover server expenses since I'm self-hosting. I've invested a lot of time and effort into this project, and I want to ensure it remains sustainable. The ad revenue is modest, generating between **$0.3** to **$0.6** per day, which is a welcome contribution to offsetting my server costs.
+
+Many of you might not notice the ads, especially since over 70% of our traffic uses AdBlock, which is understandable—I'm a uBlock Origin fan myself! 🤫
+
+Just to clarify, I will only run banner ads; any other ads you see are likely added by Google. I'm still learning and experimenting with this approach. I felt I had to resort to ads since I'm running on savings, the project is gaining traction, and I want to avoid selling premium components. Interest has really picked up, with traffic doubling in the past two weeks. However, I'm unsure about usage stats, as NPM data can be unreliable, and we also have CDN installations. My main goal is to keep this project alive.
+
+Lastly, some personal updates: Last year, I stepped back from work to focus on my health, and it's been over a year now. My savings are projected to run out in about five or six months, so I'm starting to look for job opportunities. I was hired last June, but the role wasn't the right fit, so I didn't continue.
+
+If you have any freelance projects or opportunities or a business looking to hire a developer, please reach out to me via [email](mailto:sveltecult@proton.me). I'm using every resource I have to promote myself—this is my website, after all. While it may seem like a team effort, I'm the only one behind the scenes! 😅
+
+That's all for now and thank you for taking the time to read this.
+
 ## v0.1.3 (August 5, 2024)
 
 The [Tag](/docs/input-tag) and [PIN](/docs/input-pin) inputs have been around since `v0.0.9`, but they never really had JavaScript behavior. Now that we have custom components, why not make them first-party components so you don't have to resort to external libraries? And, if you did, just note that their class names have changed for consistency. So, if you're using the following classes, here are the changes:
 
 | **Original**        | **New**                   |
 | ------------------- | ------------------------- |
-| `.uk-tag-input`     | `uk-input-tag`            |
+| `.uk-tag-input`     | `.uk-input-tag`           |
 | `.uk-pin-input`     | `.uk-input-pin`           |
 | `.uk-pin-separated` | `.uk-input-pin-separated` |
 

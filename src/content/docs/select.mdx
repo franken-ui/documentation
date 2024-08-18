@@ -4,6 +4,8 @@ text: Select
 title: Select
 meta:
   description: "Displays a list of options for the user to pick from—triggered by a button."
+badge: Updated
+keywords: "form,combobox"
 ---
 
 import DisplayAd from "layouts/ads/display-ad.astro";
@@ -60,6 +62,12 @@ To transform the custom select component into a combobox, simply add the `search
 
 <Example component="select" index={5} />
 
+## Disable input
+
+To prevent user input, add the `disabled` attribute to the `<uk-input-select>` element. This will disable the custom select, making it impossible for users to enter or modify its value.
+
+<Example component="select" index={9} />
+
 ## Error state
 
 The select component is designed to integrate seamlessly with Franken UI and UIkit. To indicate an error state in the form, simply add the `error` attribute. This will apply a "danger" state to the component, providing visual feedback to the user.
@@ -82,9 +90,9 @@ When loading Web Components, there may be a brief delay before the content is fu
 
 ## Available options
 
-| Name                     | Description                                                                                                              |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `selection-count-text`   | Displays a customizable message, e.g. ":n: つのオプションが選択されました", where :n: is the number of selected options.      |
+| Name                   | Description                                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `selection-count-text` | Displays a customizable message, e.g. ":n: つのオプションが選択されました", where :n: is the number of selected options. |
 
 ## Attributes
 
@@ -98,7 +106,7 @@ The following attributes are available for this component:
 | `disabled`    | Boolean | false   | Enables or disables the entire component.                                                                                  |
 | `placeholder` | String  |         | Sets the placeholder text for the component.                                                                               |
 | `searchable`  | Boolean | false   | Adds a search input field within the dropdown menu, allowing users to search for specific options.                         |
-| `error`       | Boolean | false   | Applies the `uk-form-error` class when set to `true`, indicating an error state in the form.                               |
+| `error`       | Boolean | false   | Applies the `uk-form-danger` class when set to `true`, indicating an error state in the form.                              |
 | `i18n`        | String  |         | Enables internationalization. Please see [Internationalization](#internationalization) for available options.              |
 
 ## Events
@@ -113,28 +121,18 @@ The custom select component triggers the following events on elements with this 
 
 ## Theme development
 
-On your `tailwind.config.js` file, add the Combobox component within the `ui()` plugin. Please note that the `.uk-select` name was already occupied by the native `<select>` tag, so the `.uk-combobox` name was chosen instead to avoid conflicts.
+This component is part of the Extensions component. On your `tailwind.config.js` file, add the Extensions component within the `ui()` plugin.
 
 ```javascript
 import ui from "franken-ui";
 
 ui({
     components: {
-        combobox: {
-            hooks: {}
+        extensions: {
+            hooks: {
+              'hook-misc': {}
+            }
         }
     }
 }),
 ```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name       | Affected Classes |
-| --------------- | ---------------- |
-| `hook-combobox` | `.uk-combobox`   |
-| `hook-misc`     | `*`              |

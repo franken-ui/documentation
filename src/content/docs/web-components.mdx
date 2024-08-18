@@ -7,7 +7,7 @@ meta:
   description: Learn how to install and integrate Franken WC in your projects.
 ---
 
-import DisplayAd from 'layouts/ads/display-ad.astro';
+import DisplayAd from "layouts/ads/display-ad.astro";
 
 # Web Components
 
@@ -15,15 +15,18 @@ import DisplayAd from 'layouts/ads/display-ad.astro';
 
 UIkit is a completely independent project from Franken UI. It's a great open-source library. However, it lacks some essential components that we need. To address this, Franken WC was created. Just like our JavaScript, we have two methods of installation available.
 
-## Installation Via CDN
+## Installation via CDN
 
 Just like any other regular JavaScript, you can include the Franken WC files on your page by adding them to the `<head>` section. You can also choose to use the defer attribute to delay script execution.
 
 ```html
-<script type="module" src="https://unpkg.com/franken-wc@0.0.6/dist/js/wc.iife.js"></script>
+<script
+  type="module"
+  src="https://unpkg.com/franken-wc@0.1.0/dist/js/wc.iife.js"
+></script>
 ```
 
-## Installation Via NPM
+## Installation via NPM
 
 Alternatively, you can choose to install Franken WC via NPM and update your `app.js` file accordingly.
 
@@ -124,7 +127,10 @@ And that's it! You've successfully set up Franken UI. You can now unlock its ful
       a: (
         <Fragment>
           <p>
-            While I always strive to finalize the API before releasing, changes and bugs may still occur as this is a relatively new project. Please test it, provide feedback, and decide for yourself if it's ready for production.
+            While I always strive to finalize the API before releasing, changes
+            and bugs may still occur as this is a relatively new project. Please
+            test it, provide feedback, and decide for yourself if it's ready for
+            production.
           </p>
         </Fragment>
       ),
