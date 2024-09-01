@@ -3,9 +3,7 @@ group: components
 text: Utility
 title: Utility
 meta:
-  robots: noindex
   description: A collection of useful utility classes to style your content.
-javascript: none
 ---
 
 import DisplayAd from 'layouts/ads/display-ad.astro';
@@ -16,13 +14,6 @@ import Example from "examples/component.astro";
 <p class="uk-text-lead uk-paragraph">{`A collection of useful utility classes to style your content.`}</p>
 
 <DisplayAd />
-
-<div class="uk-alert uk-alert-danger mt-6">
-  <div class="uk-alert-title">Notice</div>
-  <div class="uk-alert-description">
-    This documentation is a work in progress.
-  </div>
-</div>
 
 ## Panel
 
@@ -206,6 +197,7 @@ You can apply different box shadows to elements. Just add one of the following c
 | ----------------------- | ------------------------------------------------ |
 | `.uk-box-shadow-small`  | Add this class to apply a small box shadow.      |
 | `.uk-box-shadow-medium` | Add this class to apply a medium box shadow.     |
+| `.uk-box-shadow`        | Add this class to apply a box shadow.            |
 | `.uk-box-shadow-large`  | Add this class to apply a large box shadow.      |
 | `.uk-box-shadow-xlarge` | Add this class to apply a very large box shadow. |
 
@@ -262,7 +254,7 @@ With the new `.uk-logo` class you can easily define your logo, for example withi
 
 {/* <Example component="utility" index={15} /> */}
 
-### Logo image
+{/* ### Logo image
 
 You can also use an `<img>` element, for example an SVG, as a logo.
 
@@ -286,7 +278,7 @@ You can even automatically display alternative logos for light and dark backgrou
 <Example component="utility" index={16} />
 
 <span class="uk-label uk-label-primary">Note</span> To inject an SVG logo as
-inline SVG, use the [SVG component](/docs/svg).
+inline SVG, use the [SVG component](/docs/svg). */}
 
 ## Blend modes
 

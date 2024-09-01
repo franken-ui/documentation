@@ -1,0 +1,119 @@
+---
+group: web-components
+text: Tiptap
+title: Tiptap
+meta:
+  description: ""
+badge: New
+keywords: "form,wysiwyg,rich text,editor"
+---
+
+import DisplayAd from "layouts/ads/display-ad.astro";
+import Example from "examples/component.astro";
+
+# Tiptap
+
+Tiptap is a headless editor framework. It is integrated to Franken UI as a first-party rich text (WYSIWYG) editor.
+
+<div class="uk-alert-warning uk-alert uk-margin">
+  Due to its size **XX kB** (gzip: **XX kB**), the installation has been separated so you can only load it on your page only when needed.
+</div>
+
+<DisplayAd />
+
+## Installation via CDN
+
+Just like any other regular JavaScript, you can include this on your page by adding them to the `<head>` section. You can also choose to use the defer attribute to delay script execution.
+
+```html
+<script
+  type="module"
+  src="https://unpkg.com/franken-wc@0.1.1/dist/js/tiptap.iife.js"
+></script>
+```
+
+
+## Installation via NPM
+
+Alternatively, you can choose to install via NPM and update your `app.js` file accordingly.
+
+```sh
+npm install franken-wc
+```
+
+```javascript
+import "franken-wc/dist/js/lucide.iife.js";
+```
+
+## Reactive frameworks
+
+Since we're leveraging the power of Web Components, this can also be used within popular frameworks like React, Vue, or Svelte. Just ensure you're importing it in the browser, not on the server. For guidance on how to do this, refer to your framework's documentation. To illustrate, here's an example of how we implement it in SvelteKit.
+
+```html
+<script>
+  import { browser } from "$app/environment";
+
+  if (browser) {
+    import("franken-wc/dist/js/tiptap.iife.js");
+  }
+</script>
+```
+
+And that's it! You can now start using Tiptap using `<uk-tiptap></uk-tiptap>` markup in your code.
+
+## Tailwind CSS Safelist
+
+For existing projects, to make sure everything will work perfectly, make sure you add a few classes in your `tailwind.config.js`. If you are using CDN or starting a new project, you should be fine.
+
+```diff
+ safelist: [
+   {
+     pattern: /^uk-/,
+   },
++  "ProseMirror",
++  "ProseMirror-focused",
++  "tiptap",
+ ],
+```
+
+## Usage
+
+To get started, just use `<uk-tiptap name=""></uk-tiptap>` markup in your code.
+
+<Example component="tiptap" index={0} />
+
+## Typography
+
+By default, no typography is used. You can either use Tailwind CSS Typography plugin, Franken UI, or you can even implement your own.
+
+### Using Tailwind CSS Typography Plugin
+
+To use [Tailwind CSS Typography Plugin](https://github.com/tailwindlabs/tailwindcss-typography), make sure you have properly installed it in your build. Just refer to the installation and its documentation on how to get started. Once done, you may now use it inside Tiptap component using the `custom-class` attribute.
+
+```html
+<uk-tiptap custom-class="prose lg:prose-xl" name="content"></uk-tiptap>
+```
+
+### Custom Typography
+
+You can also implement your own Typography. Below is an example on how to. Just edit your `app.css`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tiptap 
+```
+
+## Pre-populating values
+
+You can pre-populate content
+
+<Example component="tiptap" index={2} />
+
+## Error state
+
+The Tiptap component is designed to integrate seamlessly with Franken UI and UIkit. To indicate an error state in the form, simply add `uk-form-danger` to the `custom-class` attribute. This will apply a "danger" state to the component, providing visual feedback to the user.
+
+<Example component="tiptap" index={3} />

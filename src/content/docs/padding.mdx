@@ -4,11 +4,10 @@ text: Padding
 title: Padding
 meta:
   description: A collection of utility classes to add spacing between elements and their content.
-javascript: none
+badge: Updated
 ---
 
-import DisplayAd from 'layouts/ads/display-ad.astro';
-import Example from "examples/component.astro";
+import DisplayAd from "layouts/ads/display-ad.astro";
 
 # Padding
 
@@ -20,17 +19,26 @@ import Example from "examples/component.astro";
 
 To apply this component, add one of the following classes to a block element.
 
-| Class               | Description                          |
-| ------------------- | ------------------------------------ |
-| `.uk-padding`       | Adds default padding to the element. |
-| `.uk-padding-small` | Adds small padding to the element.   |
-| `.uk-padding-large` | Adds large padding to the element.   |
+| Class                | Size               |
+| -------------------- | ------------------ |
+| `.uk-padding-xsmall` | `0.25rem` or `4px` |
+| `.uk-padding-small`  | `0.5rem` or `8px`  |
+| `.uk-padding`        | `1rem` or `16px`   |
+| `.uk-padding-medium` | `2.5rem` or `40px` |
+| `.uk-padding-large`  | `5rem` or `80px`   |
+| `.uk-padding-xlarge` | `10rem` or `160px` |
 
 ```html
 <div class="uk-padding"></div>
 ```
 
-<Example component="padding" index={0} />
+## Position
+
+To add margin to a specific side, use the `uk-padding-[size]-[side]` format. For example, `uk-padding-small-top`, `uk-padding-xsmall-bottom`, etc.
+
+```html
+<div class="uk-padding-small-top"></div>
+```
 
 ## Remove padding
 
