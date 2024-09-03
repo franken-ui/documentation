@@ -1,7 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection, getEntry } from "astro:content";
-import DisplayAd from "layouts/ads/display-ad.astro";
 import Blog from "layouts/blog.astro";
 
 const { slug } = Astro.params;
@@ -36,8 +35,6 @@ export const getStaticPaths = (async () => {
     }
   </time>
   <h1 class="uk-h1 mt-2">{blog.data.title}</h1>
-
-  <DisplayAd />
 
   {
     blog.data.image ? (
