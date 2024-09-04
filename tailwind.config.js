@@ -10,7 +10,11 @@ export default {
     },
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        "8xl": "90rem",
+      },
+    },
   },
   plugins: [],
 };

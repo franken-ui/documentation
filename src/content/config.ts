@@ -8,7 +8,7 @@ const docs = defineCollection({
     text: z.string(),
     title: z.string(),
     meta: z.optional(z.record(z.string())),
-    badge: z.optional(z.string()),
+    ping: z.optional(z.boolean()),
     keywords: z.optional(z.string()),
   }),
 });

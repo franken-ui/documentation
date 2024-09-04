@@ -5,13 +5,14 @@ const { collection, pathname } = Astro.props;
 <li
   class={`flex items-center justify-between ${pathname === collection.slug ? "uk-active" : ""}`}
 >
-  <a class="flex-1" href={`/docs/${collection.slug}`}>
+  <a class="flex-1 gap-x-2" href={`/docs/${collection.slug}`}>
     {collection.data.text}
   </a>
   {
-    collection.data.badge ? (
-      <span class="uk-label uk-label-primary flex-none">
-        {collection.data.badge}
+    collection.data.ping === true ? (
+      <span class="relative flex h-2 w-2">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/75" />
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
       </span>
     ) : (
       ""
