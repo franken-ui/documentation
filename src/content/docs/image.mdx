@@ -2,16 +2,13 @@
 group: components
 text: Image
 title: Image
+lead: Use background images with lazy loading, responsive images and different image sources.
 meta:
-  description: Use background images with lazy loading, responsive images and different image sources
+  description: Use background images with lazy loading, responsive images and different image sources.
 javascript: full
 ---
 
 import Example from "examples/component.astro";
-
-# Image
-
-<p class="uk-text-lead uk-paragraph">{`Use background images with lazy loading, responsive images and different image sources`}</p>
 
 The Image component emulates browser features of the `<img>` element, but for background images. This includes `loading="lazy"`, `srcset` and `sizes` attributes as well as the `<source>` element from the `<picture>` element. This speeds up page loading times and decreases traffic by only loading background images as they enter the viewport. Optimized background images are served for different device widths and high-resolution (retina) displays.
 

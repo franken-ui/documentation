@@ -12,22 +12,27 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 const image = (await images[`/src/images/${active}-light.png`]()).default;
 ---
 
-<div class="mt-10 overflow-hidden">
-  <ul
-    class="uk-subnav uk-subnav-secondary -mb-10 flex-nowrap overflow-auto pb-10"
-  >
-    {
-      data.map((a) => (
-        <li class={active === a.slug ? "uk-active" : ""}>
-          <a class="h-7" href={`/examples/${a.slug}`}>
-            {a.title}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+<div class="mt-8">
+  <div class="overflow-hidden">
+    <ul
+      class="uk-subnav uk-subnav-secondary -mb-10 flex-nowrap overflow-x-auto pb-10"
+    >
+      {
+        data.map((a) => (
+          <li class={active === a.slug ? "uk-active" : ""}>
+            <a class="h-7" href={`/examples/${a.slug}`}>
+              {a.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 
-  <div class="mt-4 overflow-hidden rounded-lg border border-border shadow-lg">
+  <div
+    class="mt-4 overflow-hidden rounded-lg border border-border shadow-lg"
+    id="example"
+  >
     <iframe
       class="hidden xl:block"
       name={active}
@@ -69,10 +74,6 @@ const image = (await images[`/src/images/${active}-light.png`]()).default;
 <script is:inline define:vars={{ active }}>
   const htmlElement = document.documentElement;
   const iframe = window.frames[active];
-
-  if (htmlElement.classList.contains("dark")) {
-    iframe.postMessage("dark-mode-enabled", "*");
-  }
 
   const observer = new MutationObserver(() => {
     if (htmlElement.classList.contains("dark")) {

@@ -2,15 +2,12 @@
 group: getting-started
 order: 5
 text: Hooks
-title: Franken UI Hooks
+title: Hooks
+lead: Allows easy customization by hooking into predefined selectors, reducing selector repetition and enabling effortless global changes.
 meta:
-  description: "Allows easy customization by hooking into predefined selectors, reducing selector repetition and enabling effortless global changes."
+  description: Allows easy customization by hooking into predefined selectors, reducing selector repetition and enabling effortless global changes.
 javascript: none
 ---
-
-# Hooks
-
-<p class="uk-text-lead uk-paragraph">{`Allows easy customization by hooking into predefined selectors, reducing selector repetition and enabling effortless global changes.`}</p>
 
 To prevent overhead selectors, we have "hooks", which hook into predefined selectors from the source and replace or inject additional properties. Selectors don't have to be repeated throughout all documents and global changes can be made much more easily.
 
@@ -266,7 +263,7 @@ In the example above, we want to target the Card component. We attempt to remove
     <li>
       <a class="uk-accordion-title" href="#">
         <Fragment
-          set:html={`${a.q} <span class="uk-accordion-icon" uk-icon="icon: chevron-down; ratio: 0.8"></span>`}
+          set:html={`${a.q} <span class="uk-accordion-icon"><uk-icon icon="chevron-down"></uk-icon></span>`}
         />
       </a>
       <div class="uk-accordion-content">

@@ -272,7 +272,7 @@
 <!-- split -->
 <div class="uk-child-width-1-2@s" uk-grid>
   <div>
-    <pre class="uk-resize-vertical">
+    <pre class="uk-overflow-auto uk-resize-vertical">
             <code>
 &lt;!-- Resize vertically --&gt;
 &lt;div uk-grid&gt;
@@ -288,7 +288,7 @@
         </pre>
   </div>
   <div>
-    <pre class="uk-resize">
+    <pre class="uk-overflow-auto uk-resize">
             <code>
 &lt;!-- Resize horizontally and vertically --&gt;
 &lt;div uk-grid&gt;
@@ -337,27 +337,29 @@
   </div>
 </div>
 <!-- split -->
-<img
-  class="uk-border-rounded"
-  src="/images/avatar.jpg"
-  width="200"
-  height="200"
-  alt="Border rounded"
-/>
-<img
-  class="uk-border-circle"
-  src="/images/avatar.jpg"
-  width="200"
-  height="200"
-  alt="Border circle"
-/>
-<img
-  class="uk-border-pill"
-  src="/images/avatar.jpg"
-  width="200"
-  height="200"
-  alt="Border pill"
-/>
+<div class="uk-flex uk-overflow-auto">
+  <img
+    class="uk-margin-right uk-border-rounded"
+    src="/images/avatar.jpg"
+    width="200"
+    height="200"
+    alt="Border rounded"
+  />
+  <img
+    class="uk-margin-right uk-border-circle"
+    src="/images/avatar.jpg"
+    width="200"
+    height="200"
+    alt="Border circle"
+  />
+  <img
+    class="uk-border-pill"
+    src="/images/avatar.jpg"
+    width="200"
+    height="200"
+    alt="Border pill"
+  />
+</div>
 <!-- split -->
 <div class="uk-child-width-1-2@s uk-text-center" uk-grid>
   <div>
@@ -380,7 +382,7 @@
 <div
   class="uk-width-1-2@s uk-text-center uk-box-shadow-small uk-box-shadow-bottom"
 >
-  <div class="uk-padding-large uk-background-default">Box shadow bottom</div>
+  <div class="uk-background-default uk-padding-large">Box shadow bottom</div>
 </div>
 <!-- split -->
 <div class="uk-child-width-1-2@s uk-text-center" uk-grid>
@@ -418,13 +420,13 @@
 <!-- split -->
 <a class="uk-logo" href="#">Logo</a>
 <!-- split -->
-<div class="uk-padding uk-background-secondary uk-panel">
+<div class="uk-background-secondary uk-padding uk-panel">
   <a class="uk-logo" href="#">Logo</a>
 </div>
 <!-- split -->
 <div class="uk-child-width-expand@s" uk-grid>
   <div>
-    <div class="uk-padding uk-background-muted uk-panel">
+    <div class="uk-background-muted uk-padding uk-panel">
       <a class="uk-logo" href="#" aria-label="Back to Home">
         <img
           src="/images/logo-placeholder.svg"
@@ -443,7 +445,7 @@
     </div>
   </div>
   <div>
-    <div class="uk-padding uk-background-secondary uk-panel">
+    <div class="uk-background-secondary uk-padding uk-panel">
       <a class="uk-logo" href="#" aria-label="Back to Home">
         <img
           src="/images/logo-placeholder.svg"
@@ -713,7 +715,7 @@
 <a class="uk-disabled uk-button uk-button-default" href="#">Disabled</a>
 <!-- split -->
 <div
-  class="uk-padding uk-background-muted uk-text-center uk-drag uk-width-small"
+  class="uk-background-muted uk-padding uk-text-center uk-drag uk-width-small"
 >
-  <i uk-icon="icon: move; ratio: 2"></i>
+  <uk-icon icon="move"></uk-icon>
 </div>

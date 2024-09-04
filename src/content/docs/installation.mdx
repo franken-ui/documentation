@@ -3,13 +3,11 @@ group: getting-started
 order: 1
 text: Installation
 title: Installation
+lead: Learn how to install and integrate Franken UI in your projects.
 meta:
   description: Learn how to install and integrate Franken UI in your projects.
+ping: true
 ---
-
-# Installation
-
-<p class="uk-text-lead uk-paragraph">{`Learn how to install and integrate Franken UI in your projects.`}</p>
 
 ## Installation via CDN
 
@@ -18,7 +16,7 @@ Perfect for beginners, the simplest installation can be done using CDN. Choose o
 ```html
 <link
   rel="stylesheet"
-  href="https://unpkg.com/franken-wc@0.1.0/dist/css/zinc.min.css"
+  href="https://unpkg.com/franken-ui@1.0.0/dist/css/zinc.min.css"
 />
 ```
 
@@ -42,9 +40,7 @@ npm install postcss franken-ui
 npx franken-ui init -p
 ```
 
-<span class="uk-badge uk-badge-danger">v0.1.0</span> This command will
-automatically generate and configure both `tailwindcss.config.js` and
-`postcss.config.cjs` for you.
+This command will automatically generate and configure both `tailwindcss.config.js` and `postcss.config.cjs` for you.
 
 If you want total control over the components used, you can pass the `--fine` flag (or its shorthand, `-i`). Alternatively, if you're building your own theme and want to opt out of shadcn/ui, use the `--raw` flag (or its shorthand, `-r`). Note that you can only use one of these flags.
 
@@ -101,10 +97,7 @@ If you find the 12 existing themes somewhat limiting, You can refer to this [doc
 
 ## Picking Components
 
-<span class="uk-badge uk-badge-danger">v0.1.0</span> For most cases, we only need
-a few components. You can select the components you need using fine-grained
-configuration by commenting on them. However, starting from version `0.1.x`, you
-can now also do this in `preset-quick` and use the `only` and `except` options.
+For most cases, we only need a few components. You can select the components you need using fine-grained configuration by commenting on them. However, starting from version `0.1.x`, you can now also do this in `preset-quick` and use the `only` and `except` options.
 
 For example, if you only want the button, form, modal, and offcanvas components, you can configure it as follows:
 

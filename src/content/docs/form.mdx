@@ -2,6 +2,7 @@
 group: components
 text: Form
 title: Form
+lead: Easily create nice looking forms with different styles and layouts.
 meta:
   description: Easily create nice looking forms with different styles and layouts.
 javascript: partial
@@ -9,10 +10,6 @@ keywords: "input,select,textarea,radio,checkbox,range,toggle switch,range"
 ---
 
 import Example from "examples/component.astro";
-
-# Form
-
-<p class="uk-text-lead uk-paragraph">{`Easily create nice looking forms with different styles and layouts.`}</p>
 
 ## Usage
 
@@ -121,7 +118,9 @@ You use an icon from the [Icon component](/docs/icon) inside a form. Add the `.u
 
 ```html
 <div class="uk-inline">
-  <span class="uk-form-icon" uk-icon="icon: user"></span>
+  <span class="uk-form-icon">
+    <uk-icon icon="user"></uk-icon>
+  </span>
   <input class="uk-input" />
 </div>
 ```
@@ -134,7 +133,9 @@ To enable an action, for example opening a modal to pick an image or link, use a
 
 ```html
 <div class="uk-inline">
-  <a class="uk-form-icon uk-form-icon-flip" href="" uk-icon="icon: user"></a>
+  <a class="uk-form-icon uk-form-icon-flip" href="">
+    <uk-icon icon="user"></uk-icon>
+  </a>
   <input class="uk-input" />
 </div>
 ```

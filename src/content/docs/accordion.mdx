@@ -9,10 +9,6 @@ javascript: full
 
 import Example from "examples/component.astro";
 
-# Accordion
-
-<div class="uk-text-lead uk-paragraph">{`Create a list of items that can be shown individually by clicking an item's header.`}</div>
-
 ## Usage
 
 The Accordion component consists of a parent container with the `uk-accordion` attribute, and a title and content part for each accordion item.
@@ -29,9 +25,10 @@ The Accordion component consists of a parent container with the `uk-accordion` a
     <a class="uk-accordion-title" href>
       <span>Title</span>
       <span
-        class="uk-accordion-icon"
-        uk-icon="icon: chevron-down; ratio: 0.8"
-      ></span>
+        class="size-4 uk-accordion-icon"
+      >
+        <uk-icon icon="chevron-down"></uk-icon>
+      </span>
     </a>
     <div class="uk-accordion-content"></div>
   </li>

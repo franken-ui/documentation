@@ -1,22 +1,86 @@
 ---
 import Master from "./master.astro";
-import Navbar from "./partials/navbar.astro";
-import Nav from "./partials/nav.astro";
+import Carbon from "./partials/carbon.astro";
 
 const { doc } = Astro.props;
-const { pathname } = Astro.url;
 ---
 
 <Master doc={doc}>
-  <div class="flex min-h-screen flex-col">
+  <div class="flex min-h-screen flex-col" id="app">
     <div class="flex-1">
-      <Navbar pathname={pathname}>
-        <Fragment slot="offcanvas">
-          <Nav pathname={pathname} />
-        </Fragment>
-      </Navbar>
-
       <div class="uk-container uk-container-xlarge">
+        <div class="grid min-h-40 grid-cols-1 gap-y-8 pt-8 lg:grid-cols-2">
+          <div class="space-y-4">
+            <h1 class="uk-heading-small font-bold">{doc.title}</h1>
+            <p class="font-light">
+              {doc.meta.description}
+            </p>
+
+            <div class="flex gap-x-1">
+              <a
+                class="uk-button uk-button-primary uk-button-small"
+                href="/docs/introduction"
+              >
+                Documentation
+              </a>
+              <a
+                class="uk-button uk-button-default uk-button-small gap-x-2"
+                href="https://github.com/franken-ui"
+                target="_blank"
+              >
+                Github
+              </a>
+              <button
+                class="uk-icon-button uk-icon-button-small uk-icon-button-outline"
+                id="theme-toggle"
+              >
+                <svg
+                  id="theme-toggle-light-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-sun dark:hidden"
+                >
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path>
+                  <path d="M12 20v2"></path>
+                  <path d="m4.93 4.93 1.41 1.41"></path>
+                  <path d="m17.66 17.66 1.41 1.41"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="m6.34 17.66-1.41 1.41"></path>
+                  <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+                <svg
+                  id="theme-toggle-dark-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-moon hidden dark:block"
+                >
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex justify-center lg:justify-end">
+            <Carbon format="responsive" />
+          </div>
+        </div>
+
         <slot />
       </div>
     </div>

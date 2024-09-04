@@ -55,7 +55,7 @@
 <!-- split -->
 <div class="uk-margin">
   <input
-    class="uk-form-width-medium uk-input uk-form-danger"
+    class="uk-form-width-medium uk-form-danger uk-input"
     type="text"
     placeholder="form-danger"
     aria-label="form-danger"
@@ -166,14 +166,18 @@
 <form>
   <div class="uk-margin">
     <div class="uk-inline">
-      <span class="uk-form-icon" uk-icon="icon: user"></span>
+      <span class="uk-form-icon">
+        <uk-icon icon="user"></uk-icon>
+      </span>
       <input class="uk-input" type="text" aria-label="Not clickable icon" />
     </div>
   </div>
 
   <div class="uk-margin">
     <div class="uk-inline">
-      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+      <span class="uk-form-icon uk-form-icon-flip">
+        <uk-icon icon="user"></uk-icon>
+      </span>
       <input class="uk-input" type="text" aria-label="Not clickable icon" />
     </div>
   </div>
@@ -182,18 +186,18 @@
 <form>
   <div class="uk-margin">
     <div class="uk-inline">
-      <a class="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
+      <a class="uk-form-icon" href="#">
+        <uk-icon icon="file-pen-line"></uk-icon>
+      </a>
       <input class="uk-input" type="text" aria-label="Clickable icon" />
     </div>
   </div>
 
   <div class="uk-margin">
     <div class="uk-inline">
-      <a
-        class="uk-form-icon uk-form-icon-flip"
-        href="#"
-        uk-icon="icon: link"
-      ></a>
+      <a class="uk-form-icon uk-form-icon-flip" href="#">
+        <uk-icon icon="link"></uk-icon>
+      </a>
       <input class="uk-input" type="text" aria-label="Clickable icon" />
     </div>
   </div>
@@ -274,8 +278,10 @@
         <option value="3">Option 03</option>
         <option value="4">Option 04</option>
       </select>
-      <span class="uk-link">
-        <span uk-icon="icon: pencil"></span>
+      <span class="uk-flex uk-flex-middle uk-link">
+        <span class="uk-margin-small-right">
+          <uk-icon icon="pencil-line"></uk-icon>
+        </span>
         <span></span>
       </span>
     </div>
@@ -292,7 +298,9 @@
       </select>
       <button class="uk-button uk-button-default" type="button" tabindex="-1">
         <span></span>
-        <span uk-icon="icon: chevron-down"></span>
+        <span class="uk-margin-small-left">
+          <uk-icon icon="chevron-down"></uk-icon>
+        </span>
       </button>
     </div>
   </div>
@@ -303,11 +311,11 @@
   <input
     type="text"
     id="name"
-    class="uk-input"
+    class="uk-input uk-margin-small-top"
     aria-describedby="name-help-block"
     placeholder="Name"
   />
-  <div class="uk-form-help" id="name-help-block">
+  <div class="uk-form-help uk-margin-small-top" id="name-help-block">
     This is your public display name. It can be your real name or a pseudonym.
     You can only change this once every 30 days.
   </div>
@@ -397,7 +405,7 @@
 </div>
 
 <div class="mt-5">
-  <div class="uk-disabled uk-pin-input">
+  <div class="uk-pin-input uk-disabled">
     <input type="text" maxlength="1" />
     <input type="text" maxlength="1" />
     <input type="text" maxlength="1" />
@@ -419,7 +427,7 @@
 </div>
 
 <div class="mt-5">
-  <div class="uk-disabled uk-pin-input uk-pin-separated">
+  <div class="uk-pin-input uk-pin-separated uk-disabled">
     <input type="text" maxlength="1" />
     <input type="text" maxlength="1" />
     <input type="text" maxlength="1" />

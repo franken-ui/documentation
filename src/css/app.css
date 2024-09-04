@@ -9,7 +9,15 @@
 .aside-l {
   transition-property: transform, width;
 
-  @apply fixed z-[1000] h-full w-full flex-none -translate-x-full overflow-y-auto border-e border-border bg-background p-3 duration-300 ease-in-out md:w-64 lg:translate-x-0 xl:w-56 xl:pl-0;
+  @apply fixed z-[1000] h-full w-full flex-none -translate-x-full overflow-y-auto border-e border-border bg-background p-4 duration-300 ease-in-out md:w-64 lg:translate-x-0 xl:pl-0;
+}
+
+.aside-l .search {
+  @apply flex h-9 w-full items-center justify-between rounded-md border border-border bg-muted/50 px-3 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground;
+}
+
+.aside-l .search > kbd {
+  @apply uk-kbd hidden flex-none lg:inline-block;
 }
 
 .aside-l .nav {
@@ -29,35 +37,19 @@
 }
 
 .main {
-  @apply flex-1 lg:ml-64 xl:ml-56;
+  @apply flex-1 lg:ml-64;
 }
 
 .topbar {
-  @apply sticky top-0 z-20 flex h-14 items-center border-b border-border bg-background/80 px-4 text-foreground backdrop-blur-sm lg:hidden;
+  @apply fixed top-0 z-20 flex h-14 w-full items-center border-b border-border bg-background/80 px-4 text-foreground backdrop-blur-sm lg:hidden;
 }
 
-.bottombar {
-  @apply fixed bottom-0 left-0 z-40 h-14 w-full border-t border-border bg-background/80 text-foreground backdrop-blur-sm lg:hidden;
+.content {
+  @apply pt-14 lg:pt-0 xl:flex;
 }
 
-.bottombar > .wrapper {
-  @apply mx-auto grid h-full max-w-lg grid-cols-5 divide-x divide-border border-border font-medium md:border-e md:border-s;
-}
-
-.bottombar > .wrapper .item {
-  @apply m-1 mr-0 inline-flex flex-col items-center justify-center;
-}
-
-.bottombar > .wrapper .icon {
-  @apply mb-2 h-6 w-6;
-}
-
-.bottombar > .wrapper .text {
-  @apply text-xs md:text-sm;
-}
-
-.bottombar > .wrapper .dot {
-  @apply absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full border-2 border-background bg-destructive;
+.content-wrapper {
+  @apply px-4 py-8 lg:px-6 lg:py-12 xl:flex-1;
 }
 
 .with-aside {
@@ -76,12 +68,17 @@
   @apply md:-ml-0;
 }
 
+body {
+  @apply bg-background font-geist-sans text-foreground antialiased;
+}
+
 body:has(> div.with-aside) {
   @apply overflow-hidden;
 }
 
 .uk-paragraph code,
-.uk-table code {
+.uk-table code,
+.uk-list code {
   @apply uk-codespan font-geist-mono;
 }
 
@@ -96,4 +93,97 @@ body:has(> div.with-aside) {
 
 .uk-alert-warning {
   @apply border-amber-200 bg-amber-50 dark:border-amber-950 dark:bg-amber-950/50;
+}
+
+#uk-slider-navigation-outside {
+  @apply sm:mx-10;
+}
+
+@screen md {
+  .preview {
+    @apply rounded-md border border-border p-10 shadow-sm;
+  }
+}
+
+@screen xl {
+  .content-wrapper {
+    max-width: calc(100% - 16rem);
+  }
+}
+
+.code {
+  @apply uk-margin-medium relative overflow-hidden rounded-md border border-border p-4 shadow-sm;
+}
+
+.code.with-copy {
+  @apply pt-14;
+}
+
+.astro-code {
+  @apply -mb-10 !bg-transparent pb-10;
+}
+
+.astro-code span {
+  @apply font-geist-mono text-sm;
+}
+
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+}
+
+.astro-code button.copy {
+  @apply uk-button uk-button-default uk-button-xsmall absolute left-4 top-4;
+}
+
+.astro-code button.copy .ready::before {
+  content: "Copy";
+}
+
+.astro-code button.copy .success::before {
+  content: "Copied";
+}
+
+.astro-code button.copy .success {
+  display: none;
+}
+
+.astro-code button.copy.copied .success {
+  display: block;
+}
+
+.astro-code button.copy.copied .ready {
+  display: none;
+}
+
+#carbon-responsive {
+  --carbon-padding: 1rem;
+  --carbon-bg-primary: hsl(0 0% 100%) !important;
+  --carbon-bg-secondary: hsl(240 5.9% 90%) !important;
+  --carbon-text-color: hsl(240 10% 3.9%) !important;
+}
+
+.dark #carbon-responsive {
+  --carbon-bg-primary: hsl(240 10% 3.9%) !important;
+  --carbon-bg-secondary: hsl(240 3.7% 15.9%) !important;
+  --carbon-text-color: hsl(0 0% 98%) !important;
+}
+
+#carbon-responsive .carbon-responsive-wrap {
+  @apply rounded-md shadow-sm;
+}
+
+#carbon-responsive .carbon-responsive-wrap > .carbon-img {
+  @apply overflow-hidden rounded-sm;
+}
+
+#carbon-responsive .carbon-responsive-wrap > .carbon-text {
+  @apply flex items-center font-geist-sans text-sm;
+}
+
+#carbon-responsive .carbon-poweredby {
+  @apply font-geist-sans text-xs font-medium uppercase tracking-wide;
+}
+
+.ads {
+  @apply mt-6 flex min-h-40 justify-center;
 }

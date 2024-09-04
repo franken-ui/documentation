@@ -5,7 +5,8 @@
     "paths": {
       "examples/*": ["src/examples/*"],
       "css/*": ["src/css/*"],
-      "layouts/*": ["src/layouts/*"]
+      "layouts/*": ["src/layouts/*"],
+      "assets/*": ["src/assets/*"]
     }
   },
   "exclude": ["dist", "public"]

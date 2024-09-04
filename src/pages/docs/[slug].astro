@@ -2,6 +2,8 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import Master from "layouts/master.astro";
+import Carbon from "layouts/partials/carbon.astro";
+import examples from "layouts/partials/examples";
 
 const docs = await getCollection("docs");
 
@@ -21,7 +23,13 @@ export const getStaticPaths = (async () => {
 const entry = Astro.props;
 
 const { Content, headings, remarkPluginFrontmatter } = await entry.render();
-const { pathname } = Astro.url;
+
+const titleCase = function (string: string) {
+  return string
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 ---
 
 <Master
@@ -30,79 +38,195 @@ const { pathname } = Astro.url;
     meta: remarkPluginFrontmatter.meta,
   }}
 >
-  <div class="xl:max-w-8xl min-h-screen xl:mx-auto" id="app">
+  <div class="min-h-screen xl:mx-auto xl:max-w-8xl" id="app">
     <aside class="aside-l">
-      <button
-        class="uk-icon-button uk-icon-button-xsmall uk-icon-button-outline absolute right-4 top-4 lg:hidden"
-        id="bars-close"
-        x-data
-        x-on:click="document.getElementById('app')?.classList.remove('with-aside')"
-      >
-        <svg
-          class="h-4 w-4"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-        >
-          <path
-            d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"
-          ></path>
-        </svg>
-      </button>
-
-      <div class="pt-6"></div>
-
-      <ul
-        class="uk-nav uk-nav-default"
-        uk-nav="multiple: true; collapsible: false"
-      >
-        <li class="uk-nav-header">Documentation</li>
-        {
-          ["getting-started", "components", "web-components"].map((z) => (
-            <li class={`uk-parent ${entry.data.group === z ? "uk-open" : ""}`}>
-              <a href="#">
-                {z
-                  .split("-")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ")}
-                <span uk-nav-parent-icon />
-              </a>
-              <ul class="uk-nav-sub">
-                {docs
-                  .filter((a) => a.data.group === z)
-                  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
-                  .map((collection) => (
-                    <li
-                      class={`flex items-center justify-between ${pathname.replace("/docs/", "") === collection.slug ? "uk-active" : ""}`}
-                    >
-                      <a
-                        class="flex-1 gap-x-2"
-                        href={`/docs/${collection.slug}`}
-                      >
-                        {collection.data.text}
-                      </a>
-                      {collection.data.ping === true ? (
-                        <span class="relative flex h-2 w-2">
-                          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/75" />
-                          <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-                        </span>
-                      ) : (
-                        ""
-                      )}
-                    </li>
-                  ))}
-              </ul>
-            </li>
-          ))
-        }
+      <ul class="uk-iconnav uk-iconnav-outline">
+        <li>
+          <a class="cursor-pointer" id="theme-toggle">
+            <svg
+              id="theme-toggle-light-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-sun dark:hidden"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <svg
+              id="theme-toggle-dark-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-moon hidden dark:block"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a class="cursor-pointer" href="#info" uk-toggle>
+            <uk-icon icon="info"></uk-icon>
+          </a>
+        </li>
+        <li class="ml-auto lg:hidden">
+          <a
+            class="cursor-pointer"
+            x-data
+            x-on:click="document.getElementById('app')?.classList.remove('with-aside')"
+          >
+            <svg
+              class="h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+            >
+              <path
+                d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"
+              ></path>
+            </svg>
+          </a>
+        </li>
       </ul>
+
+      <div class="mt-4">
+        <a class="search group" uk-toggle="#search">
+          <div class="flex flex-1 items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mr-2"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <span>Search</span>
+          </div>
+          <kbd
+            class="group-hover:border-accent-foreground/10 group-hover:text-accent-foreground"
+          >
+            ⌘ /
+          </kbd>
+        </a>
+        <uk-command key="/" toggle="search" uk-cloak>
+          {
+            docs.map((collection) => (
+              <a
+                data-group={titleCase(collection.data.group)}
+                data-keywords={collection.data.keywords}
+                href={collection.slug}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mr-2 h-3 w-3"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+                <span>{collection.data.text}</span>
+              </a>
+            ))
+          }
+        </uk-command>
+      </div>
+
+      <div class="mt-1">
+        <ul
+          class="uk-nav uk-nav-default -mx-1 mt-1"
+          uk-nav="collapsible: false"
+        >
+          <li class="uk-parent">
+            <a href="#">
+              Examples <span uk-nav-parent-icon></span>
+            </a>
+            <ul class="uk-nav-sub" hidden>
+              {
+                examples.map((a) => (
+                  <li>
+                    <a href={`/examples/${a.slug}`}>{a.title}</a>
+                  </li>
+                ))
+              }
+            </ul>
+          </li>
+          {
+            ["getting-started", "components"].map((z) => (
+              <li
+                class={`uk-parent ${entry.data.group === z ? "uk-open" : ""}`}
+              >
+                <a href="#">
+                  {titleCase(z)} <span uk-nav-parent-icon />
+                </a>
+                <ul class="uk-nav-sub" hidden={entry.data.group !== z}>
+                  {docs
+                    .filter((a) => a.data.group === z)
+                    .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
+                    .map((collection) => (
+                      <li
+                        class={`flex items-center justify-between ${entry.slug === collection.slug ? "uk-active" : ""}`}
+                      >
+                        <a
+                          class="flex-1 gap-x-2"
+                          href={`/docs/${collection.slug}`}
+                        >
+                          {collection.data.text}
+                        </a>
+                        {collection.data.ping === true ? (
+                          <span class="relative flex h-2 w-2">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/75" />
+                            <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                      </li>
+                    ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </aside>
 
     <main class="main">
       <div class="topbar">
-        <div class="flex flex-1 flex-wrap items-center justify-between">
+        <div class="flex flex-1 items-center justify-between xl:pr-56">
           <button
-            class="uk-icon-button uk-icon-button-xsmall uk-icon-button-outline lg:hidden"
+            class="uk-icon-button uk-icon-button-outline lg:hidden"
             x-data
             x-on:click="document.getElementById('app')?.classList.add('with-aside')"
           >
@@ -121,16 +245,40 @@ const { pathname } = Astro.url;
         </div>
       </div>
 
-      <div class="xl:flex">
-        <div class="px-4 pt-8 lg:px-6 lg:pt-12">
+      <div class="content" id="content">
+        <div class="content-wrapper">
+          <h1 class="uk-h1">
+            {entry.data.title}
+          </h1>
+
+          {
+            entry.data.lead ? (
+              <p class="uk-text-lead uk-paragraph">{entry.data.lead}</p>
+            ) : (
+              ""
+            )
+          }
+
+          {
+            entry.data.wip === true ? (
+              <div class="uk-alert-warning uk-alert mt-6">
+                This documentation is a work in progress.
+              </div>
+            ) : (
+              <div class="ads">
+                <Carbon format="responsive" />
+              </div>
+            )
+          }
+
           <Content />
         </div>
 
-        <div class="hidden w-56 flex-none xl:block">
+        <div class="hidden w-56 xl:block">
           <ul
-            class="uk-nav uk-nav-default"
+            class="uk-nav uk-nav-default pt-10"
             uk-scrollspy-nav="closest: li; scroll: true; offset: 40"
-            uk-sticky="offset: 32"
+            uk-sticky
           >
             <li class="uk-nav-header">On This Page</li>
             {
@@ -156,108 +304,147 @@ const { pathname } = Astro.url;
       x-on:click="document.getElementById('app')?.classList.remove('with-aside')"
     >
     </div>
+
+    <div class="uk-modal" id="info" uk-modal>
+      <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+          <div class="uk-modal-title">Info</div>
+        </div>
+        <div class="uk-modal-body uk-overflow-auto" uk-overflow-auto>
+          <ul uk-tab>
+            <li><a href="#">Changelog</a></li>
+            <li><a href="#">Migration</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+
+          <div class="uk-margin uk-switcher">
+            <div hx-get="/partials/changelog" hx-trigger="intersect once"></div>
+            <div hx-get="/partials/migration" hx-trigger="intersect once"></div>
+            <div hx-get="/partials/about" hx-trigger="intersect once"></div>
+          </div>
+        </div>
+        <div class="uk-modal-footer flex items-center gap-x-2">
+          <a
+            class="uk-button uk-button-primary"
+            href="https://ko-fi.com/sveltecult"
+            target="_blank"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mr-2"
+            >
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+              ></path>
+            </svg>
+            Support
+          </a>
+          <a
+            class="uk-button uk-button-default"
+            href="mailto:sveltecult@proton.me"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mr-2"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            Reach out
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <iframe
+    name="ls"
+    class="hidden"
+    width="0"
+    height="0"
+    src="https://examples.franken-ui.dev/ls"></iframe>
 
   <script is:inline>
     window.addEventListener("resize", () => {
       document.getElementById("app")?.classList.remove("with-aside");
     });
-  </script>
-</Master>
-
-<!-- <Master
-  doc={{
-    title: remarkPluginFrontmatter.title,
-    meta: remarkPluginFrontmatter.meta,
-  }}
->
-  <Navbar pathname={pathname}>
-    <Fragment slot="offcanvas">
-      <Nav pathname={entry.slug} />
-    </Fragment>
-  </Navbar>
-
-  <div class="uk-container uk-container-xlarge">
-    <aside class="aside-l">
-      <Nav pathname={entry.slug} />
-    </aside>
-
-    <div
-      class="uk-container uk-container-xsmall uk-margin-medium-top uk-margin-medium-bottom"
-    >
-      <div class="uk-position-relative" id="docs">
-        <Content />
-
-        <aside class="aside-r">
-          <ul
-            class="uk-nav uk-nav-default"
-            uk-scrollspy-nav="closest: li; scroll: true; offset: 40"
-            uk-sticky="offset: 96"
-          >
-            <li class="uk-nav-header">On This Page</li>
-            {
-              headings
-                .filter((a) => a.depth === 2)
-                .map((a) => (
-                  <li>
-                    <a href={`#${a.slug}`}>{a.text}</a>
-                  </li>
-                ))
-            }
-          </ul>
-        </aside>
-      </div>
-    </div>
-  </div>
-
-  <script is:inline>
-    var container = document.getElementById("docs");
-
-    if (container) {
-      container.addEventListener("click", function (event) {
-        if (event.target.classList.contains("c")) {
-          let target = event.target.closest("div");
-
-          if (target) {
-            const code = target.querySelector("code");
-
-            if (code) {
-              navigator.clipboard
-                .writeText(code.textContent)
-                .then(() => {
-                  UIkit.notification({
-                    message: "Copied to clipboard",
-                    pos: "bottom-right",
-                  });
-                })
-                .catch(() => {});
-            }
-          }
-        }
-      });
-    }
 
     const asideL = document.querySelector(".aside-l");
 
-    if (asideL) {
-      const focused = asideL.querySelector(".uk-active");
+    const navSub = asideL.querySelector("li.uk-parent.uk-open");
+    const focused = navSub.querySelector("li.uk-active");
 
-      if (focused) {
-        const rects = {
-          asideL: asideL.getBoundingClientRect(),
-          focused: focused.getBoundingClientRect(),
-        };
-        const scrollTop =
-          focused.offsetTop -
-          asideL.offsetTop -
-          rects.asideL.height / 2 +
-          rects.focused.height / 2;
+    const rects = {
+      asideL: asideL.getBoundingClientRect(),
+      focused: focused.getBoundingClientRect(),
+    };
 
-        asideL.scrollTo({
-          top: scrollTop,
-          behavior: "smooth",
-        });
+    const scrollTop =
+      focused.offsetTop -
+      asideL.offsetTop -
+      rects.asideL.height / 2 +
+      rects.focused.height / 2;
+
+    asideL.scrollTo({
+      top: scrollTop,
+      behavior: "smooth",
+    });
+
+    const content = document.getElementById("content");
+
+    content.addEventListener("click", function (event) {
+      if (event.target.classList.contains("c")) {
+        let target = event.target.closest("div");
+
+        if (target) {
+          const code = target.querySelector("code");
+
+          if (code) {
+            navigator.clipboard
+              .writeText(code.textContent)
+              .then(() => {
+                UIkit.notification({
+                  message: "Copied to clipboard",
+                  pos: "bottom-right",
+                });
+              })
+              .catch(() => {});
+          }
+        }
       }
-    }
+    });
+
+    const htmlElement = document.documentElement;
+    const iframe = window.frames["ls"];
+
+    const observer = new MutationObserver(() => {
+      if (htmlElement.classList.contains("dark")) {
+        iframe.postMessage("dark-mode-enabled", "*");
+      } else {
+        iframe.postMessage("dark-mode-disabled", "*");
+      }
+    });
+
+    observer.observe(htmlElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
   </script>
-</Master> -->
+</Master>

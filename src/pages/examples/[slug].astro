@@ -1,7 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Main from "layouts/main.astro";
-import Announcement from "layouts/partials/announcement.astro";
 import Examples from "layouts/partials/examples.astro";
 import data from "layouts/partials/examples";
 
@@ -29,32 +28,5 @@ const example = Astro.props;
     },
   }}
 >
-  <div class="grid grid-cols-1 gap-20 py-8 lg:grid-cols-2">
-    <div class="space-y-4">
-      <Announcement />
-
-      <h1 class="uk-heading-small font-bold">{example.title}</h1>
-      <p class="font-light">
-        {example.description}
-      </p>
-
-      <div class="flex gap-x-2">
-        <a
-          class="uk-button uk-button-primary uk-button-small"
-          href="/docs/introduction"
-        >
-          Get Started
-        </a>
-        <a
-          class="uk-button uk-button-secondary uk-button-small gap-x-2"
-          href="https://github.com/franken-ui/examples"
-          target="_blank"
-        >
-          View Source
-        </a>
-      </div>
-    </div>
-  </div>
-
   <Examples active={slug} />
 </Main>

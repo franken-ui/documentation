@@ -2,59 +2,35 @@
 group: components
 text: Icon
 title: Icon
+lead: Place scalable vector icons anywhere in your content.
 meta:
   description: Place scalable vector icons anywhere in your content.
 keywords: "toggle,toggle group"
+ping: true
 ---
 
 import Example from "examples/component.astro";
 
-# Icon
-
-<p class="uk-text-lead uk-paragraph">{`Place scalable vector icons anywhere in your content.`}</p>
-
-UIkit comes with its own SVG icon system and a comprehensive library, which comprises a growing number of elegant outline icons. This component injects SVGs into the site, so that they adopt color and can be styled with CSS.
+Under the hood, Franken UI use Lucide, a collection of open-source icons known for their beautiful and consistent design. With built-in options for size, stroke width, and other attributes, this component simplifies the process of incorporating iconography into your web applications.
 
 ## Usage
 
 Make sure to include the icon library script, for more details see the [installation instructions](/docs/javascript).
 
-To apply this component, add the `uk-icon` attribute to a `<span>` or `<a>` element. To display the actual icon, you need to append the `icon: NAME` parameter to the attribute. Et voilà, you have a vector icon that inherits color just like your text does.
-
-```html
-<span uk-icon="icon: check"></span>
-
-<a href="" uk-icon="icon: heart"></a>
-```
-
-If `icon` is the only option in the attribute value, you can also use `uk-icon="NAME"`
-
-```html
-<span uk-icon="heart"></span>
-```
-
-<Example component="icon" index={0} />
+{/* To apply this component, add the `uk-icon` attribute to a `<span>` or `<a>` element. To display the actual icon, you need to append the `icon: NAME` parameter to the attribute. Et voilà, you have a vector icon that inherits color just like your text does. */}
 
 ## Library
 
-To view the list of all currently available icons. Please go to this <a class="uk-link" href="https://getuikit.com/docs/icon#library" target="_blank">documentation</a>.
-
-## Ratio
-
-Add the `ratio: 2` parameter to the `uk-icon` attribute to double its size – or any other number, depending on how big you want your icon to be.
-
-```html
-<span uk-icon="icon: check; ratio: 2"></span>
-```
-
-<Example component="icon" index={1} />
+To view the list of all currently available icons. Please see the [Lucide](https://lucide.dev) website for the complete list of icons.
 
 ## Link modifier
 
 To reset the default link styling to a more muted color when using an icon inside an anchor, add the `.uk-icon-link` class.
 
 ```html
-<a href="" class="uk-icon-link" uk-icon="heart"></a>
+<a href="" class="uk-icon-link">
+  <uk-icon icon="trash"></uk-icon>
+</a>
 ```
 
 <Example component="icon" index={2} />
@@ -64,16 +40,12 @@ To reset the default link styling to a more muted color when using an icon insid
 Use the modifier `.uk-icon-button` class on an `<a>` element to create an icon button, which can be used for social icons.
 
 ```html
-<a href="" class="uk-icon-button" uk-icon="instagram"></a>
+<a href="" class="uk-icon-button">
+  <uk-icon icon="instagram"></uk-icon>
+</a>
 ```
 
 <Example component="icon" index={3} />
-
-## Image modifier
-
-You can also make any background image scale to the size of an icon. Just add the `.uk-icon-image` class and a background image path.
-
-<Example component="icon" index={4} />
 
 ## Small modifier
 
@@ -83,52 +55,33 @@ You can also make any background image scale to the size of an icon. Just add th
 
 <Example component="icon" index={6} />
 
-## Component options
+## Outline modifier
 
-Any of these options can be applied to the component attribute. Separate multiple options with a semicolon. [Learn more](/docs/javascript#component-configuration)
+<Example component="icon" index={7} />
 
-| Option  | Value  | Default | Description          |
-| ------- | ------ | ------- | -------------------- |
-| `icon`  | String |         | The icon to display. |
-| `ratio` | Number | `1`     | The icon size ratio. |
+## Disabled
 
-`icon` is the _Primary_ option and its key may be omitted, if it's the only option in the attribute value.
+<Example component="icon" index={8} />
 
-```html
-<span uk-icon="heart"></span>
-```
+## Preventing layout shift
 
-## JavaScript
-
-Learn more about [JavaScript components](/docs/javascript#programmatic-use).
-
-### Initialization
-
-```js
-UIkit.icon(element, options);
-```
-
-### Properties
-
-#### svg
-
-A JavaScript Promise that will resolve with the added SVG Node.
-
-```js
-UIkit.icon(element).svg.then(function (svg) {
-  svg.querySelector("path").style.stroke = "red";
-});
-```
-
-## Accessibility
-
-Set the appropriate WAI-ARIA roles, states and properties to the Icon component.
-
-- If an `<a>` element is used, set the `aria-label` property to the `<a>` element to describe its meaning.
+When loading Web Components, there may be a brief delay before the content is fully rendered. This can result in a flash of unstyled content or unprocessed templates. To mitigate this issue, add the `uk-cloak` attribute to hide the entire element until the JS has fully loaded on the page. For an even more polished experience, consider setting a predefined height on the parent element to prevent layout shift and ensure a smooth user experience.
 
 ```html
-<a href="" uk-icon="icon: heart" aria-label="…"></a>
+<div class="size-4">
+  <uk-icon icon="smile" uk-cloak></uk-icon>
+</div>
 ```
+
+## Attributes
+
+| Name           | Type   | Default | Description                                                                      |
+| -------------- | ------ | ------- | -------------------------------------------------------------------------------- |
+| `custom-class` | String |         | Allows you to add custom CSS classes, which will be attached to the `<svg>` tag. |
+| `icon`         | String |         | Specifies the icon you want to display.                                          |
+| `stroke-width` | String | 2       | Customizes the stroke width of the icon.                                         |
+| `height`       | String | 16      | Customizes the height of the icon.                                               |
+| `width`        | String | 16      | Customizes the width of the icon.                                                |
 
 ## Theme development
 

@@ -2,15 +2,12 @@
 group: components
 text: Iconnav
 title: Iconnav
+lead: Create a navigation consisting of icons.
 meta:
   description: Create a navigation consisting of icons.
 ---
 
 import Example from "examples/component.astro";
-
-# Iconnav
-
-<p class="uk-text-lead uk-paragraph">{`Create a navigation consisting of icons.`}</p>
 
 ## Usage
 
@@ -18,7 +15,11 @@ To apply this component, add the `.uk-iconnav` class to a `<ul>` element. Use `<
 
 ```html
 <ul class="uk-iconnav">
-  <li><a href="" uk-icon="icon: check"></a></li>
+  <li>
+    <a href="">
+      <uk-icon icon="youtube"></uk-icon>
+    </a>
+  </li>
 </ul>
 ```
 
@@ -30,7 +31,7 @@ By default, the items of an iconnav are aligned horizontally. To apply a vertica
 
 ```html
 <ul class="uk-iconnav uk-iconnav-vertical">
-  ...
+  <!-- ... -->
 </ul>
 ```
 
@@ -42,7 +43,7 @@ To apply an outline, just add the `.uk-iconnav-outline` class.
 
 ```html
 <ul class="uk-iconnav uk-iconnav-outline">
-  ...
+  <!-- ... -->
 </ul>
 ```
 
@@ -55,18 +56,6 @@ To apply an outline, just add the `.uk-iconnav-outline` class.
 ## Extra small modifier
 
 <Example component="iconnav" index={4} />
-
-## Accessibility
-
-Set the appropriate WAI-ARIA roles, states and properties to the Iconnav component.
-
-- Set the `aria-label` property to the `<a>` elements to describe their meaning.
-
-```html
-<ul class="uk-iconnav">
-  <li><a href="" uk-icon="icon: check" aria-label="..."></a></li>
-</ul>
-```
 
 ## Theme development
 

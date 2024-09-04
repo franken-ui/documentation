@@ -48,46 +48,13 @@ const { doc } = Astro.props;
     <link rel="icon" href="/images/man_zombie_3d.png" />
     <link rel="apple-touch-icon" href="/images/man_zombie_3d.png" />
 
-    <script is:inline src="/js/uikit@3.21.6/uikit.min.js"></script>
-    <script is:inline src="/js/uikit@3.21.6/icons.min.js"></script>
-    <!-- <script is:inline src="/js/htmx@2.0.0/htmx.min.js"></script> -->
-    <script is:inline src="/js/alpinejs@3.14.1/alpine.min.js"></script>
-    <script is:inline type="module" src="/js/franken-wc@0.1.0/wc.iife.js"
-    ></script>
-    <script is:inline type="module" src="/js/franken-wc@0.1.0/lucide.iife.js"
-    ></script>
-  </head>
-  <body
-    class="bg-background font-geist-sans text-foreground antialiased"
-    hx-boost="true"
-  >
-    <slot />
-
-    <script is:inline>
-      var themeToggleBtn = document.getElementById("theme-toggle");
-
-      themeToggleBtn?.addEventListener("click", function () {
-        // if set via local storage previously
-        if (localStorage.getItem("color-theme")) {
-          if (localStorage.getItem("color-theme") === "light") {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-          }
-
-          // if NOT set via local storage previously
-        } else {
-          if (document.documentElement.classList.contains("dark")) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-          } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-          }
-        }
-      });
+    <script>
+      import("assets/core");
     </script>
+  </head>
+  <body>
+    <slot />
+    <script is:inline src="/js/htmx@2.0.0/htmx.min.js"></script>
+    <script is:inline src="/js/alpinejs@3.14.1/alpine.min.js"></script>
   </body>
 </html>

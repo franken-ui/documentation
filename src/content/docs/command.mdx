@@ -1,17 +1,13 @@
 ---
-group: web-components
+group: components
 text: Command
 title: Command
+lead: Attach modals to keyboard shortcuts, allowing for easy toggling and improved user interaction.
 meta:
-  description: "Attach modals to keyboard shortcuts, allowing for easy toggling and improved user interaction."
-badge: New
+  description: Attach modals to keyboard shortcuts, allowing for easy toggling and improved user interaction.
 ---
 
 import Example from "examples/component.astro";
-
-# Command
-
-<p class="uk-text-lead uk-paragraph">{`Attach modals to keyboard shortcuts, allowing for easy toggling and improved user interaction.`}</p>
 
 ## Usage
 
@@ -27,15 +23,15 @@ You can add items by simply adding a plain old `<a>` tag. Franken WC will parse 
 <uk-command uk-cloak>
   <!-- ... -->
   <a href="#" data-group="Suggestions">
-    <uk-lucide custom-class="mr-2" icon="calendar"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="calendar"></uk-icon>
     <span>Calendar</span>
   </a>
   <a href="#" data-group="Suggestions">
-    <uk-lucide custom-class="mr-2" icon="smile"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="smile"></uk-icon>
     <span>Search Emoji</span>
   </a>
   <a data-group="Suggestions">
-    <uk-lucide custom-class="mr-2" icon="calculator"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="calculator"></uk-icon>
     <span>Calculator</span>
   </a>
   <!-- ... -->
@@ -80,27 +76,27 @@ To group related elements, simply use the `data-group` attribute, and Franken WC
 ```html
 <uk-command uk-cloak>
   <a href="#" data-group="Suggestions">
-    <uk-lucide custom-class="mr-2" icon="calendar"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="calendar"></uk-icon>
     <span>Calendar</span>
   </a>
   <a href="#" data-group="Suggestions">
-    <uk-lucide custom-class="mr-2" icon="smile"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="smile"></uk-icon>
     <span>Search Emoji</span>
   </a>
   <a data-group="Suggestions">
-    <uk-lucide custom-class="mr-2" icon="calculator"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="calculator"></uk-icon>
     <span>Calculator</span>
   </a>
   <a href="#" data-group="Settings">
-    <uk-lucide custom-class="mr-2" icon="user"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="user"></uk-icon>
     <span>Profile</span>
   </a>
   <a href="#" data-group="Settings">
-    <uk-lucide custom-class="mr-2" icon="credit-card"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="credit-card"></uk-icon>
     <span>Billing</span>
   </a>
   <a href="#" data-group="Settings">
-    <uk-lucide custom-class="mr-2" icon="settings"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="settings"></uk-icon>
     <span>Settings</span>
   </a>
 </uk-command>
@@ -114,16 +110,12 @@ Sometimes, we may want to disable items. To do this, simply omit the `href` attr
 <uk-command uk-cloak>
   <!-- ... -->
   <a data-group="Suggestions">
-    <uk-lucide custom-class="mr-2" icon="calculator"></uk-lucide>
+    <uk-icon custom-class="mr-2" icon="calculator"></uk-icon>
     <span>Calculator</span>
   </a>
   <!-- ... -->
 </uk-command>
 ```
-
-## HTMX compatibility
-
-Note that when you hit the Enter key, Franken WC will trigger `.click()` on the active item. This allows you to use `hx-*` attributes and leverage HTMX.
 
 ## Attributes
 

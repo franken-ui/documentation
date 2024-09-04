@@ -2,8 +2,6 @@
 import { Code } from "astro:components";
 import { resolve } from "node:path";
 import { readFileSync } from "node:fs";
-// @ts-ignore
-import blackout from "public/shiki/themes/blackout.json";
 
 const { component, index } = Astro.props;
 const code = readFileSync(
@@ -55,12 +53,23 @@ const code = readFileSync(
     </svg>
   </a>
 
-  <ul class="uk-margin uk-switcher">
-    <li class="uk-active rounded-md border border-border p-4 md:p-6 lg:p-10">
-      <Fragment set:html={code} />
+  <ul class="uk-margin-top uk-switcher">
+    <li class="uk-active">
+      <div class="preview">
+        <Fragment set:html={code} />
+      </div>
     </li>
     <li class="uk-overflow-hidden">
-      <Code code={code} lang="html" theme={blackout as any} />
+      <div class="code">
+        <Code
+          code={code}
+          lang="html"
+          themes={{
+            light: "github-light",
+            dark: "github-dark",
+          }}
+        />
+      </div>
     </li>
   </ul>
 </div>

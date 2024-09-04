@@ -8,6 +8,9 @@ export default {
     {
       pattern: /^uk-/,
     },
+    "ProseMirror",
+    "ProseMirror-focused",
+    "tiptap",
   ],
   theme: {
     extend: {

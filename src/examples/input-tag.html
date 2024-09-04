@@ -1,58 +1,68 @@
-<uk-input-tag name="fruits" placeholder="Add a fruit" uk-cloak></uk-input-tag>
+<form>
+  <uk-input-tag name="fruits" placeholder="Add a fruit" uk-cloak></uk-input-tag>
+</form>
 <!-- split -->
-<uk-input-tag
-  name="fruits"
-  placeholder="Add a fruit"
-  value="Apple,Mango,Lemon"
-  uk-cloak
-></uk-input-tag>
+<form>
+  <uk-input-tag
+    name="fruits"
+    placeholder="Add a fruit"
+    value="Apple,Mango,Lemon"
+    uk-cloak
+  ></uk-input-tag>
+</form>
 <!-- split -->
-<div class="uk-margin">
+<form>
+  <div class="uk-margin">
+    <uk-input-tag
+      placeholder="Add a tag"
+      state="primary"
+      value="Featured,Recommended,Verified"
+      uk-cloak
+    ></uk-input-tag>
+  </div>
+
+  <div class="uk-margin">
+    <uk-input-tag
+      placeholder="Add a tag"
+      value="Category,Topic,Tag,Label,Filter"
+      uk-cloak
+    ></uk-input-tag>
+  </div>
+
+  <div class="uk-margin">
+    <uk-input-tag
+      placeholder="Add a tag"
+      state="danger"
+      value="Deprecated,Error,Unsupported"
+      uk-cloak
+    ></uk-input-tag>
+  </div>
+</form>
+<!-- split -->
+<form>
   <uk-input-tag
     placeholder="Add a tag"
+    slugify
+    value="fan-fiction"
+    uk-cloak
+  ></uk-input-tag>
+</form>
+<!-- split -->
+<form>
+  <uk-input-tag
+    placeholder="Add a tag"
+    slugify
+    value="Verified,Exclusive"
     state="primary"
-    value="Featured,Recommended,Verified"
+    disabled
     uk-cloak
   ></uk-input-tag>
-</div>
-
-<div class="uk-margin">
-  <uk-input-tag
-    placeholder="Add a tag"
-    value="Category,Topic,Tag,Label,Filter"
-    uk-cloak
-  ></uk-input-tag>
-</div>
-
-<div class="uk-margin">
-  <uk-input-tag
-    placeholder="Add a tag"
-    state="danger"
-    value="Deprecated,Error,Unsupported"
-    uk-cloak
-  ></uk-input-tag>
-</div>
+</form>
 <!-- split -->
-<uk-input-tag
-  placeholder="Add a tag"
-  slugify
-  value="fan-fiction"
-  uk-cloak
-></uk-input-tag>
-<!-- split -->
-<uk-input-tag
-  placeholder="Add a tag"
-  slugify
-  value="Verified,Exclusive"
-  state="primary"
-  disabled
-  uk-cloak
-></uk-input-tag>
-<!-- split -->
-<div class="space-y-1.5">
+<form class="space-y-1.5">
   <label class="uk-form-label uk-text-danger">Tags</label>
   <div class="uk-form-controls">
     <uk-input-tag error placeholder="Add a tag" uk-cloak></uk-input-tag>
   </div>
   <p class="uk-form-help uk-text-danger">This field is required.</p>
-</div>
+</form>

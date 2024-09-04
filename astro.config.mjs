@@ -2,18 +2,25 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import rehypeClassNames from "rehype-class-names";
 import { addCopyButton } from "shiki-transformer-copy-button";
-import blackout from "./public/shiki/themes/blackout.json";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx()],
   markdown: {
     shikiConfig: {
-      theme: blackout,
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
       transformers: [
         addCopyButton({
           toggle: 2000,
         }),
+        {
+          postprocess(code) {
+            return `<div class="code with-copy">${code}</div>`;
+          },
+        },
       ],
     },
     rehypePlugins: [
@@ -33,4 +40,5 @@ export default defineConfig({
     ],
   },
   output: "static",
+  compressHTML: true,
 });

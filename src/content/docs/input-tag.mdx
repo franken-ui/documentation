@@ -1,18 +1,14 @@
 ---
-group: web-components
+group: components
 text: Input Tag
 title: Input Tag
+lead: Tag inputs render tags inside an input, followed by an actual text input.
 meta:
-  description: "Tag inputs render tags inside an input, followed by an actual text input."
-badge: Updated
-keywords: "form"
+  description: Tag inputs render tags inside an input, followed by an actual text input.
+keywords: "form,emblor"
 ---
 
 import Example from "examples/component.astro";
-
-# Input Tag
-
-<p class="uk-text-lead uk-paragraph">{`Tag inputs render tags inside an input, followed by an actual text input.`}</p>
 
 ## Usage
 
@@ -93,16 +89,13 @@ For more information about the [slugify](https://github.com/simov/slugify) packa
 
 ## Disable input
 
-<span class="uk-badge uk-badge-danger">v0.1.0</span> To prevent user input, add the `disabled` attribute to the `<uk-input-tag>` element. This will disable input field, prevent tags editing and removal. Making it impossible for users to enter or modify tags.
+To prevent user input, add the `disabled` attribute to the `<uk-input-tag>` element. This will disable input field, prevent tags editing and removal. Making it impossible for users to enter or modify tags.
 
 <Example component="input-tag" index="4" />
 
 ## Error state
 
-<span class="uk-badge uk-badge-danger">v0.1.0</span> The Input Tag component is
-designed to integrate seamlessly with Franken UI. To indicate an error state in
-the form, simply add the `error` attribute. This will apply a "danger" state to
-the component, providing visual feedback to the user.
+The Input Tag component is designed to integrate seamlessly with Franken UI. To indicate an error state in the form, simply add the `error` attribute. This will apply a "danger" state to the component, providing visual feedback to the user.
 
 <Example component="input-tag" index="5" />
 

@@ -4,52 +4,29 @@ order: 2
 text: JavaScript
 title: JavaScript
 meta:
-  description: Franken UI is compatible with UIkit 3. Learn how to integrate its JavaScript in your project.
+  description: Learn how to integrate Franken UI JavaScript in your project.
+ping: true
 ---
 
-# JavaScript
-
-Once you have installed Franken UI, we can now include the JavaScript to control the behavior of our components. We have two methods here.
+Once you have installed Franken UI, we can now include the JavaScript to control the behavior of our components.
 
 ## Installation via CDN
 
-You can include the JavaScript files on your page by adding them to the `<head>` section. You can also choose to use the defer attribute to delay script execution.
+You can include the JavaScript files on your page by adding them to the `<head>` section.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit-icons.min.js"></script>
+<script src="https://unpkg.com/franken-ui@1.0.0/dist/js/core.iife.js"></script>
+<script src="https://unpkg.com/franken-ui@1.0.0/dist/js/icon.iife.css"></script>
 ```
 
 ## Installation via NPM
 
-<span class="uk-badge uk-badge-danger">v0.1</span> The `franken-ui` package we
-installed earlier already includes UIkit. We can use this. Note that this will
-be updated periodically. However, if you want to lock in to a specific UIkit
-version, you can always run `npm i uikit` and import the file from there
-instead. The example below shows how to import from the `franken-ui` package.
+Starting `v1.0.0`, you don't need to install extra packages. You can import the JavaScript from `franken-ui`, which you installed earlier, into your `app.js` file.
 
 ```javascript
-import { UIkit, Icons } from "franken-ui/uikit/js/dist";
-
-UIkit.use(Icons);
-
-window.UIkit = UIkit;
+import "franken-ui/js/core.iife";
+import "franken-ui/js/icon.iife";
 ```
-
-Or, if you prefer to import from UIkit and lock to a specific version:
-
-```javascript
-import UIkit from "uikit";
-import Icons from "uikit/dist/js/uikit-icons.js";
-
-UIkit.use(Icons);
-
-window.UIkit = UIkit;
-```
-
-And that's it! Our setup is now complete, and you can start using Franken UI components.
-
-If you're interested in using custom select, combobox, or other advanced components, be sure to check out Franken WC, our new JavaScript library powered by Web Components. Built with Lit element, Franken WC is a separate project designed to complement UIkit, filling in the gaps with the missing components.
 
 ## UIkit and reactive JavaScript frameworks
 
@@ -116,11 +93,11 @@ Or as single attributes prefixed with `data-`:
 <div uk-sticky data-start="100" data-offset="50"></div>
 ```
 
-For _Primary_ options, its key may be omitted, if it's the only option in the attribute value. Please take a look at the specific component documentation to find which option is the _Primary_ option.
+{/* For _Primary_ options, its key may be omitted, if it's the only option in the attribute value. Please take a look at the specific component documentation to find which option is the _Primary_ option.
 
 ```html
 <span uk-icon="home"></span>
-```
+``` */}
 
 You can also pass options to the component constructor programmatically.
 
