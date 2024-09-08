@@ -37,7 +37,7 @@ This will first check if you've previously set the theme color preference manual
 2\. Create a `<button>` element that can be interacted with to manually change the theme color:
 
 ```html
-<button id="theme-toggle">
+<button class="uk-icon-button uk-icon-button-outline" id="theme-toggle">
   <svg
     id="theme-toggle-light-icon"
     xmlns="http://www.w3.org/2000/svg"
@@ -85,9 +85,9 @@ In this example we used a `<button>` component where we change the icon inside b
 
 ```html
 <script>
-  var themeToggleBtn = document.getElementById("theme-toggle");
+  const themeToggleBtn = document.getElementById("theme-toggle");
 
-  themeToggleBtn.addEventListener("click", function () {
+  themeToggleBtn?.addEventListener("click", function () {
     // if set via local storage previously
     if (localStorage.getItem("color-theme")) {
       if (localStorage.getItem("color-theme") === "light") {

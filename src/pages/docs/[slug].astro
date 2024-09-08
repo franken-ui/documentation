@@ -314,13 +314,11 @@ const titleCase = function (string: string) {
         <div class="uk-modal-body uk-overflow-auto" uk-overflow-auto>
           <ul uk-tab>
             <li><a href="#">Changelog</a></li>
-            <li><a href="#">Migration</a></li>
             <li><a href="#">About</a></li>
           </ul>
 
           <div class="uk-margin uk-switcher">
             <div hx-get="/partials/changelog" hx-trigger="intersect once"></div>
-            <div hx-get="/partials/migration" hx-trigger="intersect once"></div>
             <div hx-get="/partials/about" hx-trigger="intersect once"></div>
           </div>
         </div>
