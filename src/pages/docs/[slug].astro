@@ -274,24 +274,28 @@ const titleCase = function (string: string) {
           <Content />
         </div>
 
-        <div class="hidden w-56 xl:block">
-          <ul
-            class="uk-nav uk-nav-default pt-10"
-            uk-scrollspy-nav="closest: li; scroll: true; offset: 40"
-            uk-sticky
-          >
-            <li class="uk-nav-header">On This Page</li>
-            {
-              headings
-                .filter((a) => a.depth === 2)
-                .map((a) => (
-                  <li>
-                    <a href={`#${a.slug}`}>{a.text}</a>
-                  </li>
-                ))
-            }
-          </ul>
-        </div>
+        {
+          headings.length > 0 ? (
+            <div class="hidden w-56 xl:block">
+              <ul
+                class="uk-nav uk-nav-default pt-10"
+                uk-scrollspy-nav="closest: li; scroll: true; offset: 40"
+                uk-sticky
+              >
+                <li class="uk-nav-header">On This Page</li>
+                {headings
+                  .filter((a) => a.depth === 2)
+                  .map((a) => (
+                    <li>
+                      <a href={`#${a.slug}`}>{a.text}</a>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ) : (
+            ""
+          )
+        }
       </div>
     </main>
 

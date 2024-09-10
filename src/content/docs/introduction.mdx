@@ -33,17 +33,6 @@ Consider this: using Tailwind CSS alone may lead to cluttered HTML with numerous
             React-first. Franken UI aims to provide a solution for those who are
             not comfortable using or do not want to use React.
           </p>
-          <p class="uk-margin-small-top">
-            By leveraging existing solutions like UIkit for JavaScript and
-            accessibility, Franken UI avoids the need to create a new solution
-            from scratch, thus sidestepping the need to deal with React or other
-            ports from Vue or Svelte.
-          </p>
-          <p class="uk-margin-small-top">
-            Simply put, shadcn/ui uses Tailwind CSS for design and Radix UI for
-            behavior, while Franken UI uses Tailwind CSS for design and UIkit
-            JavaScript for behavior.
-          </p>
         </Fragment>
       ),
     },
@@ -52,14 +41,9 @@ Consider this: using Tailwind CSS alone may lead to cluttered HTML with numerous
       a: (
         <Fragment>
           <p>
-            No, Tailwind CSS is not required. However, using it can provide many
-            conveniences, such as Intellisense for class names and automating
-            the removal of unused CSS.
-          </p>
-          <p class="uk-margin-small-top">
-            If you prefer not to use Tailwind CSS, you can pick one pre-built
-            CSS from 12 themes available and reference it in your HTML. You
-            can always upgrade to a proper build later in your development if you want.
+            No, Tailwind CSS is not required. You can pick a pre-built CSS from
+            12 themes and reference it in your HTML and then upgrade to a proper
+            build later if you want.
           </p>
         </Fragment>
       ),
@@ -81,17 +65,6 @@ Consider this: using Tailwind CSS alone may lead to cluttered HTML with numerous
       ),
     },
     {
-      q: 'What do you mean "framework-agnostic"?',
-      a: (
-        <Fragment>
-          <p>
-            "Framework-agnostic" means that Franken UI can be used with any
-            major JavaScript framework, such as Vue, React, or Svelte.
-          </p>
-        </Fragment>
-      ),
-    },
-    {
       q: "Who is Franken UI designed for?",
       a: (
         <Fragment>
@@ -109,7 +82,7 @@ Consider this: using Tailwind CSS alone may lead to cluttered HTML with numerous
       a: (
         <Fragment>
           <p>
-            The CDN and the `preset-quick` will result in an upfront size of
+            The CDN and quick preset will result in an upfront size of
             approximately 132.08kB (21.27kB minified and gzipped). If you find
             this too large, you can easily turn off components you don't need.
           </p>

@@ -48,7 +48,7 @@ The Input PIN component is designed to integrate seamlessly with Franken UI. To 
 
 ## Preventing layout shift
 
-When loading Web Components, there may be a brief delay before the content is fully rendered. This can result in a flash of unstyled content or unprocessed templates. To mitigate this issue, add the `uk-cloak` attribute to hide the entire element until Franken WC has fully loaded on the page. For an even more polished experience, consider setting a predefined height on the parent element to prevent layout shift and ensure a smooth user experience.
+When loading Web Components, a brief delay may cause a flash of unstyled content. To mitigate this, add the `uk-cloak` attribute to hide the element until JavaScript loads. Setting a predefined height on the parent element can also prevent layout shift for a smoother experience.
 
 ```html
 <div class="h-9">

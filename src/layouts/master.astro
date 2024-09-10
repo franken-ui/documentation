@@ -1,5 +1,7 @@
 ---
 import "css/app.css";
+import core from "franken-ui/js/core.iife?url";
+import icon from "franken-ui/js/icon.iife?url";
 
 const { doc } = Astro.props;
 ---
@@ -48,10 +50,8 @@ const { doc } = Astro.props;
     <link rel="icon" href="/images/man_zombie_3d.png" />
     <link rel="apple-touch-icon" href="/images/man_zombie_3d.png" />
 
-    <script is:inline src="/js/franken-ui@1.0.0/core.iife.js" type="module"
-    ></script>
-    <script is:inline src="/js/franken-ui@1.0.0/icon.iife.js" type="module"
-    ></script>
+    <script is:inline src={core} type="module"></script>
+    <script is:inline src={icon} type="module"></script>
   </head>
   <body>
     <slot />
