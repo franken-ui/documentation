@@ -42,45 +42,8 @@ const titleCase = function (string: string) {
     <aside class="aside-l">
       <ul class="uk-iconnav uk-iconnav-outline">
         <li>
-          <a class="cursor-pointer" id="theme-toggle">
-            <svg
-              id="theme-toggle-light-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-sun dark:hidden"
-            >
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2"></path>
-              <path d="M12 20v2"></path>
-              <path d="m4.93 4.93 1.41 1.41"></path>
-              <path d="m17.66 17.66 1.41 1.41"></path>
-              <path d="M2 12h2"></path>
-              <path d="M20 12h2"></path>
-              <path d="m6.34 17.66-1.41 1.41"></path>
-              <path d="m19.07 4.93-1.41 1.41"></path>
-            </svg>
-            <svg
-              id="theme-toggle-dark-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-moon hidden dark:block"
-            >
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-            </svg>
+          <a class="cursor-pointer" href="#theme" uk-toggle>
+            <uk-icon icon="palette"></uk-icon>
           </a>
         </li>
         <li>
@@ -374,6 +337,18 @@ const titleCase = function (string: string) {
         </div>
       </div>
     </div>
+
+    <div class="uk-modal" id="theme" uk-modal>
+      <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+          <div class="uk-modal-title">Customize</div>
+        </div>
+        <div class="uk-modal-body">
+          <uk-theme-switcher></uk-theme-switcher>
+        </div>
+      </div>
+    </div>
   </div>
 
   <iframe
@@ -381,7 +356,7 @@ const titleCase = function (string: string) {
     class="hidden"
     width="0"
     height="0"
-    src="https://examples.franken-ui.dev/ls"></iframe>
+    src="https://a.franken-ui.dev/ls"></iframe>
 
   <script is:inline>
     window.addEventListener("resize", () => {
@@ -433,14 +408,21 @@ const titleCase = function (string: string) {
       }
     });
 
-    const htmlElement = document.documentElement;
     const iframe = window.frames["ls"];
 
     const observer = new MutationObserver(() => {
       if (htmlElement.classList.contains("dark")) {
-        iframe.postMessage("dark-mode-enabled", "*");
+        iframe.postMessage({ dark: true }, "*");
       } else {
-        iframe.postMessage("dark-mode-disabled", "*");
+        iframe.postMessage({ dark: false }, "*");
+      }
+
+      const theme = Array.from(htmlElement.classList).find((cls) =>
+        cls.startsWith("uk-theme-"),
+      );
+
+      if (theme) {
+        iframe.postMessage({ theme: theme }, "*");
       }
     });
 

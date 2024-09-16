@@ -36,7 +36,7 @@ const image = (await images[`/src/images/${active}-light.png`]()).default;
     <iframe
       class="hidden xl:block"
       name={active}
-      src={`https://examples.franken-ui.dev/${active}`}
+      src={`https://a.franken-ui.dev/examples/${active}`}
       height={`${example?.height}`}
       width="100%"></iframe>
 
@@ -72,14 +72,21 @@ const image = (await images[`/src/images/${active}-light.png`]()).default;
 </div>
 
 <script is:inline define:vars={{ active }}>
-  const htmlElement = document.documentElement;
   const iframe = window.frames[active];
 
   const observer = new MutationObserver(() => {
     if (htmlElement.classList.contains("dark")) {
-      iframe.postMessage("dark-mode-enabled", "*");
+      iframe.postMessage({ dark: true }, "*");
     } else {
-      iframe.postMessage("dark-mode-disabled", "*");
+      iframe.postMessage({ dark: false }, "*");
+    }
+
+    const theme = Array.from(htmlElement.classList).find((cls) =>
+      cls.startsWith("uk-theme-"),
+    );
+
+    if (theme) {
+      iframe.postMessage({ theme: theme }, "*");
     }
   });
 
