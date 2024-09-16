@@ -1,0 +1,239 @@
+---
+group: "getting-started"
+order: 5
+text: Upgrade Guide
+title: Upgrade Guide
+meta:
+  robots: noindex
+  description: ""
+ping: true
+---
+
+A full video guide on how the documentation website was upgraded is available on [Mastodon](https://mas.to/@sveltecult/113144893476442076).
+
+Significant internal changes have been made to Franken UI, simplifying the codebase and reducing moving parts. While these changes may seem extensive, they are designed to improve maintainability and ease of use. This announcement provides an overview of the updates and how they may affect workflows.
+
+**Key Changes:**
+
+- Franken WC and UIkit have been merged into a custom JS, allowing for unified icons and more streamlined codebase. This change was necessary to unify all icons, which was not possible while relying on UIkit as an external package and more importantly, to make way for upcoming components.
+- Post CSS is now optional, as media queries can be a pain to manage. The `npx franken-ui init -p` command previously tried to alleviate this pain, but it was only hiding the issue.
+- Hooks have been deprecated, as they were only needed to properly position Tailwind CSS overrides on correct selectors. They have served their purpose and are now unnecessary, reducing moving parts and improving maintenance.
+- Fine-grained config and raw config have been deprecated, as they relied on hooks. They were also unnecessary moving parts, especially in documentation. The quick preset is now the only config option, which auto-updates to simplify the process.
+- The quick preset no longer includes options for `only` and `except`, as picking components can do more harm than good if not done correctly. The upside of reducing CSS build size is minimal, and ~30kb of CSS is not a significant concern in 2024.
+- The `theme` and `palette` options have been removed from the quick preset. Instead, customization can be done using the `customPalette` option.
+- The `overrides` option has been removed, as hooks are deprecated. Customization should now be done in the `app.css` file.
+- The Glow component has been dropped, another unncessary moving parts.
+- Theme Switcher has been introduced, allowing for multiple themes and easier customization. This feature was previously limited, requiring recompilation to switch themes.
+
+**What This Means:**
+
+- Code will not be drastically affected, but build steps may need to be updated.
+- Documentation will be updated to reflect these changes.
+- Any questions or concerns can be addressed through the usual channels.
+
+At the moment, version 1.1 is tagged as `next` until the documentation has been completed. Testing is now available, and feedback can be provided on Github if something is broken.
+
+```sh
+npm i franken-ui@next
+```
+
+Or, if you are using CDN:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/franken-ui@1.1.0-next.0/dist/css/core.min.css"
+/>
+
+<!-- JavaScript -->
+
+<script src="https://unpkg.com/franken-ui@1.1.0-next.0/dist/js/core.iife.js" type="module"></script>
+<script src="https://unpkg.com/franken-ui@1.1.0-next.0/dist/js/icon.iife.js" type="module"></script>
+```
+
+## HTML
+
+This section is for both CDN and NPM users.
+
+**1\.** Update the layout file by **removing** the following code block:
+
+```html
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>
+```
+
+**Replace** it with:
+
+```html
+<script>
+  const htmlElement = document.documentElement;
+
+  if (
+    localStorage.getItem("mode") === "dark" ||
+    (!("mode" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    htmlElement.classList.add("dark");
+  } else {
+    htmlElement.classList.remove("dark");
+  }
+
+  htmlElement.classList.add(
+    localStorage.getItem("theme") || "uk-theme-zinc",
+  );
+</script>
+```
+
+You can replace `uk-theme-zinc` with any available theme you want as the default.
+
+**2\.** Remove the dark mode switcher to make the most out of the new Theme Switcher component:
+
+```html
+<script>
+  const themeToggleBtn = document.getElementById("theme-toggle");
+
+  themeToggleBtn?.addEventListener("click", function () {
+    // if set via local storage previously
+    if (localStorage.getItem("color-theme")) {
+      if (localStorage.getItem("color-theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      }
+
+      // if NOT set via local storage previously
+    } else {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      }
+    }
+  });
+</script>
+```
+
+**3\.** Add the new Theme Switcher component:
+
+
+```html
+<div class="uk-inline">
+    <button
+        class="uk-icon-button uk-icon-button-small uk-icon-button-outline"
+    >
+        <uk-icon icon="palette" uk-cloak></uk-icon>
+    </button>
+    <div class="uk-drop w-96" uk-drop="mode: click; offset: 8">
+        <div class="uk-card uk-card-default uk-card-body">
+            <div class="uk-card-title uk-margin-medium-bottom">
+                Customize
+            </div>
+            <uk-theme-switcher></uk-theme-switcher>
+        </div>
+    </div>
+</div>
+```
+
+## Tailwind Configuration
+
+For **quick preset** users, please remove all passed options on the preset function. The new configuration should look like this:
+
+```javascript
+import franken from "franken-ui/shadcn-ui/preset-quick";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [franken()],
+};
+```
+
+For **fine-grained** config users, the easiest way is to just create a brand new `tailwind.config.js`. You can run `npx franken-ui init -p` command.
+
+### Palette and Theme Adjustments
+
+The `theme` and `palette` options have been dropped. To adjust the configuration:
+
+Before:
+
+```javascript
+franken({
+  palette: {
+      ":root": {
+          // truncated
+      },
+      ".dark": {
+          // truncated
+      }
+  }
+})
+```
+
+Now:
+
+```javascript
+franken({
+  customPalette: {
+      ".uk-theme-emerald": {
+          // truncated
+      },
+      ".dark.uk-theme-emerald": {
+          // truncated
+      }
+  }
+})
+```
+
+Note that it's important to follow the convention so Tailwind CSS can pick up the class names upon build. Please see the [video demo](https://mas.to/@sveltecult/113144893476442076) as your reference.
+
+### Overrides adjustments
+
+If using overrides, move all customizations to the `app.css` file or wherever the Tailwind directives are located:
+
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your customizations here */
+```
+
+For example, adding the `uk-alert-warning` class:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.uk-alert-warning {
+  @apply border-amber-200 bg-amber-50 dark:border-amber-950 dark:bg-amber-950/50;
+}
+```
+
+Feel free to adjust according to your needs.
+
+## JavaScript
+
+Update the import statements for UIkit in the `app.js` file or whatever you call it:
+
+```javascript
+import UIkit from "franken-ui/js/core.iife";
+
+window.UIkit = UIkit;
+```
+
+That's it. The migration is complete.
