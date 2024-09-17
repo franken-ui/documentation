@@ -138,32 +138,3 @@ UIkit provides a number of responsive width classes. Basically they work just li
 | `.uk-width-*@xl`<br /> `.uk-child-width-*@xl` | Affects device widths of _1280px_ and larger. Grid columns will stack on smaller sizes. |
 
 <Example component="width" index={6} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Width component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        width: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name   | Affected Classes |
-| ----------- | ---------------- |
-| `hook-misc` | `*`              |

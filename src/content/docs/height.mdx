@@ -122,21 +122,3 @@ Learn more about [JavaScript components](javascript.md#programmatic-use).
 ```js
 UIkit.heightMatch(element, options);
 ```
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Heading component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        heading: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```

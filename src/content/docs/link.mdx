@@ -53,38 +53,3 @@ To use an anchor as a parent element and apply the link style on one of its chil
 ```
 
 <Example component="link" index={4} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Link component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        link: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name            | Affected Classes                                                                            |
-| -------------------- | ------------------------------------------------------------------------------------------- |
-| `hook-muted`         | `a.uk-link-muted, .uk-link-muted a, .uk-link-toggle .uk-link-muted`                         |
-| `hook-muted-hover`   | `a.uk-link-muted:hover, .uk-link-muted a:hover, .uk-link-toggle:hover .uk-link-muted`       |
-| `hook-text`          | `a.uk-link-text, .uk-link-text a, .uk-link-toggle .uk-link-text`                            |
-| `hook-text-hover`    | `a.uk-link-text:hover, .uk-link-text a:hover, .uk-link-toggle:hover .uk-link-text`          |
-| `hook-heading`       | `a.uk-link-heading, .uk-link-heading a, .uk-link-toggle .uk-link-heading`                   |
-| `hook-heading-hover` | `a.uk-link-heading:hover, .uk-link-heading a:hover, .uk-link-toggle:hover .uk-link-heading` |
-| `hook-reset`         | `a.uk-link-reset, .uk-link-reset a`                                                         |
-| `hook-misc`          | `*`                                                                                         |

@@ -83,33 +83,3 @@ The Close component uses the following translation strings. Learn more about [tr
 | Key     | Default | Description             |
 | ------- | ------- | ----------------------- |
 | `label` | `Close` | `aria-label` attribute. |
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Close component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        close: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name    | Affected Classes  |
-| ------------ | ----------------- |
-| `hook-close` | `.uk-close`       |
-| `hook-close` | `.uk-close:hover` |
-| `hook-misc`  | `*`               |

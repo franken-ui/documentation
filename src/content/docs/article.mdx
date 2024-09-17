@@ -30,35 +30,3 @@ The Article component consists of the article itself, a title and meta text.
 Use the `.uk-text-lead` class from the [Text component](/docs/text) to create a leading paragraph.
 
 <Example component="article" index={0} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the Article component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        article: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name       | Affected Classes            |
-| --------------- | --------------------------- |
-| `hook-article`  | `.uk-article`               |
-| `hook-adjacent` | `.uk-article + .uk-article` |
-| `hook-title`    | `.uk-article-title`         |
-| `hook-meta`     | `.uk-article-meta`          |
-| `hook-misc`     | `*`                         |

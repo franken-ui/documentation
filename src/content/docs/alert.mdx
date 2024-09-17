@@ -90,39 +90,3 @@ UIkit.alert(element).close();
 ```
 
 Closes and removes the Alert.
-
-## Theme development
-
-On your `tailwind.config.js` file, add the Alert component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        alert: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name          | Affected Classes        |
-| ------------------ | ----------------------- |
-| `hook-alert`       | `.uk-alert`             |
-| `hook-close`       | `.uk-alert-close`       |
-| `hook-close-hover` | `.uk-alert-close:hover` |
-| `hook-close-focus` | `.uk-alert-close:focus` |
-| `hook-default`     | `.uk-alert-default`     |
-| `hook-primary`     | `.uk-alert-primary`     |
-| `hook-success`     | `.uk-alert-success`     |
-| `hook-warning`     | `.uk-alert-warning`     |
-| `hook-danger`      | `.uk-alert-danger`      |
-| `hook-misc`        | `*`                     |

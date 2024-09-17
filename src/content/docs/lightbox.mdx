@@ -274,39 +274,3 @@ The Lightbox component uses the following translation strings. Learn more about 
 | `previous`   | `Previous Slide` | `aria-label` for previous slide button. |
 | `slideLabel` | `%s of %s`       | `aria-label` for slide.                 |
 | `close`      | `Close`          | `aria-label` for close button.          |
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Lightbox component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        lightbox: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name                 | Affected Classes                  |
-| ------------------------- | --------------------------------- |
-| `hook-lightbox`           | `.uk-lightbox`                    |
-| `hook-item`               | `.uk-lightbox-items > *`          |
-| `hook-toolbar`            | `.uk-lightbox-toolbar`            |
-| `hook-toolbar-icon`       | `.uk-lightbox-toolbar-icon`       |
-| `hook-toolbar-icon-hover` | `.uk-lightbox-toolbar-icon:hover` |
-| `hook-button`             | `.uk-lightbox-button`             |
-| `hook-button-hover`       | `.uk-lightbox-button:hover`       |
-| `hook-button-active`      | `.uk-lightbox-button:active`      |
-| `hook-misc`               | `*`                               |

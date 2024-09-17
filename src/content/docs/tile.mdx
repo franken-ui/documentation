@@ -46,21 +46,3 @@ The Tile component has some padding by default. To remove this or to apply diffe
 ```
 
 <Example component="tile" index={2} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Tile component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        tile: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```

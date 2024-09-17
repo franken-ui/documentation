@@ -56,35 +56,3 @@ To apply an outline, just add the `.uk-iconnav-outline` class.
 ## Extra small modifier
 
 <Example component="iconnav" index={4} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Iconnav component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        iconnav: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name          | Affected Classes               |
-| ------------------ | ------------------------------ |
-| `hook-iconnav`     | `.uk-iconnav`                  |
-| `hook-item`        | `.uk-iconnav > * > a`          |
-| `hook-item-hover`  | `.uk-iconnav > * > a:hover`    |
-| `hook-item-active` | `.uk-iconnav > .uk-active > a` |
-| `hook-misc`        | `*`                            |

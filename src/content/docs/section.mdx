@@ -74,21 +74,3 @@ Some UIkit themes use richer styles, including textured backgrounds and borders.
 ```html
 <div class="uk-section uk-section-overlap"></div>
 ```
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Section component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        section: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```

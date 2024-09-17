@@ -31,31 +31,3 @@ This component is mostly used in combination with the [Overlay component](/docs/
 ```
 
 <Example component="transition" index={0} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Transition component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        transition: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name   | Affected Classes |
-| ----------- | ---------------- |
-| `hook-misc` | `*`              |

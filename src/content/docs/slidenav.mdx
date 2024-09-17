@@ -63,38 +63,3 @@ To position the slidenav on top of an element or the [Slideshow component](/docs
 on hover.
 
 <Example component="slidenav" index={3} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Slidenav component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        slidenav: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name        | Affected Classes         |
-| ---------------- | ------------------------ |
-| `hook-slidenav`  | `.uk-slidenav`           |
-| `hook-hover`     | `.uk-slidenav:hover`     |
-| `hook-active`    | `.uk-slidenav:active`    |
-| `hook-previous`  | `.uk-slidenav-previous`  |
-| `hook-next`      | `.uk-slidenav-next`      |
-| `hook-large`     | `.uk-slidenav-large`     |
-| `hook-container` | `.uk-slidenav-container` |
-| `hook-misc`      | `*`                      |

@@ -68,32 +68,3 @@ To have an inline element span the whole width of the columns, add the `.uk-colu
 ```
 
 <Example component="column" index={3} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Column component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        column: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name   | Affected Classes |
-| ----------- | ---------------- |
-| `hook-misc` | `*`              |

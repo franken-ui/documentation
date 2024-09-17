@@ -109,35 +109,3 @@ The following events will be triggered on elements with this component attached:
 | `moved`   | Fires after an element has been moved.   |
 | `added`   | Fires after an element has been added.   |
 | `removed` | Fires after an element has been removed. |
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Sortable component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        sortable: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name          | Affected Classes           |
-| ------------------ | -------------------------- |
-| `hook-sortable`    | `.uk-sortable`             |
-| `hook-drag`        | `.uk-sortable-drag`        |
-| `hook-placeholder` | `.uk-sortable-placeholder` |
-| `hook-empty`       | `.uk-sortable-empty`       |
-| `hook-misc`        | `*`                        |

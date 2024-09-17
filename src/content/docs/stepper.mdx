@@ -50,33 +50,3 @@ To show a checkmark when the step has been finished, add the `.uk-stepper-checke
 This example can be used to display step numbers within the stepper, helping to indicate the sequence of steps. Each li tag will be numbered to show its position in the progression.
 
 <Example component="stepper" index={3} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Stepper component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        stepper: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name      | Affected Classes |
-| -------------- | ---------------- |
-| `hook-stepper` | `.uk-stepper`    |
-| `hook-misc`    | `*`              |

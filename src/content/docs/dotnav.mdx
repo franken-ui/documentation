@@ -39,36 +39,3 @@ The dotnav can also be displayed vertically. Just add the `.uk-dotnav-vertical` 
 ```
 
 <Example component="dotnav" index={1} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Dotnav component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        dotnav: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name           | Affected Classes              |
-| ------------------- | ----------------------------- |
-| `hook-dotnav`       | `.uk-dotnav`                  |
-| `hook-item`         | `.uk-dotnav > * > *`          |
-| `hook-item-hover`   | `.uk-dotnav > * > :hover`     |
-| `hook-item-onclick` | `.uk-dotnav > * > :active`    |
-| `hook-item-active`  | `.uk-dotnav > .uk-active > *` |
-| `hook-misc`         | `*`                           |

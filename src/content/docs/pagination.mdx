@@ -72,36 +72,3 @@ The Pagination component uses the following translation strings. Learn more abou
 | Key     | Default              | Description             |
 | ------- | -------------------- | ----------------------- |
 | `label` | `Next/Previous page` | `aria-label` attribute. |
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Pagination component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        pagination: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name            | Affected Classes                    |
-| -------------------- | ----------------------------------- |
-| `hook-pagination`    | `.uk-pagination`                    |
-| `hook-item`          | `.uk-pagination > * > *`            |
-| `hook-item-hover`    | `.uk-pagination > * > :hover`       |
-| `hook-item-active`   | `.uk-pagination > .uk-active > *`   |
-| `hook-item-disabled` | `.uk-pagination > .uk-disabled > *` |
-| `hook-misc`          | `*`                                 |

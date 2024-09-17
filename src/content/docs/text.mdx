@@ -133,21 +133,3 @@ Add one of these useful classes to wrap your text.
 | `.uk-text-nowrap`   | Prevents text from wrapping into multiple lines.                                                   |
 
 <Example component="text" index={3} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Text component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        text: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```

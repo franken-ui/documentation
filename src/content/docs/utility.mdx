@@ -349,36 +349,3 @@ To apply a move cursor to elements that are being dragged, add the `.uk-drag` cl
 <Example component="utility" index={21} />
 
 To create a box shadow on an [upload area](/docs/upload) when dragging a file over it, add the `.uk-dragover` class.
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Utility component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        utility: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name                | Affected Classes                              |
-| ------------------------ | --------------------------------------------- |
-| `hook-panel-scrollable`  | `.uk-panel-scrollable`                        |
-| `hook-box-shadow-bottom` | `.uk-box-shadow-bottom::after`                |
-| `hook-dropcap`           | `.uk-dropcap > p:first-of-type::first-letter` |
-| `hook-logo`              | `.uk-logo`                                    |
-| `hook-logo-hover`        | `.uk-logo:hover`                              |
-| `hook-misc`              | `*`                                           |

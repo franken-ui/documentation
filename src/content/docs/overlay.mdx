@@ -60,35 +60,3 @@ Add one of the `.uk-position-*` classes from the [Position component](/docs/posi
 ```
 
 <Example component="overlay" index={4} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Overlay component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        overlay: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name      | Affected Classes      |
-| -------------- | --------------------- |
-| `hook-overlay` | `.uk-overlay`         |
-| `hook-icon`    | `.uk-overlay-icon`    |
-| `hook-default` | `.uk-overlay-default` |
-| `hook-primary` | `.uk-overlay-primary` |
-| `hook-misc`    | `*`                   |

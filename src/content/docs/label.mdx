@@ -35,35 +35,3 @@ Add one of the following classes for additional styles.
 ```
 
 <Example component="label" index={1} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Label component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        label: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name           | Affected Classes    |
-| ------------------- | ------------------- |
-| `hook-label`        | `.uk-label`         |
-| `hook-success`      | `.uk-label-success` |
-| `hook-item-warning` | `.uk-label-warning` |
-| `hook-item-danger`  | `.uk-label-danger`  |
-| `hook-misc`         | `*`                 |

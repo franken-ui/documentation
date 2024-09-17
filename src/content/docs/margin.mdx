@@ -125,32 +125,3 @@ Learn more about [JavaScript components](javascript.md#programmatic-use).
 ```js
 UIkit.margin(element, options);
 ```
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Margin component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        margin: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name   | Affected Classes |
-| ----------- | ---------------- |
-| `hook-misc` | `*`              |

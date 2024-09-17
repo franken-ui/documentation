@@ -434,32 +434,3 @@ The Slider component uses the following translation strings. Learn more about [t
 | `previous`   | `Previous Slide` | `aria-label` for previous slide button.   |
 | `slideX`     | `Slide %s`       | `aria-label` for pagination slide button. |
 | `slideLabel` | `%s of %s`       | `aria-label` for slide.                   |
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Slider component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        slider: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name     | Affected Classes |
-| ------------- | ---------------- |
-| `hook-slider` | `.uk-slider`     |
-| `hook-misc`   | `*`              |

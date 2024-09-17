@@ -101,25 +101,3 @@ A much easier way is to use the [SVG component](/docs/svg) by adding `uk-svg="st
 ```
 
 <Example component="animation" index={5} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the Animation component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        animation: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-| Hook Name   | Affected Classes |
-| ----------- | ---------------- |
-| `hook-misc` | `*`              |

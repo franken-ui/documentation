@@ -110,21 +110,3 @@ The custom select component triggers the following events on elements with this 
 | `uk-select:input` | Fired after the value has changed, providing an opportunity to respond to user input.          |
 | `uk-select:open`  | Fired after the dropdown menu has been opened, allowing for custom handling of the open event. |
 | `uk-select:close` | Fired after the dropdown menu has been closed, enabling custom handling of the close event.    |
-
-## Theme development
-
-This component is part of the Extensions component. On your `tailwind.config.js` file, add the Extensions component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        extensions: {
-            hooks: {
-              'hook-misc': {}
-            }
-        }
-    }
-}),
-```

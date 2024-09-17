@@ -142,21 +142,3 @@ This component features a number of general position utility classes:
 | `.uk-position-absolute` | Add this class to apply absolute positioning. |
 | `.uk-position-fixed`    | Add this class to apply fixed positioning.    |
 | `.uk-position-z-index`  | Add this class to apply a z-index of 1.       |
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Position component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        position: {
-            hooks: {},
-            media: true
-        }
-    }
-}),
-```

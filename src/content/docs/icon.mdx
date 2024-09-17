@@ -81,38 +81,3 @@ When loading Web Components, there may be a brief delay before the content is fu
 | `stroke-width` | String | 2       | Customizes the stroke width of the icon.                                         |
 | `height`       | String | 16      | Customizes the height of the icon.                                               |
 | `width`        | String | 16      | Customizes the width of the icon.                                                |
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Icon component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        icon: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name            | Affected Classes                                       |
-| -------------------- | ------------------------------------------------------ |
-| `hook-icon`          | `.uk-icon`                                             |
-| `hook-link`          | `.uk-icon-link`                                        |
-| `hook-link-hover`    | `.uk-icon-link:hover`                                  |
-| `hook-link-active`   | `.uk-icon-link:active, .uk-active > .uk-icon-link`     |
-| `hook-button`        | `.uk-icon-button`                                      |
-| `hook-button-hover`  | `.uk-icon-button:hover`                                |
-| `hook-button-active` | `.uk-icon-button:active, .uk-active > .uk-icon-button` |
-| `hook-misc`          | `*`                                                    |

@@ -61,35 +61,3 @@ To position the thumbnav on top of an element or the [Slideshow component](/docs
 ```
 
 <Example component="thumbnav" index={2} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Thumbnav component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        thumbnav: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name          | Affected Classes                |
-| ------------------ | ------------------------------- |
-| `hook-thumbnav`    | `.uk-thumbnav`                  |
-| `hook-item`        | `.uk-thumbnav > * > *`          |
-| `hook-item-hover`  | `.uk-thumbnav > * > :hover`     |
-| `hook-item-active` | `.uk-thumbnav > .uk-active > *` |
-| `hook-misc`        | `*`                             |

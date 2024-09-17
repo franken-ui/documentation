@@ -31,37 +31,3 @@ Add the `.uk-divider-small` class to a `<hr>` or `<div>` element to create a sma
 Add the `.uk-divider-vertical` class to a `<hr>` or `<div>` element to create a vertical divider.
 
 <Example component="divider" index={2} />
-
-## Theme development
-
-On your `tailwind.config.js` file, add the
-Divider component within the `ui()` plugin.
-
-```javascript
-import ui from "franken-ui";
-
-ui({
-    components: {
-        divider: {
-            hooks: {}
-        }
-    }
-}),
-```
-
-### Available hooks
-
-<span class="uk-label uk-label-primary">Note</span> If you are developing theme
-from scratch, you can use all these hooks. If you're using the shadcn/ui theme,
-some hooks might not work as they were already in use or removed. Learn more
-about [using hooks](/docs/hooks).
-
-| Hook Name              | Affected Classes                                    |
-| ---------------------- | --------------------------------------------------- |
-| `hook-icon`            | `.uk-divider-icon`                                  |
-| `hook-icon-line`       | `.uk-divider-icon::before, .uk-divider-icon::after` |
-| `hook-icon-line-left`  | `.uk-divider-icon::before`                          |
-| `hook-icon-line-right` | `.uk-divider-icon::after`                           |
-| `hook-small`           | `.uk-divider-small::after`                          |
-| `hook-vertical`        | `.uk-divider-vertical`                              |
-| `hook-misc`            | `*`                                                 |
