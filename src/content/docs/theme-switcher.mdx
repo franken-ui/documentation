@@ -1,0 +1,101 @@
+---
+group: components
+text: Theme Switcher
+title: Theme Switcher
+lead: Easily switch between themes, light or dark mode with the Theme Switcher component.
+meta:
+  description: Easily switch between themes, light or dark mode with the Theme Switcher component.
+keywords: "dark"
+ping: true
+---
+
+import Example from "examples/component.astro";
+
+## Usage
+
+To implement the Theme Switcher, you'll need to make some modifications to your HTML code to allow users to change their preferences.
+
+**1.** Start by setting a default theme and mode in the `<head>` tag of your HTML by checking the user's preference:
+
+```html
+<script>
+  const htmlElement = document.documentElement;
+
+  if (
+    localStorage.getItem("mode") === "dark" ||
+    (!("mode" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    htmlElement.classList.add("dark");
+  } else {
+    htmlElement.classList.remove("dark");
+  }
+
+  htmlElement.classList.add(localStorage.getItem("theme") || "uk-theme-zinc");
+</script>
+```
+
+This will first check if a user previously set the theme color preference manually using local storage, and as a fallback, it will either set dark or light mode based on the browser's color scheme preference.
+
+<span class="uk-label uk-label-primary">Note</span> You can replace
+`uk-theme-zinc` with any of the 12 available themes you want as the default.
+
+**2\.** Ensure that your `<body>` tag includes the classes `bg-background` and `text-foreground` to apply the proper background and text colors that automatically adapt to the currently set theme.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- ... -->
+  </head>
+  <body class="bg-background text-foreground">
+    <!-- ... -->
+  </body>
+</html>
+```
+
+**3\.** You can now use the `<uk-theme-switcher>` markup in your HTML code and place it however you like.
+
+## Dropdown
+
+You can use the [Drop](/docs/drop) component to display the Theme Switcher, providing a compact and convenient way to access theme options.
+
+<Example component="theme-switcher" index={0} />
+
+## Modal
+
+Alternatively, you can also display the Theme Switcher inside a [Modal](/docs/modal) component.
+
+<Example component="theme-switcher" index={1} />
+
+## Custom Palette
+
+To set a custom palette, follow these steps:
+
+### Step 1: Configure your `tailwind.config.js` file
+
+First, ensure that your `tailwind.config.js` file is configured to include your custom palette. For more information on how to do this, please refer to the [documentation](/docs/theming#custom-palette).
+
+### Step 2: Provide a custom palette attribute
+
+Next, add a `custom-palette` attribute to the `<uk-theme-switcher>` tag with a valid JSON-stringified array of objects. The array should contain objects with the following properties:
+
+- `background`: The preview background color.
+- `key`: The name of the class.
+- `text`: The label for the theme.
+
+Here's an example of how to use the `custom-palette` attribute:
+
+```html
+<uk-theme-switcher
+  custom-palette='[{"background": "#10b981", "key": "uk-theme-emerald", "text": "Emerald"}]'
+></uk-theme-switcher>
+```
+
+This will allow you to conveniently add a custom palette for the Theme Switcher component.
+
+## Attributes
+
+| Name             | Type   | Default | Description                                                    |
+| ---------------- | ------ | ------- | -------------------------------------------------------------- |
+| `custom-palette` | String |         | Allows you to register a custom palette to the Theme Switcher. |

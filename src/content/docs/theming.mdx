@@ -5,6 +5,7 @@ text: Theming
 title: Theming
 meta:
   description: Using CSS Variables or Tailwind CSS for theming.
+ping: true
 ---
 
 Franken UI, just like shadcn/ui use a simple `background` and `foreground` convention for colors. The `background` variable is used for the background color of the component and the `foreground` variable is used for the text color.
@@ -141,110 +142,111 @@ You can now use the `warning` utility class in your components.
 <div class="bg-warning text-warning-foreground"></div>
 ```
 
-## Using theme generators
+## Custom palette
 
-Franken UI supports theme generators. You can even create your own theme from scratch. To generate your
-own theme, follow these steps:
+Franken UI supports shadcn/ui theme generators. You can even create your own from scratch. To generate a theme, follow these steps:
 
 **1\.** Go to [ZippyStarter](https://zippystarter.com/tools/shadcn-ui-theme-generator), [Oxidus](https://oxidus.vercel.app/) or [https://ui.jln.dev/](https://ui.jln.dev/) and generate your desired theme. Copy the generated theme. Note that you can omit the `--radius` variable as it is not needed.
 
-**2\.** Convert the CSS to an object [using this tool](https://transform.tools/css-to-js). It's important to follow the correct format. Here's an example of the CSS:
+**2\.** Convert the CSS to an object [using this tool](https://transform.tools/css-to-js). It's important to follow the correct format and naming convention.
+
+Here's an example of the CSS:
 
 ```css
-:root {
-  --background: 351 100% 95%;
-  --foreground: 351 5% 0%;
-  --card: 351 50% 90%;
-  --card-foreground: 351 5% 10%;
-  --popover: 351 100% 95%;
-  --popover-foreground: 351 100% 0%;
-  --primary: 351 60.5% 46.7%;
+:root  {
+  --background: 160.1 100% 95%;
+  --foreground: 160.1 5% 10%;
+  --card: 160.1 50% 90%;
+  --card-foreground: 160.1 5% 15%;
+  --popover: 160.1 100% 95%;
+  --popover-foreground: 160.1 100% 10%;
+  --primary: 160.1 84.1% 39.4%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 351 30% 70%;
+  --secondary: 160.1 30% 70%;
   --secondary-foreground: 0 0% 0%;
-  --muted: 313 30% 85%;
-  --muted-foreground: 351 5% 35%;
-  --accent: 313 30% 80%;
-  --accent-foreground: 351 5% 10%;
+  --muted: 122.1 30% 85%;
+  --muted-foreground: 160.1 5% 35%;
+  --accent: 122.1 30% 80%;
+  --accent-foreground: 160.1 5% 15%;
   --destructive: 0 100% 30%;
-  --destructive-foreground: 351 5% 90%;
-  --border: 351 30% 50%;
-  --input: 351 30% 18%;
-  --ring: 351 60.5% 46.7%;
+  --destructive-foreground: 160.1 5% 90%;
+  --border: 160.1 30% 50%;
+  --input: 160.1 30% 26%;
+  --ring: 160.1 84.1% 39.4%;
+  --radius: 0.5rem;
 }
-.dark {
-  --background: 351 50% 5%;
-  --foreground: 351 5% 90%;
-  --card: 351 50% 0%;
-  --card-foreground: 351 5% 90%;
-  --popover: 351 50% 5%;
-  --popover-foreground: 351 5% 90%;
-  --primary: 351 60.5% 46.7%;
+.dark  {
+  --background: 160.1 50% 10%;
+  --foreground: 160.1 5% 90%;
+  --card: 160.1 50% 10%;
+  --card-foreground: 160.1 5% 90%;
+  --popover: 160.1 50% 5%;
+  --popover-foreground: 160.1 5% 90%;
+  --primary: 160.1 84.1% 39.4%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 351 30% 10%;
+  --secondary: 160.1 30% 20%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 313 30% 15%;
-  --muted-foreground: 351 5% 60%;
-  --accent: 313 30% 15%;
-  --accent-foreground: 351 5% 90%;
+  --muted: 122.1 30% 25%;
+  --muted-foreground: 160.1 5% 60%;
+  --accent: 122.1 30% 25%;
+  --accent-foreground: 160.1 5% 90%;
   --destructive: 0 100% 30%;
-  --destructive-foreground: 351 5% 90%;
-  --border: 351 30% 18%;
-  --input: 351 30% 18%;
-  --ring: 351 60.5% 46.7%;
+  --destructive-foreground: 160.1 5% 90%;
+  --border: 160.1 30% 26%;
+  --input: 160.1 30% 26%;
+  --ring: 160.1 84.1% 39.4%;
+  --radius: 0.5rem;
 }
 ```
 
-Once you have transformed that to an object, you should have something like this:
+Once you have transformed that to an object, you should rename `:root` with `.uk-theme-*` and `.dark` with `.dark.uk-theme-*` where `*` is the name of your palette, resulting in a structure like this:
 
 ```javascript
-{
-  ":root": {
-    "--background": "351 100% 95%",
-    "--foreground": "351 5% 0%",
-    "--card": "351 50% 90%",
-    "--card-foreground": "351 5% 10%",
-    "--popover": "351 100% 95%",
-    "--popover-foreground": "351 100% 0%",
-    "--primary": "351 60.5% 46.7%",
-    "--primary-foreground": "0 0% 100%",
-    "--secondary": "351 30% 70%",
-    "--secondary-foreground": "0 0% 0%",
-    "--muted": "313 30% 85%",
-    "--muted-foreground": "351 5% 35%",
-    "--accent": "313 30% 80%",
-    "--accent-foreground": "351 5% 10%",
-    "--destructive": "0 100% 30%",
-    "--destructive-foreground": "351 5% 90%",
-    "--border": "351 30% 50%",
-    "--input": "351 30% 18%",
-    "--ring": "351 60.5% 46.7%"
-  },
-  ".dark": {
-    "--background": "351 50% 5%",
-    "--foreground": "351 5% 90%",
-    "--card": "351 50% 0%",
-    "--card-foreground": "351 5% 90%",
-    "--popover": "351 50% 5%",
-    "--popover-foreground": "351 5% 90%",
-    "--primary": "351 60.5% 46.7%",
-    "--primary-foreground": "0 0% 100%",
-    "--secondary": "351 30% 10%",
-    "--secondary-foreground": "0 0% 100%",
-    "--muted": "313 30% 15%",
-    "--muted-foreground": "351 5% 60%",
-    "--accent": "313 30% 15%",
-    "--accent-foreground": "351 5% 90%",
-    "--destructive": "0 100% 30%",
-    "--destructive-foreground": "351 5% 90%",
-    "--border": "351 30% 18%",
-    "--input": "351 30% 18%",
-    "--ring": "351 60.5% 46.7%"
-  }
+".uk-theme-emerald": {
+  "--background": "160.1 100% 95%",
+  "--foreground": "160.1 5% 10%",
+  "--card": "160.1 50% 90%",
+  "--card-foreground": "160.1 5% 15%",
+  "--popover": "160.1 100% 95%",
+  "--popover-foreground": "160.1 100% 10%",
+  "--primary": "160.1 84.1% 39.4%",
+  "--primary-foreground": "0 0% 100%",
+  "--secondary": "160.1 30% 70%",
+  "--secondary-foreground": "0 0% 0%",
+  "--muted": "122.1 30% 85%",
+  "--muted-foreground": "160.1 5% 35%",
+  "--accent": "122.1 30% 80%",
+  "--accent-foreground": "160.1 5% 15%",
+  "--destructive": "0 100% 30%",
+  "--destructive-foreground": "160.1 5% 90%",
+  "--border": "160.1 30% 50%",
+  "--input": "160.1 30% 26%",
+  "--ring": "160.1 84.1% 39.4%",
+},
+".dark.uk-theme-emerald": {
+  "--background": "160.1 50% 10%",
+  "--foreground": "160.1 5% 90%",
+  "--card": "160.1 50% 10%",
+  "--card-foreground": "160.1 5% 90%",
+  "--popover": "160.1 50% 5%",
+  "--popover-foreground": "160.1 5% 90%",
+  "--primary": "160.1 84.1% 39.4%",
+  "--primary-foreground": "0 0% 100%",
+  "--secondary": "160.1 30% 20%",
+  "--secondary-foreground": "0 0% 100%",
+  "--muted": "122.1 30% 25%",
+  "--muted-foreground": "160.1 5% 60%",
+  "--accent": "122.1 30% 25%",
+  "--accent-foreground": "160.1 5% 90%",
+  "--destructive": "0 100% 30%",
+  "--destructive-foreground": "160.1 5% 90%",
+  "--border": "160.1 30% 26%",
+  "--input": "160.1 30% 26%",
+  "--ring": "160.1 84.1% 39.4%",
 }
 ```
 
-**3\.** Finally, configure your `tailwind.config.css` to use your custom colors. You will do this inside the `palette` option.
+**3\.** Finally, configure your `tailwind.config.css` to add the custom palette. You will do this inside the `customPalette` option.
 
 ```javascript
 import franken from "franken-ui/shadcn-ui/preset-quick";
@@ -253,48 +255,48 @@ import franken from "franken-ui/shadcn-ui/preset-quick";
 export default {
   presets: [
     franken({
-      palette: {
-        ":root": {
-          "--background": "351 100% 95%",
-          "--foreground": "351 5% 0%",
-          "--card": "351 50% 90%",
-          "--card-foreground": "351 5% 10%",
-          "--popover": "351 100% 95%",
-          "--popover-foreground": "351 100% 0%",
-          "--primary": "351 60.5% 46.7%",
+      customPalette: {
+        ".uk-theme-emerald": {
+          "--background": "160.1 100% 95%",
+          "--foreground": "160.1 5% 10%",
+          "--card": "160.1 50% 90%",
+          "--card-foreground": "160.1 5% 15%",
+          "--popover": "160.1 100% 95%",
+          "--popover-foreground": "160.1 100% 10%",
+          "--primary": "160.1 84.1% 39.4%",
           "--primary-foreground": "0 0% 100%",
-          "--secondary": "351 30% 70%",
+          "--secondary": "160.1 30% 70%",
           "--secondary-foreground": "0 0% 0%",
-          "--muted": "313 30% 85%",
-          "--muted-foreground": "351 5% 35%",
-          "--accent": "313 30% 80%",
-          "--accent-foreground": "351 5% 10%",
+          "--muted": "122.1 30% 85%",
+          "--muted-foreground": "160.1 5% 35%",
+          "--accent": "122.1 30% 80%",
+          "--accent-foreground": "160.1 5% 15%",
           "--destructive": "0 100% 30%",
-          "--destructive-foreground": "351 5% 90%",
-          "--border": "351 30% 50%",
-          "--input": "351 30% 18%",
-          "--ring": "351 60.5% 46.7%",
+          "--destructive-foreground": "160.1 5% 90%",
+          "--border": "160.1 30% 50%",
+          "--input": "160.1 30% 26%",
+          "--ring": "160.1 84.1% 39.4%",
         },
-        ".dark": {
-          "--background": "351 50% 5%",
-          "--foreground": "351 5% 90%",
-          "--card": "351 50% 0%",
-          "--card-foreground": "351 5% 90%",
-          "--popover": "351 50% 5%",
-          "--popover-foreground": "351 5% 90%",
-          "--primary": "351 60.5% 46.7%",
+        ".dark.uk-theme-emerald": {
+          "--background": "160.1 50% 10%",
+          "--foreground": "160.1 5% 90%",
+          "--card": "160.1 50% 10%",
+          "--card-foreground": "160.1 5% 90%",
+          "--popover": "160.1 50% 5%",
+          "--popover-foreground": "160.1 5% 90%",
+          "--primary": "160.1 84.1% 39.4%",
           "--primary-foreground": "0 0% 100%",
-          "--secondary": "351 30% 10%",
+          "--secondary": "160.1 30% 20%",
           "--secondary-foreground": "0 0% 100%",
-          "--muted": "313 30% 15%",
-          "--muted-foreground": "351 5% 60%",
-          "--accent": "313 30% 15%",
-          "--accent-foreground": "351 5% 90%",
+          "--muted": "122.1 30% 25%",
+          "--muted-foreground": "160.1 5% 60%",
+          "--accent": "122.1 30% 25%",
+          "--accent-foreground": "160.1 5% 90%",
           "--destructive": "0 100% 30%",
-          "--destructive-foreground": "351 5% 90%",
-          "--border": "351 30% 18%",
-          "--input": "351 30% 18%",
-          "--ring": "351 60.5% 46.7%",
+          "--destructive-foreground": "160.1 5% 90%",
+          "--border": "160.1 30% 26%",
+          "--input": "160.1 30% 26%",
+          "--ring": "160.1 84.1% 39.4%",
         },
       },
     }),
@@ -302,79 +304,30 @@ export default {
 };
 ```
 
-Or, if you are using the fine-grained configuration, you can save the palette to its own variable and apply it inside `hooks()` and `variables()` functions:
+## Setting the default palette
 
-```javascript
-import preset from "franken-ui/shadcn-ui/preset";
-import variables from "franken-ui/shadcn-ui/variables";
-import ui from "franken-ui";
-import hooks from "franken-ui/shadcn-ui/hooks";
+To set your newly added palette as the default, simply update the script in your `<head>` tag to reference the new theme name, like so:
 
-const palette = {
-  ":root": {
-    "--background": "351 100% 95%",
-    "--foreground": "351 5% 0%",
-    "--card": "351 50% 90%",
-    "--card-foreground": "351 5% 10%",
-    "--popover": "351 100% 95%",
-    "--popover-foreground": "351 100% 0%",
-    "--primary": "351 60.5% 46.7%",
-    "--primary-foreground": "0 0% 100%",
-    "--secondary": "351 30% 70%",
-    "--secondary-foreground": "0 0% 0%",
-    "--muted": "313 30% 85%",
-    "--muted-foreground": "351 5% 35%",
-    "--accent": "313 30% 80%",
-    "--accent-foreground": "351 5% 10%",
-    "--destructive": "0 100% 30%",
-    "--destructive-foreground": "351 5% 90%",
-    "--border": "351 30% 50%",
-    "--input": "351 30% 18%",
-    "--ring": "351 60.5% 46.7%",
-  },
-  ".dark": {
-    "--background": "351 50% 5%",
-    "--foreground": "351 5% 90%",
-    "--card": "351 50% 0%",
-    "--card-foreground": "351 5% 90%",
-    "--popover": "351 50% 5%",
-    "--popover-foreground": "351 5% 90%",
-    "--primary": "351 60.5% 46.7%",
-    "--primary-foreground": "0 0% 100%",
-    "--secondary": "351 30% 10%",
-    "--secondary-foreground": "0 0% 100%",
-    "--muted": "313 30% 15%",
-    "--muted-foreground": "351 5% 60%",
-    "--accent": "313 30% 15%",
-    "--accent-foreground": "351 5% 90%",
-    "--destructive": "0 100% 30%",
-    "--destructive-foreground": "351 5% 90%",
-    "--border": "351 30% 18%",
-    "--input": "351 30% 18%",
-    "--ring": "351 60.5% 46.7%",
-  },
-};
+```html
+<script>
+  const htmlElement = document.documentElement;
 
-const shadcn = hooks({
-  palette: palette,
-});
+  if (
+    localStorage.getItem("mode") === "dark" ||
+    (!("mode" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    htmlElement.classList.add("dark");
+  } else {
+    htmlElement.classList.remove("dark");
+  }
 
-/** @type {import('tailwindcss').Config} */
-export default {
-  presets: [preset],
-  plugins: [
-    variables({
-      palette: palette,
-    }),
-    ui({
-      components: {},
-    }),
-  ],
-};
+  htmlElement.classList.add(
+    localStorage.getItem("theme") || "uk-theme-emerald",
+  );
+</script>
 ```
 
-And that's it. You can now customize colors and are not limited to the 12 predefined colors.
+## Adding to theme switcher
 
-You might ask why you can't just paste it into your CSS file. Well, technically, you can. However, elements such as dividers, checkboxes, radios, etc., use SVG as their background, and it's important to keep their colors in sync. Unfortunately, setting HSL inside inline SVG is not possible because they are not yet in the DOM. To fix this, HSL needs to be converted to HEX and injected into the SVG.
-
-If you are confused, you can watch this short video on [Mastodon](https://mas.to/@sveltecult/112556172122401221) on how to configure your own palette.
+To register your newly added palette with the [Theme Switcher](/docs/theme-switcher#custom-palette), please refer to the corresponding documentation or guide for step-by-step instructions on how to integrate it.
