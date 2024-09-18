@@ -82,6 +82,12 @@ body:has(> div.with-aside) {
   @apply uk-codespan font-geist-mono;
 }
 
+.uk-paragraph kbd,
+.uk-table kbd,
+.uk-list kbd {
+  @apply uk-kbd font-geist-mono;
+}
+
 .c {
   @apply absolute right-0 top-[13.3px] text-muted-foreground hover:text-foreground;
 }

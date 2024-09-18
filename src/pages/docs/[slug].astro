@@ -237,28 +237,51 @@ const titleCase = function (string: string) {
           <Content />
         </div>
 
-        {
-          headings.length > 0 ? (
-            <div class="hidden w-56 xl:block">
-              <ul
-                class="uk-nav uk-nav-default pt-10"
-                uk-scrollspy-nav="closest: li; scroll: true; offset: 40"
-                uk-sticky
-              >
-                <li class="uk-nav-header">On This Page</li>
-                {headings
-                  .filter((a) => a.depth === 2)
-                  .map((a) => (
-                    <li>
-                      <a href={`#${a.slug}`}>{a.text}</a>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ) : (
-            ""
-          )
-        }
+        <div class="hidden w-56 xl:block">
+          <div class="space-y-6 pt-10" uk-sticky>
+            {
+              headings.length > 0 ? (
+                <ul
+                  class="uk-nav uk-nav-default"
+                  uk-scrollspy-nav="closest: li; scroll: true; offset: 40"
+                >
+                  <li class="uk-nav-header">On This Page</li>
+                  {headings
+                    .filter((a) => a.depth === 2)
+                    .map((a) => (
+                      <li>
+                        <a href={`#${a.slug}`}>{a.text}</a>
+                      </li>
+                    ))}
+                </ul>
+              ) : (
+                ""
+              )
+            }
+
+            {
+              entry.data.request === false ? (
+                ""
+              ) : (
+                <div class="uk-card uk-card-primary text-sm">
+                  <div class="space-y-4 p-4">
+                    <div class="uk-card-title">Request Web Components</div>
+                    <div class="">
+                      Franken UI is an independent project. Help support it and
+                      expand its free component library.
+                    </div>
+                    <a
+                      href="mailto:sveltecult@proton.me"
+                      class="uk-button uk-button-secondary uk-button-small"
+                    >
+                      Reach out
+                    </a>
+                  </div>
+                </div>
+              )
+            }
+          </div>
+        </div>
       </div>
     </main>
 
@@ -356,7 +379,7 @@ const titleCase = function (string: string) {
     class="hidden"
     width="0"
     height="0"
-    src="https://a.franken-ui.dev/ls"></iframe>
+    src={`${import.meta.env.EXAMPLES_URL}/ls`}></iframe>
 
   <script is:inline>
     window.addEventListener("resize", () => {

@@ -36,7 +36,7 @@ const image = (await images[`/src/images/${active}-light.png`]()).default;
     <iframe
       class="hidden xl:block"
       name={active}
-      src={`https://a.franken-ui.dev/examples/${active}`}
+      src={`${import.meta.env.EXAMPLES_URL}/examples/${active}`}
       height={`${example?.height}`}
       width="100%"></iframe>
 

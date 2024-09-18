@@ -12,6 +12,7 @@ const docs = defineCollection({
     meta: z.optional(z.record(z.string())),
     ping: z.optional(z.boolean()),
     keywords: z.optional(z.string()),
+    request: z.optional(z.literal(false)),
   }),
 });
 
