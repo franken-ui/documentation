@@ -46,27 +46,13 @@ const titleCase = function (string: string) {
             <uk-icon icon="palette"></uk-icon>
           </a>
         </li>
-        <li>
-          <a class="cursor-pointer" href="#info" uk-toggle>
-            <uk-icon icon="info"></uk-icon>
-          </a>
-        </li>
         <li class="ml-auto lg:hidden">
           <a
             class="cursor-pointer"
             x-data
             x-on:click="document.getElementById('app')?.classList.remove('with-aside')"
           >
-            <svg
-              class="h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-            >
-              <path
-                d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"
-              ></path>
-            </svg>
+            <uk-icon icon="x"></uk-icon>
           </a>
         </li>
       </ul>
@@ -74,21 +60,9 @@ const titleCase = function (string: string) {
       <div class="mt-4">
         <a class="search group" uk-toggle="#search">
           <div class="flex flex-1 items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="mr-2"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </svg>
+            <span class="mr-2 size-4">
+              <uk-icon icon="search"></uk-icon>
+            </span>
             <span>Search</span>
           </div>
           <kbd
@@ -97,32 +71,19 @@ const titleCase = function (string: string) {
             ⌘ /
           </kbd>
         </a>
-        <uk-command key="/" toggle="search" uk-cloak>
-          {
-            docs.map((collection) => (
-              <a
-                data-group={titleCase(collection.data.group)}
-                data-keywords={collection.data.keywords}
-                href={collection.slug}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="mr-2 h-3 w-3"
+        <uk-command key="/" toggle="search">
+          <select hidden>
+            {
+              docs.map((collection) => (
+                <option
+                  data-group={titleCase(collection.data.group)}
+                  data-keywords={collection.data.keywords}
                 >
-                  <circle cx="12" cy="12" r="10" />
-                </svg>
-                <span>{collection.data.text}</span>
-              </a>
-            ))
-          }
+                  {collection.data.text}
+                </option>
+              ))
+            }
+          </select>
         </uk-command>
       </div>
 
@@ -146,7 +107,7 @@ const titleCase = function (string: string) {
             </ul>
           </li>
           {
-            ["getting-started", "components"].map((z) => (
+            ["prologue", "getting-started", "components"].map((z) => (
               <li
                 class={`uk-parent ${entry.data.group === z ? "uk-open" : ""}`}
               >
@@ -159,19 +120,41 @@ const titleCase = function (string: string) {
                     .sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
                     .map((collection) => (
                       <li
-                        class={`flex items-center justify-between ${entry.slug === collection.slug ? "uk-active" : ""}`}
+                        class={` ${entry.slug === collection.slug ? "uk-active" : ""}`}
                       >
                         <a
-                          class="flex-1 gap-x-2"
+                          class="flex items-center justify-between"
                           href={`/docs/${collection.slug}`}
                         >
-                          {collection.data.text}
+                          <span class="flex-1">{collection.data.text}</span>
+                          {collection.data.ping === true ? (
+                            <span class="relative flex h-2 w-2 flex-none">
+                              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/75" />
+                              <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                            </span>
+                          ) : (
+                            ""
+                          )}
                         </a>
-                        {collection.data.ping === true ? (
-                          <span class="relative flex h-2 w-2">
-                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/75" />
-                            <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-                          </span>
+                        {collection.data.submenu ? (
+                          <ul>
+                            {collection.data.submenu.map((b) => (
+                              <li>
+                                <a
+                                  class="flex items-center justify-between"
+                                  href={b.href}
+                                  target={b.target || "_self"}
+                                >
+                                  <span class="flex-1">{b.text}</span>
+                                  {b.href.startsWith("http") ? (
+                                    <uk-icon icon="external-link" />
+                                  ) : (
+                                    ""
+                                  )}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
                         ) : (
                           ""
                         )}
@@ -193,17 +176,7 @@ const titleCase = function (string: string) {
             x-data
             x-on:click="document.getElementById('app')?.classList.add('with-aside')"
           >
-            <svg
-              class="h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M2 4.75A.75.75 0 0 1 2.75 4h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 6.5a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"
-                clip-rule="evenodd"></path>
-            </svg>
+            <uk-icon icon="menu"></uk-icon>
           </button>
         </div>
       </div>
@@ -258,28 +231,6 @@ const titleCase = function (string: string) {
                 ""
               )
             }
-
-            {
-              entry.data.request === false ? (
-                ""
-              ) : (
-                <div class="uk-card uk-card-primary text-sm">
-                  <div class="space-y-4 p-4">
-                    <div class="uk-card-title">Request Web Components</div>
-                    <div class="">
-                      Franken UI is an independent project. Help support it and
-                      expand its free component library.
-                    </div>
-                    <a
-                      href="mailto:sveltecult@proton.me"
-                      class="uk-button uk-button-secondary uk-button-small"
-                    >
-                      Reach out
-                    </a>
-                  </div>
-                </div>
-              )
-            }
           </div>
         </div>
       </div>
@@ -293,72 +244,6 @@ const titleCase = function (string: string) {
       x-data
       x-on:click="document.getElementById('app')?.classList.remove('with-aside')"
     >
-    </div>
-
-    <div class="uk-modal" id="info" uk-modal>
-      <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-          <div class="uk-modal-title">Info</div>
-        </div>
-        <div class="uk-modal-body uk-overflow-auto" uk-overflow-auto>
-          <ul uk-tab>
-            <li><a href="#">Changelog</a></li>
-            <li><a href="#">About</a></li>
-          </ul>
-
-          <div class="uk-margin uk-switcher">
-            <div hx-get="/partials/changelog" hx-trigger="intersect once"></div>
-            <div hx-get="/partials/about" hx-trigger="intersect once"></div>
-          </div>
-        </div>
-        <div class="uk-modal-footer flex items-center gap-x-2">
-          <a
-            class="uk-button uk-button-primary"
-            href="https://ko-fi.com/sveltecult"
-            target="_blank"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="mr-2"
-            >
-              <path
-                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-              ></path>
-            </svg>
-            Support
-          </a>
-          <a
-            class="uk-button uk-button-default"
-            href="mailto:sveltecult@proton.me"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="mr-2"
-            >
-              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-            </svg>
-            Reach out
-          </a>
-        </div>
-      </div>
     </div>
 
     <div class="uk-modal" id="theme" uk-modal>

@@ -11,6 +11,7 @@ export default {
     "ProseMirror",
     "ProseMirror-focused",
     "tiptap",
+    "mt-10",
   ],
   theme: {
     extend: {

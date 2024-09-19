@@ -118,7 +118,7 @@ body:has(> div.with-aside) {
 }
 
 .code {
-  @apply uk-margin-medium relative overflow-hidden rounded-md border border-border p-4 shadow-sm;
+  @apply relative mt-10 overflow-hidden rounded-md border border-border p-4 shadow-sm;
 }
 
 .code.with-copy {
@@ -138,7 +138,7 @@ body:has(> div.with-aside) {
 }
 
 .astro-code button.copy {
-  @apply uk-button uk-button-default uk-button-xsmall absolute left-4 top-4;
+  @apply uk-button uk-button-default uk-button-xs absolute left-4 top-4;
 }
 
 .astro-code button.copy .ready::before {
