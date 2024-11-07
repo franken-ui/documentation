@@ -29,9 +29,9 @@ export default defineConfig({
         {
           a: "uk-link",
           h1: "uk-h1",
-          h2: "uk-h2 uk-margin-medium",
-          h3: "uk-h3 uk-margin-medium",
-          h4: "uk-h4 uk-margin-medium",
+          h2: "uk-h2 mt-10",
+          h3: "uk-h3 mt-10",
+          h4: "uk-h4 mt-10",
           p: "uk-paragraph",
           table: "uk-margin uk-table uk-table-responsive uk-table-divider",
           ul: "uk-margin uk-list uk-list-bullet",

@@ -71,19 +71,19 @@ const titleCase = function (string: string) {
             ⌘ /
           </kbd>
         </a>
-        <uk-command key="/" toggle="search" uk-cloak>
-          {
-            docs.map((collection) => (
-              <a
-                data-group={titleCase(collection.data.group)}
-                data-keywords={collection.data.keywords}
-                href={collection.slug}
-              >
-                <uk-icon width="12" height="12" icon="circle" />
-                <span class="ml-2">{collection.data.text}</span>
-              </a>
-            ))
-          }
+        <uk-command key="/" toggle="search">
+          <select hidden>
+            {
+              docs.map((collection) => (
+                <option
+                  data-group={titleCase(collection.data.group)}
+                  data-keywords={collection.data.keywords}
+                >
+                  {collection.data.text}
+                </option>
+              ))
+            }
+          </select>
         </uk-command>
       </div>
 
@@ -229,28 +229,6 @@ const titleCase = function (string: string) {
                 </ul>
               ) : (
                 ""
-              )
-            }
-
-            {
-              entry.data.request === false ? (
-                ""
-              ) : (
-                <div class="uk-card uk-card-primary text-sm">
-                  <div class="space-y-4 p-4">
-                    <div class="uk-card-title">Request Web Components</div>
-                    <div class="">
-                      Franken UI is an independent project. Help support it and
-                      expand its free component library.
-                    </div>
-                    <a
-                      href="mailto:sveltecult@proton.me"
-                      class="uk-button uk-button-secondary uk-button-small"
-                    >
-                      Reach out
-                    </a>
-                  </div>
-                </div>
               )
             }
           </div>
